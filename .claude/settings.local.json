@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:reactbits.dev)",
+      "WebSearch",
+      "WebFetch(domain:www.mubly.framer.ai)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
