@@ -23,26 +23,40 @@ export function ModernHero() {
     setCanvasSize();
     window.addEventListener("resize", setCanvasSize);
 
-    // Particle system - adapted to black/white theme
-    const particles: Array<{
+    // Fleet Management Visualization - Moving trucks on routes
+    const vehicles: Array<{
       x: number;
       y: number;
       vx: number;
       vy: number;
-      radius: number;
+      size: number;
+      routeProgress: number;
+      routeLength: number;
     }> = [];
 
-    const particleCount = 80;
-    const connectionDistance = 150;
-
-    // Create particles
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
+    // Road network nodes (representing cities/waypoints)
+    const nodes: Array<{ x: number; y: number }> = [];
+    const nodeCount = 15;
+    
+    // Create nodes
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        radius: Math.random() * 2 + 1,
+      });
+    }
+
+    // Create vehicles (trucks)
+    const vehicleCount = 25;
+    for (let i = 0; i < vehicleCount; i++) {
+      vehicles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        size: 6,
+        routeProgress: Math.random() * 100,
+        routeLength: Math.random() * 200 + 100,
       });
     }
 
@@ -50,38 +64,66 @@ export function ModernHero() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Update and draw particles
-      particles.forEach((particle, i) => {
+      // Draw subtle road network (connecting nodes)
+      ctx.strokeStyle = "rgba(0, 0, 0, 0.06)";
+      ctx.lineWidth = 1;
+      nodes.forEach((node, i) => {
+        // Connect to nearest neighbors
+        nodes.slice(i + 1, i + 4).forEach((otherNode) => {
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(otherNode.x, otherNode.y);
+          ctx.stroke();
+        });
+      });
+
+      // Draw nodes (cities/waypoints)
+      nodes.forEach((node) => {
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+        ctx.fill();
+      });
+
+      // Update and draw vehicles (trucks)
+      vehicles.forEach((vehicle) => {
         // Update position
-        particle.x += particle.vx;
-        particle.y += particle.vy;
+        vehicle.x += vehicle.vx;
+        vehicle.y += vehicle.vy;
 
         // Bounce off edges
-        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        if (vehicle.x < 0 || vehicle.x > canvas.width) vehicle.vx *= -1;
+        if (vehicle.y < 0 || vehicle.y > canvas.height) vehicle.vy *= -1;
 
-        // Draw particle - black dots
+        // Update route progress
+        vehicle.routeProgress += 0.5;
+        if (vehicle.routeProgress > vehicle.routeLength) {
+          vehicle.routeProgress = 0;
+        }
+
+        // Draw vehicle (truck icon)
+        ctx.save();
+        ctx.translate(vehicle.x, vehicle.y);
+        
+        // Rotate based on direction
+        const angle = Math.atan2(vehicle.vy, vehicle.vx);
+        ctx.rotate(angle);
+
+        // Draw truck shape
+        ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
+        ctx.fillRect(-vehicle.size, -vehicle.size / 2, vehicle.size * 1.5, vehicle.size);
+        
+        // Cab (front of truck)
+        ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
+        ctx.fillRect(vehicle.size * 0.5, -vehicle.size / 2.5, vehicle.size * 0.8, vehicle.size * 0.8);
+
+        ctx.restore();
+
+        // Draw route trail
         ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
+        ctx.arc(vehicle.x, vehicle.y, vehicle.size * 2, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.03)";
         ctx.fill();
-
-        // Draw connections - subtle black lines
-        particles.slice(i + 1).forEach((otherParticle) => {
-          const dx = particle.x - otherParticle.x;
-          const dy = particle.y - otherParticle.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < connectionDistance) {
-            const opacity = (1 - distance / connectionDistance) * 0.15;
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(otherParticle.x, otherParticle.y);
-            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity})`;
-            ctx.lineWidth = 1;
-            ctx.stroke();
-          }
-        });
       });
 
       requestAnimationFrame(animate);
@@ -197,57 +239,128 @@ export function ModernHero() {
                     </div>
                   </div>
                   
-                  {/* Stats grid */}
+                  {/* Fleet Stats */}
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
-                        <div className="h-8 w-8 bg-black rounded-lg mb-3"></div>
-                        <div className="h-6 w-16 bg-gray-200 rounded mb-2"></div>
-                        <div className="h-3 w-20 bg-gray-100 rounded"></div>
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="h-8 w-8 bg-black rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </div>
                       </div>
-                    ))}
+                      <div className="text-2xl font-bold text-gray-900">142</div>
+                      <div className="text-xs text-gray-600">Active Vehicles</div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="h-8 w-8 bg-black rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold text-gray-900">8,456</div>
+                      <div className="text-xs text-gray-600">km Today</div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="h-8 w-8 bg-black rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold text-gray-900">94%</div>
+                      <div className="text-xs text-gray-600">Fleet Efficiency</div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="h-8 w-8 bg-black rounded-lg flex items-center justify-center">
+                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="text-2xl font-bold text-gray-900">23</div>
+                      <div className="text-xs text-gray-600">Alerts Today</div>
+                    </div>
                   </div>
 
-                  {/* Chart area */}
-                      <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 h-48 flex items-end gap-2">
-                    {[40, 70, 45, 80, 60, 90, 65, 85, 55, 75, 50, 70].map((height, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t-lg transition-all duration-500"
-                        style={{ height: `${height}%` }}
-                      ></div>
-                    ))}
+                  {/* Fuel Consumption Chart */}
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="text-sm font-semibold text-gray-900">Fuel Consumption (L/100km)</div>
+                      <div className="text-xs text-gray-500">Last 7 Days</div>
+                    </div>
+                    <div className="h-32 flex items-end gap-2">
+                      {[
+                        { value: 45, label: "Mon" },
+                        { value: 72, label: "Tue" },
+                        { value: 58, label: "Wed" },
+                        { value: 85, label: "Thu" },
+                        { value: 68, label: "Fri" },
+                        { value: 92, label: "Sat" },
+                        { value: 55, label: "Sun" },
+                      ].map((day, i) => (
+                        <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                          <div
+                            className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg transition-all duration-500 hover:opacity-80"
+                            style={{ height: `${day.value}%` }}
+                          ></div>
+                          <span className="text-[10px] text-gray-600">{day.label}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Floating cards */}
+            {/* Floating Fleet Metric Cards */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -left-4 md:-left-12 bg-white rounded-xl shadow-xl p-4 max-w-[200px] hidden md:block"
+              className="absolute -top-4 -left-4 md:-left-12 bg-white rounded-xl shadow-xl p-4 max-w-[220px] hidden md:block border border-gray-200"
             >
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center text-white font-bold">✓</div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
                 <div>
-                  <div className="h-2 w-20 bg-gray-200 rounded mb-1"></div>
-                  <div className="h-2 w-16 bg-gray-100 rounded"></div>
+                  <div className="text-xs text-gray-500">Fuel Savings</div>
+                  <div className="text-lg font-bold text-gray-900">35% ↓</div>
                 </div>
               </div>
-              <div className="text-xs text-gray-600">Real-time tracking active</div>
+              <p className="text-xs text-gray-600">
+                Reduced fuel theft by $12,400 this month
+              </p>
             </motion.div>
 
             <motion.div
               animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-4 -right-4 md:-right-12 bg-white rounded-xl shadow-xl p-4 max-w-[200px] hidden md:block"
+              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute -bottom-4 -right-4 md:-right-12 bg-white rounded-xl shadow-xl p-4 max-w-[220px] hidden md:block border border-gray-200"
             >
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 bg-black rounded-lg"></div>
-                <div className="text-2xl font-bold text-gray-900">24/7</div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500">Live Tracking</div>
+                  <div className="text-lg font-bold text-gray-900">142 Vehicles</div>
+                </div>
               </div>
-              <div className="text-xs text-gray-600">Monitoring & Support</div>
+              <p className="text-xs text-gray-600">
+                Real-time GPS + Satellite backup active
+              </p>
             </motion.div>
           </motion.div>
         </div>
