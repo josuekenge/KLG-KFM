@@ -12,7 +12,6 @@ const navigation = [
   { name: "Testimonials", href: "/#testimonials" },
   { name: "Pricing", href: "/pricing" },
   { name: "FAQ", href: "/#faq" },
-  { name: "Contact", href: "/contact" },
 ];
 
 export function ModernNavbar() {
