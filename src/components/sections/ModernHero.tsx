@@ -3,15 +3,108 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 export function ModernHero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Set canvas size
+    const setCanvasSize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    setCanvasSize();
+    window.addEventListener("resize", setCanvasSize);
+
+    // Particle system - adapted to black/white theme
+    const particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+    }> = [];
+
+    const particleCount = 80;
+    const connectionDistance = 150;
+
+    // Create particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 2 + 1,
+      });
+    }
+
+    // Animation loop
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw particles
+      particles.forEach((particle, i) => {
+        // Update position
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        // Bounce off edges
+        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+
+        // Draw particle - black dots
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
+        ctx.fill();
+
+        // Draw connections - subtle black lines
+        particles.slice(i + 1).forEach((otherParticle) => {
+          const dx = particle.x - otherParticle.x;
+          const dy = particle.y - otherParticle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < connectionDistance) {
+            const opacity = (1 - distance / connectionDistance) * 0.15;
+            ctx.beginPath();
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(otherParticle.x, otherParticle.y);
+            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        });
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", setCanvasSize);
+    };
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-      {/* Clean gradient background - Fluence style */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 via-white to-gray-50/30"></div>
+      {/* Animated particle background - Dark Veil effect adapted to black/white */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 z-0"
+        style={{ background: "linear-gradient(to bottom, #fafafa 0%, #ffffff 50%, #fafafa 100%)" }}
+      />
       
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.02)_1px,transparent_1px)] bg-[size:64px_64px]"></div>
+      {/* Subtle overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/30 via-transparent to-gray-50/30 z-[1]"></div>
 
       <div className="container relative z-10 px-4 py-20">
         <div className="max-w-5xl mx-auto text-center">
@@ -151,7 +244,7 @@ export function ModernHero() {
               className="absolute -bottom-4 -right-4 md:-right-12 bg-white rounded-xl shadow-xl p-4 max-w-[200px] hidden md:block"
             >
               <div className="flex items-center gap-2 mb-2">
-                <div className="w-8 h-8 bg-blue-500 rounded-lg"></div>
+                <div className="w-8 h-8 bg-black rounded-lg"></div>
                 <div className="text-2xl font-bold text-gray-900">24/7</div>
               </div>
               <div className="text-xs text-gray-600">Monitoring & Support</div>
