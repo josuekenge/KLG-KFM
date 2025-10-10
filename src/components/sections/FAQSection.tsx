@@ -43,7 +43,7 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(1);
 
   return (
-    <section id="faq" className="relative pt-24 pb-12 bg-white overflow-hidden">
+    <section id="faq" className="relative py-24 bg-white overflow-hidden">
       {/* Subtle crosshatch pattern */}
       <div 
         className="absolute inset-0 opacity-[0.015]"
