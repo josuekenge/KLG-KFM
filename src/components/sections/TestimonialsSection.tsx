@@ -139,7 +139,7 @@ export function TestimonialsSection() {
 
       {/* Stats */}
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 max-w-4xl mx-auto mb-16">
           {[
             { value: "500+", label: "Active Fleets" },
             { value: "15K+", label: "Vehicles Tracked" },
@@ -162,6 +162,33 @@ export function TestimonialsSection() {
             </motion.div>
           ))}
         </div>
+
+        {/* CTA after social proof */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="text-center max-w-2xl mx-auto"
+        >
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+            Ready to transform your fleet?
+          </h3>
+          <p className="text-gray-600 mb-8">
+            Join hundreds of companies already saving costs and improving safety
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="#contact" 
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl transition-all duration-200 shadow-md hover:shadow-xl hover:scale-105"
+            >
+              Join Our Success Stories
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

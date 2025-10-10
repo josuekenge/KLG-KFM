@@ -216,12 +216,15 @@ export function ProcessSection() {
         >
           <motion.a 
             href="#contact" 
-            className="group relative inline-block px-8 py-4 bg-black text-white font-semibold rounded-xl overflow-hidden shadow-lg"
+            className="group relative inline-flex items-center gap-2 px-8 py-4 bg-black text-white font-semibold rounded-xl overflow-hidden shadow-lg"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
           >
-            <span className="relative z-10">Get Started</span>
+            <span className="relative z-10">Schedule Your Installation</span>
+            <svg className="relative z-10 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
             <motion.div
               className="absolute inset-0 bg-gradient-to-r from-gray-800 to-black"
               initial={{ x: "-100%" }}

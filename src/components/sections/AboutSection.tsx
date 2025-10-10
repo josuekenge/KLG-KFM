@@ -88,7 +88,7 @@ export function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-black text-white rounded-2xl p-8 text-center"
+            className="bg-black text-white rounded-2xl p-8 text-center mb-12"
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div>
@@ -108,6 +108,25 @@ export function AboutSection() {
                 <div className="text-sm text-gray-300">Uptime</div>
               </div>
             </div>
+          </motion.div>
+
+          {/* CTA after credibility */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <p className="text-gray-600 mb-6 text-lg">
+              Join 500+ fleets across 12 African countries
+            </p>
+            <a 
+              href="#contact" 
+              className="inline-flex items-center gap-2 px-8 py-4 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl transition-all duration-200 shadow-md hover:shadow-xl hover:scale-105"
+            >
+              Start Your Fleet Transformation
+            </a>
           </motion.div>
         </div>
       </div>
