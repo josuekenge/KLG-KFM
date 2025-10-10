@@ -168,17 +168,20 @@ export function ModernHero() {
     };
   }, []);
 
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-      {/* Animated particle background - Dark Veil effect adapted to black/white */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-0"
-        style={{ background: "linear-gradient(to bottom, #fafafa 0%, #ffffff 50%, #fafafa 100%)" }}
-      />
-      
-      {/* Subtle overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/30 via-transparent to-gray-50/30 z-[1]"></div>
+      return (
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-black">
+          {/* Animated particle background - Dark Veil effect adapted to black/white */}
+          <canvas
+            ref={canvasRef}
+            className="absolute inset-0 z-0"
+            style={{ background: "linear-gradient(to bottom, #fafafa 0%, #ffffff 50%, #fafafa 100%)" }}
+          />
+          
+          {/* Dark mode background overlay */}
+          <div className="absolute inset-0 bg-black opacity-0 dark:opacity-100 transition-opacity duration-300 z-0"></div>
+          
+          {/* Subtle overlay for depth */}
+          <div className="absolute inset-0 bg-gradient-to-b from-gray-50/30 via-transparent to-gray-50/30 dark:from-gray-900/30 dark:via-transparent dark:to-gray-900/30 z-[1]"></div>
 
       <div className="container relative z-10 px-4 py-20">
         <div className="max-w-5xl mx-auto text-center">
@@ -187,11 +190,11 @@ export function ModernHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-gray-100 border border-gray-200 rounded-full text-gray-900 text-sm font-medium"
+            className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-full text-gray-900 dark:text-white text-sm font-medium"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-black"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black dark:bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-black dark:bg-white"></span>
             </span>
             Fleet Management & Logistics Solution
           </motion.div>
@@ -201,10 +204,10 @@ export function ModernHero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight tracking-tight"
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight"
           >
             Fleet Management{" "}
-            <span className="block mt-2 text-black">
+            <span className="block mt-2 text-black dark:text-white">
               Built for Africa
             </span>
           </motion.h1>
@@ -214,7 +217,7 @@ export function ModernHero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
             Built for frontier markets with rugged hardware, satellite backup, and AI-powered insights. 
             Reduce fuel theft, improve driver safety, and optimize your fleet operations across Africa.
@@ -229,7 +232,7 @@ export function ModernHero() {
               >
                 <a 
                   href="#contact" 
-                  className="group px-8 py-4 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-xl hover:scale-105"
+                  className="group px-8 py-4 bg-black dark:bg-white hover:bg-gray-900 dark:hover:bg-gray-100 text-white dark:text-black font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-xl hover:scale-105"
                 >
                   Get Started
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
@@ -237,7 +240,7 @@ export function ModernHero() {
 
                 <Link 
                   href="/platform" 
-                  className="group px-8 py-4 bg-white border-2 border-gray-900 hover:border-black hover:bg-gray-50 text-gray-900 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-md"
+                  className="group px-8 py-4 bg-white dark:bg-black border-2 border-gray-900 dark:border-white hover:border-black dark:hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-900 text-gray-900 dark:text-white font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-md"
                 >
                   <Play className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
                   Book a Demo
@@ -249,7 +252,7 @@ export function ModernHero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-wrap items-center justify-center gap-6 mb-16 text-sm text-gray-600"
+                className="flex flex-wrap items-center justify-center gap-6 mb-16 text-sm text-gray-600 dark:text-gray-400"
               >
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
