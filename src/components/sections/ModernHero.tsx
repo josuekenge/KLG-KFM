@@ -1,12 +1,21 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export function ModernHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [activeChart, setActiveChart] = useState(0);
+
+  // Rotate charts every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveChart((prev) => (prev + 1) % 3);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -337,54 +346,181 @@ export function ModernHero() {
                     </div>
                   </div>
 
-                  {/* Fuel Consumption Chart with Mock Data */}
-                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="text-sm font-semibold text-gray-900">Weekly Fleet Overview</div>
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center gap-1">
-                          <div className="w-2 h-2 bg-black rounded-full"></div>
-                          <span className="text-xs text-gray-500">Distance (km)</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="h-32 flex items-end justify-between gap-1.5">
-                      {[
-                        { value: 65, label: "Mon", km: "1,245" },
-                        { value: 78, label: "Tue", km: "1,486" },
-                        { value: 55, label: "Wed", km: "1,050" },
-                        { value: 88, label: "Thu", km: "1,678" },
-                        { value: 72, label: "Fri", km: "1,372" },
-                        { value: 45, label: "Sat", km: "856" },
-                      ].map((day, i) => (
-                        <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
-                          <div
-                            className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg transition-all duration-300 hover:from-gray-800 hover:to-gray-700 cursor-pointer"
-                            style={{ height: `${day.value}%` }}
-                            title={`${day.label}: ${day.km}km`}
-                          ></div>
-                          <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
-                          {/* Tooltip on hover */}
-                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[9px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                            {day.km}km
+                  {/* Rotating Charts with Mock Data */}
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 relative overflow-hidden">
+                    <AnimatePresence mode="wait">
+                      {activeChart === 0 && (
+                        <motion.div
+                          key="distance"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="text-sm font-semibold text-gray-900">Weekly Distance</div>
+                            <div className="flex items-center gap-1">
+                              <div className="w-2 h-2 bg-black rounded-full"></div>
+                              <span className="text-xs text-gray-500">Kilometers</span>
+                            </div>
                           </div>
-                        </div>
+                          <div className="h-32 flex items-end justify-between gap-1.5">
+                            {[
+                              { value: 65, label: "Mon", data: "1,245" },
+                              { value: 78, label: "Tue", data: "1,486" },
+                              { value: 55, label: "Wed", data: "1,050" },
+                              { value: 88, label: "Thu", data: "1,678" },
+                              { value: 72, label: "Fri", data: "1,372" },
+                              { value: 45, label: "Sat", data: "856" },
+                            ].map((day, i) => (
+                              <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
+                                <motion.div
+                                  initial={{ height: 0 }}
+                                  animate={{ height: `${day.value}%` }}
+                                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                                  className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg"
+                                ></motion.div>
+                                <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <div>
+                                <div className="text-xs text-gray-500">Total</div>
+                                <div className="text-sm font-bold text-gray-900">7,687 km</div>
+                              </div>
+                              <div>
+                                <div className="text-xs text-gray-500">Avg/Day</div>
+                                <div className="text-sm font-bold text-gray-900">1,281 km</div>
+                              </div>
+                            </div>
+                            <div className="text-xs text-gray-500 flex items-center gap-1">
+                              <span className="text-green-600 font-semibold">↑ 12%</span> vs last week
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {activeChart === 1 && (
+                        <motion.div
+                          key="fuel"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="text-sm font-semibold text-gray-900">Fuel Consumption</div>
+                            <div className="flex items-center gap-1">
+                              <div className="w-2 h-2 bg-black rounded-full"></div>
+                              <span className="text-xs text-gray-500">Liters</span>
+                            </div>
+                          </div>
+                          <div className="h-32 flex items-end justify-between gap-1.5">
+                            {[
+                              { value: 70, label: "Mon", data: "842" },
+                              { value: 82, label: "Tue", data: "986" },
+                              { value: 60, label: "Wed", data: "720" },
+                              { value: 92, label: "Thu", data: "1,104" },
+                              { value: 75, label: "Fri", data: "900" },
+                              { value: 50, label: "Sat", data: "600" },
+                            ].map((day, i) => (
+                              <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
+                                <motion.div
+                                  initial={{ height: 0 }}
+                                  animate={{ height: `${day.value}%` }}
+                                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                                  className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg"
+                                ></motion.div>
+                                <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <div>
+                                <div className="text-xs text-gray-500">Total</div>
+                                <div className="text-sm font-bold text-gray-900">5,152 L</div>
+                              </div>
+                              <div>
+                                <div className="text-xs text-gray-500">Avg/Day</div>
+                                <div className="text-sm font-bold text-gray-900">859 L</div>
+                              </div>
+                            </div>
+                            <div className="text-xs text-gray-500 flex items-center gap-1">
+                              <span className="text-green-600 font-semibold">↓ 8%</span> vs last week
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+
+                      {activeChart === 2 && (
+                        <motion.div
+                          key="trips"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="text-sm font-semibold text-gray-900">Completed Trips</div>
+                            <div className="flex items-center gap-1">
+                              <div className="w-2 h-2 bg-black rounded-full"></div>
+                              <span className="text-xs text-gray-500">Count</span>
+                            </div>
+                          </div>
+                          <div className="h-32 flex items-end justify-between gap-1.5">
+                            {[
+                              { value: 68, label: "Mon", data: "124" },
+                              { value: 75, label: "Tue", data: "138" },
+                              { value: 58, label: "Wed", data: "106" },
+                              { value: 85, label: "Thu", data: "156" },
+                              { value: 70, label: "Fri", data: "128" },
+                              { value: 48, label: "Sat", data: "88" },
+                            ].map((day, i) => (
+                              <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
+                                <motion.div
+                                  initial={{ height: 0 }}
+                                  animate={{ height: `${day.value}%` }}
+                                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                                  className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg"
+                                ></motion.div>
+                                <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
+                              </div>
+                            ))}
+                          </div>
+                          <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <div>
+                                <div className="text-xs text-gray-500">Total</div>
+                                <div className="text-sm font-bold text-gray-900">740 trips</div>
+                              </div>
+                              <div>
+                                <div className="text-xs text-gray-500">Avg/Day</div>
+                                <div className="text-sm font-bold text-gray-900">123 trips</div>
+                              </div>
+                            </div>
+                            <div className="text-xs text-gray-500 flex items-center gap-1">
+                              <span className="text-green-600 font-semibold">↑ 15%</span> vs last week
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                    {/* Chart Indicators */}
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                      {[0, 1, 2].map((index) => (
+                        <button
+                          key={index}
+                          onClick={() => setActiveChart(index)}
+                          className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                            activeChart === index ? "bg-black w-4" : "bg-gray-300"
+                          }`}
+                          aria-label={`View chart ${index + 1}`}
+                        />
                       ))}
-                    </div>
-                    <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <div>
-                          <div className="text-xs text-gray-500">Total Distance</div>
-                          <div className="text-sm font-bold text-gray-900">7,687 km</div>
-                        </div>
-                        <div>
-                          <div className="text-xs text-gray-500">Avg/Day</div>
-                          <div className="text-sm font-bold text-gray-900">1,281 km</div>
-                        </div>
-                      </div>
-                      <div className="text-xs text-gray-500 flex items-center gap-1">
-                        <span className="text-green-600 font-semibold">↑ 12%</span> vs last week
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -432,7 +568,7 @@ export function ModernHero() {
               <p className="text-xs text-gray-600">
                 Real-time GPS + Satellite backup active
               </p>
-            </motion.div>
+              </motion.div>
           </motion.div>
         </div>
       </div>
