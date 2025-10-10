@@ -300,32 +300,6 @@ export function AboutSection() {
           </div>
         </div>
 
-        {/* KLG Integration Highlight */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="bg-black text-white rounded-2xl p-8 md:p-12 text-center"
-        >
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">
-            Part of Kyeto Logistics Group
-          </h3>
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-6">
-            KFM data flows seamlessly into KLG&apos;s dispatch system and marketplace, 
-            improving route optimization, job allocation, and ETA accuracy. 
-            This integration enables transparent operations from port to city, 
-            providing real-time visibility across the entire supply chain.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <a 
-              href="/contact" 
-              className="px-8 py-3 bg-white text-black font-semibold rounded-lg hover:bg-gray-100 transition-all duration-200"
-            >
-              Learn More About Integration
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
