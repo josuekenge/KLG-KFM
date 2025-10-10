@@ -527,48 +527,84 @@ export function ModernHero() {
               </div>
             </div>
 
-            {/* Floating Fleet Metric Cards */}
+            {/* Floating Fleet Metric Cards with Mini Charts */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -left-4 md:-left-12 bg-white rounded-xl shadow-xl p-4 max-w-[220px] hidden md:block border border-gray-200"
+              className="absolute -top-4 -left-4 md:-left-12 bg-white rounded-xl shadow-xl p-4 max-w-[240px] hidden md:block border border-gray-200"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Fuel Savings</div>
-                  <div className="text-lg font-bold text-gray-900">35% ↓</div>
+                  <div className="text-xs text-gray-500">Fuel Efficiency</div>
+                  <div className="text-lg font-bold text-gray-900">+35%</div>
                 </div>
               </div>
+              {/* Mini Chart */}
+              <div className="h-12 flex items-end gap-1 mb-2">
+                {[60, 45, 70, 55, 80, 65, 90].map((height, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ height: 0 }}
+                    animate={{ height: `${height}%` }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: i * 0.1,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      repeatDelay: 2
+                    }}
+                    className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t"
+                  />
+                ))}
+              </div>
               <p className="text-xs text-gray-600">
-                Reduced fuel theft by $12,400 this month
+                Saved $12,400 in fuel costs this month
               </p>
             </motion.div>
 
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-4 -right-4 md:-right-12 bg-white rounded-xl shadow-xl p-4 max-w-[220px] hidden md:block border border-gray-200"
+              className="absolute -bottom-4 -right-4 md:-right-12 bg-white rounded-xl shadow-xl p-4 max-w-[240px] hidden md:block border border-gray-200"
             >
               <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Live Tracking</div>
-                  <div className="text-lg font-bold text-gray-900">142 Vehicles</div>
+                  <div className="text-xs text-gray-500">Active Vehicles</div>
+                  <div className="text-lg font-bold text-gray-900">142</div>
                 </div>
               </div>
+              {/* Mini Chart */}
+              <div className="h-12 flex items-end gap-1 mb-2">
+                {[50, 75, 60, 85, 70, 90, 65].map((height, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ height: 0 }}
+                    animate={{ height: `${height}%` }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: i * 0.1 + 0.5,
+                      repeat: Infinity,
+                      repeatType: "reverse",
+                      repeatDelay: 2
+                    }}
+                    className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t"
+                  />
+                ))}
+              </div>
               <p className="text-xs text-gray-600">
-                Real-time GPS + Satellite backup active
+                Real-time GPS + Satellite backup
               </p>
-              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
