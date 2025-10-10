@@ -377,7 +377,13 @@ export function ModernHero() {
                                 <motion.div
                                   initial={{ height: 0 }}
                                   animate={{ height: `${day.value}%` }}
-                                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                                  transition={{ 
+                                    duration: 0.8, 
+                                    delay: i * 0.08,
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                    repeatDelay: 1.5
+                                  }}
                                   className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg"
                                 ></motion.div>
                                 <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
@@ -430,7 +436,13 @@ export function ModernHero() {
                                 <motion.div
                                   initial={{ height: 0 }}
                                   animate={{ height: `${day.value}%` }}
-                                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                                  transition={{ 
+                                    duration: 0.8, 
+                                    delay: i * 0.08,
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                    repeatDelay: 1.5
+                                  }}
                                   className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg"
                                 ></motion.div>
                                 <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
@@ -483,7 +495,13 @@ export function ModernHero() {
                                 <motion.div
                                   initial={{ height: 0 }}
                                   animate={{ height: `${day.value}%` }}
-                                  transition={{ duration: 0.5, delay: i * 0.05 }}
+                                  transition={{ 
+                                    duration: 0.8, 
+                                    delay: i * 0.08,
+                                    repeat: Infinity,
+                                    repeatType: "reverse",
+                                    repeatDelay: 1.5
+                                  }}
                                   className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg"
                                 ></motion.div>
                                 <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
@@ -565,7 +583,7 @@ export function ModernHero() {
               <p className="text-xs text-gray-600">
                 Saved $12,400 in fuel costs this month
               </p>
-            </motion.div>
+              </motion.div>
 
             <motion.div
               animate={{ y: [0, 10, 0] }}
