@@ -42,7 +42,7 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+    <section id="contact" className="relative pt-12 pb-24 bg-white overflow-hidden">
       {/* Subtle crosshatch pattern - same as FAQ */}
       <div 
         className="absolute inset-0 opacity-[0.015]"
