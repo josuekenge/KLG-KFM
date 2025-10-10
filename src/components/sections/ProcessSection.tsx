@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Truck, Radio, LineChart } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 const steps = [
   {
@@ -28,9 +29,110 @@ const steps = [
 ];
 
 export function ProcessSection() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Set canvas size
+    const setCanvasSize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    setCanvasSize();
+    window.addEventListener("resize", setCanvasSize);
+
+    // Dark Veil effect - Animated particles
+    const particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+      opacity: number;
+    }> = [];
+
+    // Create particles
+    const particleCount = 80;
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        size: Math.random() * 2 + 0.5,
+        opacity: Math.random() * 0.5 + 0.2,
+      });
+    }
+
+    // Animation loop
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw and update particles
+      particles.forEach((particle) => {
+        // Update position
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        // Wrap around edges
+        if (particle.x < 0) particle.x = canvas.width;
+        if (particle.x > canvas.width) particle.x = 0;
+        if (particle.y < 0) particle.y = canvas.height;
+        if (particle.y > canvas.height) particle.y = 0;
+
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0, 0, 0, ${particle.opacity})`;
+        ctx.fill();
+      });
+
+      // Draw connections between nearby particles
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach((p2) => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 120) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            const opacity = (1 - distance / 120) * 0.15;
+            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        });
+      });
+
+      requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("resize", setCanvasSize);
+    };
+  }, []);
+
   return (
-    <section className="py-24 bg-white">
-      <div className="container mx-auto px-4">
+    <section className="relative py-24 bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
+      {/* Animated Background Canvas - Dark Veil */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full z-0"
+      />
+
+      {/* Subtle overlay for depth */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-white/60 z-[1]"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <motion.p
@@ -65,7 +167,7 @@ export function ProcessSection() {
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -73,30 +175,46 @@ export function ProcessSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="relative"
+              className="relative group"
             >
-              {/* Connector Line */}
+              {/* Connector Line - Animated */}
               {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-gray-200 to-transparent -ml-6"></div>
+                <motion.div 
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 0.8, delay: index * 0.2 + 0.4 }}
+                  viewport={{ once: true }}
+                  className="hidden md:block absolute top-20 left-full w-full h-[2px] bg-gradient-to-r from-black via-gray-400 to-transparent origin-left z-0"
+                  style={{ marginLeft: "24px" }}
+                ></motion.div>
               )}
 
-              <div className="text-center relative z-10">
-                {/* Icon */}
+              {/* Interactive Card */}
+              <motion.div
+                className="relative z-10 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-black/20 transition-all duration-300 hover:shadow-xl"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                {/* Number Badge */}
                 <motion.div 
-                  className={`w-20 h-20 mx-auto mb-6 bg-gradient-to-br ${step.color} rounded-2xl flex items-center justify-center shadow-md hover:shadow-xl`}
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute -top-4 -right-4 w-12 h-12 bg-black text-white rounded-xl flex items-center justify-center font-bold text-lg shadow-lg"
+                  whileHover={{ rotate: 12, scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <step.icon className="w-10 h-10 text-white" />
+                  {step.number}
                 </motion.div>
 
-                {/* Number */}
-                <div className="text-6xl font-bold text-gray-100 mb-4">
-                  {step.number}
-                </div>
+                {/* Icon */}
+                <motion.div 
+                  className={`w-16 h-16 mb-6 bg-gradient-to-br ${step.color} rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg`}
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <step.icon className="w-8 h-8 text-white" />
+                </motion.div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-black transition-colors">
                   {step.title}
                 </h3>
 
@@ -104,7 +222,15 @@ export function ProcessSection() {
                 <p className="text-gray-600 leading-relaxed">
                   {step.description}
                 </p>
-              </div>
+
+                {/* Hover Effect Line */}
+                <motion.div 
+                  className="absolute bottom-0 left-0 h-1 bg-black rounded-b-2xl"
+                  initial={{ width: 0 }}
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                ></motion.div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
@@ -118,18 +244,37 @@ export function ProcessSection() {
           className="text-center"
         >
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
+            <motion.a 
               href="/contact" 
-              className="px-8 py-4 bg-black hover:bg-gray-800 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+              className="group relative px-8 py-4 bg-black text-white font-semibold rounded-xl overflow-hidden shadow-lg"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              Get Started
-            </a>
-            <a 
+              <span className="relative z-10">Get Started</span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-gray-800 to-black"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              ></motion.div>
+            </motion.a>
+            
+            <motion.a 
               href="/platform" 
-              className="px-8 py-4 bg-white border-2 border-gray-900 hover:bg-gray-50 text-gray-900 font-semibold rounded-xl transition-all duration-200"
+              className="group relative px-8 py-4 bg-white border-2 border-gray-900 text-gray-900 font-semibold rounded-xl overflow-hidden"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2 }}
             >
-              Book a Demo
-            </a>
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Book a Demo</span>
+              <motion.div
+                className="absolute inset-0 bg-black"
+                initial={{ y: "100%" }}
+                whileHover={{ y: 0 }}
+                transition={{ duration: 0.3 }}
+              ></motion.div>
+            </motion.a>
           </div>
         </motion.div>
       </div>
