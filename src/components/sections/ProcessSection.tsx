@@ -166,8 +166,8 @@ export function ProcessSection() {
           </motion.p>
         </div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-16">
+        {/* Steps Grid - Simplified */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 max-w-5xl mx-auto mb-16">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -175,38 +175,17 @@ export function ProcessSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
-              className="relative group"
+              className="flex-1 group"
             >
-              {/* Connector Line - Animated */}
-              {index < steps.length - 1 && (
-                <motion.div 
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 + 0.4 }}
-                  viewport={{ once: true }}
-                  className="hidden md:block absolute top-20 left-full w-full h-[2px] bg-gradient-to-r from-black via-gray-400 to-transparent origin-left z-0"
-                  style={{ marginLeft: "24px" }}
-                ></motion.div>
-              )}
-
               {/* Interactive Card */}
               <motion.div
-                className="relative z-10 bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 hover:border-black/20 transition-all duration-300 hover:shadow-xl"
+                className="relative z-10 bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:border-black/20 transition-all duration-300 hover:shadow-xl text-center"
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
               >
-                {/* Number Badge */}
+                {/* Icon - Centered */}
                 <motion.div 
-                  className="absolute -top-4 -right-4 w-12 h-12 bg-black text-white rounded-xl flex items-center justify-center font-bold text-lg shadow-lg"
-                  whileHover={{ rotate: 12, scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {step.number}
-                </motion.div>
-
-                {/* Icon */}
-                <motion.div 
-                  className={`w-16 h-16 mb-6 bg-gradient-to-br ${step.color} rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg`}
+                  className={`w-16 h-16 mx-auto mb-4 bg-gradient-to-br ${step.color} rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg`}
                   whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                   transition={{ duration: 0.5 }}
                 >
@@ -214,22 +193,14 @@ export function ProcessSection() {
                 </motion.div>
 
                 {/* Title */}
-                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-black transition-colors">
+                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-black transition-colors">
                   {step.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-sm text-gray-600 leading-relaxed">
                   {step.description}
                 </p>
-
-                {/* Hover Effect Line */}
-                <motion.div 
-                  className="absolute bottom-0 left-0 h-1 bg-black rounded-b-2xl"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: "100%" }}
-                  transition={{ duration: 0.3 }}
-                ></motion.div>
               </motion.div>
             </motion.div>
           ))}

@@ -2,44 +2,61 @@
 
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
-import { useState, useEffect } from "react";
 
 const testimonials = [
   {
-    quote: "KFM has transformed our mining fleet operations. The satellite backup keeps us connected even in the most remote areas, and fuel theft has dropped by 35% since implementation.",
+    quote: "KFM has transformed our mining fleet operations. The satellite backup keeps us connected even in the most remote areas.",
     author: "David Mwangi",
-    role: "Fleet Manager, Mining Operations",
+    role: "Fleet Manager",
+    company: "Mining Operations",
     rating: 5
   },
   {
-    quote: "The integration with KLG's dispatch system has been seamless. We now have real-time visibility from port to city, which has improved our customer satisfaction dramatically.",
+    quote: "The integration with KLG's dispatch system has been seamless. Real-time visibility from port to city.",
     author: "Amara Okafor",
-    role: "Logistics Director, Regional Distributor",
+    role: "Logistics Director",
+    company: "Regional Distributor",
     rating: 5
   },
   {
-    quote: "Driver safety scores have helped us reduce accidents by 40% and lower our insurance premiums. The AI-powered cameras provide invaluable evidence when incidents do occur.",
+    quote: "Driver safety scores have helped us reduce accidents by 40% and lower our insurance premiums significantly.",
     author: "James Kimani",
-    role: "Operations Manager, Transport Company",
+    role: "Operations Manager",
+    company: "Transport Company",
+    rating: 5
+  },
+  {
+    quote: "Fuel theft dropped by 35% since implementation. The ROI was clear within the first three months.",
+    author: "Sarah Mutua",
+    role: "CFO",
+    company: "Logistics Group",
+    rating: 5
+  },
+  {
+    quote: "Best telematics solution we've used in frontier markets. Support team understands our challenges.",
+    author: "Patrick Nkosi",
+    role: "Fleet Director",
+    company: "Cross-Border Transport",
+    rating: 5
+  },
+  {
+    quote: "The AI-powered cameras provide invaluable evidence when incidents occur. Game changer for our operations.",
+    author: "Grace Achieng",
+    role: "Risk Manager",
+    company: "Distribution Network",
     rating: 5
   }
 ];
 
+// Duplicate testimonials for infinite scroll effect
+const infiniteTestimonials = [...testimonials, ...testimonials, ...testimonials];
+
 export function TestimonialsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
-    <section id="testimonials" className="py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
+    <section id="testimonials" className="py-24 bg-white overflow-hidden">
+      <div className="container mx-auto px-4 mb-12">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -60,64 +77,65 @@ export function TestimonialsSection() {
             Trusted by fleets across Africa
           </motion.h2>
         </div>
+      </div>
 
-        {/* Testimonial Carousel */}
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ 
-                  opacity: currentIndex === index ? 1 : 0,
-                  x: currentIndex === index ? 0 : 100,
-                  display: currentIndex === index ? "block" : "none"
-                }}
-                transition={{ duration: 0.5 }}
-                className="bg-white rounded-2xl p-12 shadow-xl border border-gray-100"
-              >
-                {/* Stars */}
-                <div className="flex gap-1 mb-6">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
+      {/* Infinite Horizontal Scroll */}
+      <div className="relative">
+        {/* Gradient Overlays */}
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
 
-                {/* Quote */}
-                <blockquote className="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </blockquote>
+        {/* Scrolling Container */}
+        <motion.div
+          className="flex gap-6"
+          animate={{
+            x: [0, -1920], // Adjust based on card width * number of original testimonials
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 40,
+              ease: "linear",
+            },
+          }}
+        >
+          {infiniteTestimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              className="flex-shrink-0 w-[380px] bg-white rounded-2xl p-6 border border-gray-200 shadow-sm hover:shadow-lg hover:border-black/20 transition-all duration-300"
+              whileHover={{ y: -4 }}
+            >
+              {/* Stars */}
+              <div className="flex gap-1 mb-4">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-black text-black" />
+                ))}
+              </div>
 
-                {/* Author */}
-                <div>
-                  <div className="font-bold text-gray-900">{testimonial.author}</div>
-                  <div className="text-gray-600">{testimonial.role}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              {/* Quote */}
+              <blockquote className="text-gray-700 mb-6 leading-relaxed text-sm">
+                &ldquo;{testimonial.quote}&rdquo;
+              </blockquote>
 
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  currentIndex === index ? "bg-black w-8" : "bg-gray-300"
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
+              {/* Author */}
+              <div className="border-t border-gray-100 pt-4">
+                <div className="font-bold text-gray-900">{testimonial.author}</div>
+                <div className="text-sm text-gray-600">{testimonial.role}</div>
+                <div className="text-xs text-gray-500 mt-1">{testimonial.company}</div>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
 
-        {/* Stats */}
+      {/* Stats */}
+      <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20 max-w-4xl mx-auto">
           {[
-            { value: "80+", label: "Businesses are Happy" },
-            { value: "4980+", label: "Data-driven decisions" },
-            { value: "80%", label: "Customer Satisfied" }
+            { value: "500+", label: "Active Fleets" },
+            { value: "15K+", label: "Vehicles Tracked" },
+            { value: "99.9%", label: "Uptime Reliability" }
           ].map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -140,4 +158,3 @@ export function TestimonialsSection() {
     </section>
   );
 }
-
