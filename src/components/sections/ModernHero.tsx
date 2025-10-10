@@ -1,21 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export function ModernHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [activeChart, setActiveChart] = useState(0);
-
-  // Rotate charts every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveChart((prev) => (prev + 1) % 3);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -295,395 +286,123 @@ export function ModernHero() {
                     </div>
                   </div>
                   
-                  {/* Fleet Stats - More Natural Layout */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
-                    <div className="bg-white border border-gray-200 rounded-lg p-3">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="text-xs text-gray-500 font-medium">Active Vehicles</div>
-                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
+                  {/* Simple Stats */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="text-xs text-gray-500 mb-1">Active Vehicles</div>
                       <div className="text-2xl font-bold text-gray-900">142</div>
-                      <div className="text-xs text-gray-500 mt-1">of 156 total</div>
                     </div>
-
-                    <div className="bg-white border border-gray-200 rounded-lg p-3">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="text-xs text-gray-500 font-medium">Distance Today</div>
-                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                        </svg>
-                      </div>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="text-xs text-gray-500 mb-1">km Today</div>
                       <div className="text-2xl font-bold text-gray-900">8,456</div>
-                      <div className="text-xs text-green-600 mt-1">+12% vs yesterday</div>
                     </div>
-
-                    <div className="bg-white border border-gray-200 rounded-lg p-3">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="text-xs text-gray-500 font-medium">Fleet Efficiency</div>
-                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="text-xs text-gray-500 mb-1">Fleet Efficiency</div>
                       <div className="text-2xl font-bold text-gray-900">94%</div>
-                      <div className="text-xs text-gray-500 mt-1">Target: 95%</div>
                     </div>
-
-                    <div className="bg-white border border-gray-200 rounded-lg p-3">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="text-xs text-gray-500 font-medium">Active Alerts</div>
-                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                        </svg>
-                      </div>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="text-xs text-gray-500 mb-1">Alerts Today</div>
                       <div className="text-2xl font-bold text-gray-900">23</div>
-                      <div className="text-xs text-gray-500 mt-1">5 critical</div>
                     </div>
                   </div>
 
-                  {/* Realistic Performance Charts */}
-                  <div className="bg-white border border-gray-200 rounded-lg p-4 mb-3">
+                  {/* Main Chart */}
+                  <div className="bg-gray-50 rounded-lg p-5 mb-4">
                     <div className="flex items-center justify-between mb-4">
-                      <div>
-                        <div className="text-sm font-semibold text-gray-900">Fleet Performance Overview</div>
-                        <div className="text-xs text-gray-500 mt-1">Last 12 hours</div>
-                      </div>
-                      <div className="flex items-center gap-4 text-xs">
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
-                          <span className="text-gray-600">Active</span>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                          <span className="text-gray-600">Idle</span>
-                        </div>
-                      </div>
+                      <div className="text-sm font-medium text-gray-900">Weekly Distance</div>
+                      <div className="text-xs text-gray-500">Kilometers</div>
                     </div>
-                    
-                    <div className="h-32 flex items-end gap-1">
+                    <div className="h-40 flex items-end gap-2">
                       {[
-                        { active: 85, idle: 12 },
-                        { active: 92, idle: 8 },
-                        { active: 88, idle: 10 },
-                        { active: 95, idle: 5 },
-                        { active: 90, idle: 8 },
-                        { active: 78, idle: 18 },
-                        { active: 82, idle: 15 },
-                        { active: 88, idle: 10 },
-                        { active: 93, idle: 7 },
-                        { active: 87, idle: 11 },
-                        { active: 91, idle: 8 },
-                        { active: 94, idle: 6 },
-                      ].map((data, i) => (
-                        <div key={i} className="flex-1 flex flex-col gap-0.5 items-end h-full justify-end">
-                          <motion.div
-                            initial={{ height: 0 }}
-                            animate={{ height: `${data.active}%` }}
-                            transition={{ 
-                              duration: 1.2, 
-                              delay: i * 0.08,
-                              ease: [0.4, 0, 0.2, 1]
-                            }}
-                            className="w-full bg-gray-900 rounded-t"
-                          />
-              <motion.div
-                            initial={{ height: 0 }}
-                            animate={{ height: `${data.idle}%` }}
-                            transition={{ 
-                              duration: 1.2, 
-                              delay: i * 0.08 + 0.1,
-                              ease: [0.4, 0, 0.2, 1]
-                            }}
-                            className="w-full bg-gray-400 rounded-t"
-                          />
+                        { height: 65, label: "Mon" },
+                        { height: 78, label: "Tue" },
+                        { height: 55, label: "Wed" },
+                        { height: 88, label: "Thu" },
+                        { height: 72, label: "Fri" },
+                        { height: 45, label: "Sat" },
+                      ].map((day, i) => (
+                        <div key={i} className="flex-1 flex flex-col items-center gap-2">
+                          <div className="w-full flex flex-col justify-end h-full">
+                            <div 
+                              className="w-full bg-black rounded-t transition-all duration-700"
+                              style={{ height: `${day.height}%` }}
+                            ></div>
+                          </div>
+                          <span className="text-xs text-gray-600">{day.label}</span>
                         </div>
                       ))}
                     </div>
-
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
-                      <div className="text-xs text-gray-600">00:00</div>
-                      <div className="text-xs text-gray-600">06:00</div>
-                      <div className="text-xs text-gray-600">12:00</div>
-                      <div className="text-xs text-gray-900 font-medium">Now</div>
+                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-200">
+                      <div className="text-xs text-gray-600">Total: 7,687 km</div>
+                      <div className="text-xs text-green-600">↑ 12% vs last week</div>
                     </div>
                   </div>
 
-                  {/* Rotating Charts with Mock Data */}
-                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 relative overflow-hidden">
-                    <AnimatePresence mode="wait">
-                      {activeChart === 0 && (
-                        <motion.div
-                          key="distance"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="text-sm font-semibold text-gray-900">Weekly Distance</div>
-                            <div className="flex items-center gap-1">
-                              <div className="w-2 h-2 bg-black rounded-full"></div>
-                              <span className="text-xs text-gray-500">Kilometers</span>
-                            </div>
-                          </div>
-                          <div className="h-32 flex items-end justify-between gap-1.5">
-                            {[
-                              { value: 65, label: "Mon", data: "1,245" },
-                              { value: 78, label: "Tue", data: "1,486" },
-                              { value: 55, label: "Wed", data: "1,050" },
-                              { value: 88, label: "Thu", data: "1,678" },
-                              { value: 72, label: "Fri", data: "1,372" },
-                              { value: 45, label: "Sat", data: "856" },
-                            ].map((day, i) => (
-                              <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
-                                <motion.div
-                                  initial={{ height: 0 }}
-                                  animate={{ height: `${day.value}%` }}
-                                  transition={{ 
-                                    duration: 0.8, 
-                                    delay: i * 0.08,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    repeatDelay: 1.5
-                                  }}
-                                  className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg"
-                                ></motion.div>
-                                <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
-                              </div>
-                            ))}
-                          </div>
-                          <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                              <div>
-                                <div className="text-xs text-gray-500">Total</div>
-                                <div className="text-sm font-bold text-gray-900">7,687 km</div>
-                              </div>
-                              <div>
-                                <div className="text-xs text-gray-500">Avg/Day</div>
-                                <div className="text-sm font-bold text-gray-900">1,281 km</div>
-                              </div>
-                            </div>
-                            <div className="text-xs text-gray-500 flex items-center gap-1">
-                              <span className="text-green-600 font-semibold">↑ 12%</span> vs last week
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-
-                      {activeChart === 1 && (
-                        <motion.div
-                          key="fuel"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="text-sm font-semibold text-gray-900">Fuel Consumption</div>
-                            <div className="flex items-center gap-1">
-                              <div className="w-2 h-2 bg-black rounded-full"></div>
-                              <span className="text-xs text-gray-500">Liters</span>
-                            </div>
-                          </div>
-                          <div className="h-32 flex items-end justify-between gap-1.5">
-                            {[
-                              { value: 70, label: "Mon", data: "842" },
-                              { value: 82, label: "Tue", data: "986" },
-                              { value: 60, label: "Wed", data: "720" },
-                              { value: 92, label: "Thu", data: "1,104" },
-                              { value: 75, label: "Fri", data: "900" },
-                              { value: 50, label: "Sat", data: "600" },
-                            ].map((day, i) => (
-                              <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
-                                <motion.div
-                                  initial={{ height: 0 }}
-                                  animate={{ height: `${day.value}%` }}
-                                  transition={{ 
-                                    duration: 0.8, 
-                                    delay: i * 0.08,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    repeatDelay: 1.5
-                                  }}
-                                  className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg"
-                                ></motion.div>
-                                <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
-                              </div>
-                            ))}
-                          </div>
-                          <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                              <div>
-                                <div className="text-xs text-gray-500">Total</div>
-                                <div className="text-sm font-bold text-gray-900">5,152 L</div>
-                              </div>
-                              <div>
-                                <div className="text-xs text-gray-500">Avg/Day</div>
-                                <div className="text-sm font-bold text-gray-900">859 L</div>
-                              </div>
-                            </div>
-                            <div className="text-xs text-gray-500 flex items-center gap-1">
-                              <span className="text-green-600 font-semibold">↓ 8%</span> vs last week
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-
-                      {activeChart === 2 && (
-                        <motion.div
-                          key="trips"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.5 }}
-                        >
-                          <div className="flex items-center justify-between mb-4">
-                            <div className="text-sm font-semibold text-gray-900">Completed Trips</div>
-                            <div className="flex items-center gap-1">
-                              <div className="w-2 h-2 bg-black rounded-full"></div>
-                              <span className="text-xs text-gray-500">Count</span>
-                            </div>
-                          </div>
-                          <div className="h-32 flex items-end justify-between gap-1.5">
-                            {[
-                              { value: 68, label: "Mon", data: "124" },
-                              { value: 75, label: "Tue", data: "138" },
-                              { value: 58, label: "Wed", data: "106" },
-                              { value: 85, label: "Thu", data: "156" },
-                              { value: 70, label: "Fri", data: "128" },
-                              { value: 48, label: "Sat", data: "88" },
-                            ].map((day, i) => (
-                              <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
-                                <motion.div
-                                  initial={{ height: 0 }}
-                                  animate={{ height: `${day.value}%` }}
-                                  transition={{ 
-                                    duration: 0.8, 
-                                    delay: i * 0.08,
-                                    repeat: Infinity,
-                                    repeatType: "reverse",
-                                    repeatDelay: 1.5
-                                  }}
-                                  className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg"
-                                ></motion.div>
-                                <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
-                              </div>
-                            ))}
-                          </div>
-                          <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                              <div>
-                                <div className="text-xs text-gray-500">Total</div>
-                                <div className="text-sm font-bold text-gray-900">740 trips</div>
-                              </div>
-                              <div>
-                                <div className="text-xs text-gray-500">Avg/Day</div>
-                                <div className="text-sm font-bold text-gray-900">123 trips</div>
-                              </div>
-                            </div>
-                            <div className="text-xs text-gray-500 flex items-center gap-1">
-                              <span className="text-green-600 font-semibold">↑ 15%</span> vs last week
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    {/* Chart Indicators */}
-                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
-                      {[0, 1, 2].map((index) => (
-                        <button
-                          key={index}
-                          onClick={() => setActiveChart(index)}
-                          className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                            activeChart === index ? "bg-black w-4" : "bg-gray-300"
-                          }`}
-                          aria-label={`View chart ${index + 1}`}
-                        />
-                      ))}
+                  {/* Secondary Stats */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="text-xs text-gray-500 mb-2">Fuel Consumption</div>
+                      <div className="text-xl font-bold text-gray-900 mb-3">5,152 L</div>
+                      <div className="h-16 flex items-end gap-1">
+                        {[70, 82, 60, 92, 75, 50].map((h, i) => (
+                          <div key={i} className="flex-1 bg-gray-300 rounded-t" style={{ height: `${h}%` }}></div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="text-xs text-gray-500 mb-2">Completed Trips</div>
+                      <div className="text-xl font-bold text-gray-900 mb-3">740</div>
+                      <div className="h-16 flex items-end gap-1">
+                        {[68, 75, 58, 85, 70, 48].map((h, i) => (
+                          <div key={i} className="flex-1 bg-gray-300 rounded-t" style={{ height: `${h}%` }}></div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Floating Fleet Metric Cards with Mini Charts */}
+            {/* Simple Floating Cards */}
             <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -left-4 md:-left-12 bg-white rounded-xl shadow-xl p-4 max-w-[240px] hidden md:block border border-gray-200"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-4 -left-4 md:-left-12 bg-white rounded-xl shadow-lg p-4 max-w-[200px] hidden md:block border border-gray-200"
             >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Fuel Efficiency</div>
-                  <div className="text-lg font-bold text-gray-900">+35%</div>
+                  <div className="text-xs text-gray-500">Fuel Saved</div>
+                  <div className="text-lg font-bold text-gray-900">35%</div>
                 </div>
               </div>
-              {/* Mini Chart */}
-              <div className="h-12 flex items-end gap-1 mb-2">
-                {[60, 45, 70, 55, 80, 65, 90].map((height, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${height}%` }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: i * 0.1,
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      repeatDelay: 2
-                    }}
-                    className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t"
-                  />
-                ))}
-              </div>
               <p className="text-xs text-gray-600">
-                Saved $12,400 in fuel costs this month
+                $12,400 saved this month
               </p>
-              </motion.div>
+            </motion.div>
 
             <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-4 -right-4 md:-right-12 bg-white rounded-xl shadow-xl p-4 max-w-[240px] hidden md:block border border-gray-200"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute -bottom-4 -right-4 md:-right-12 bg-white rounded-xl shadow-lg p-4 max-w-[200px] hidden md:block border border-gray-200"
             >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center">
-                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-500">Active Vehicles</div>
+                  <div className="text-xs text-gray-500">Live Tracking</div>
                   <div className="text-lg font-bold text-gray-900">142</div>
                 </div>
               </div>
-              {/* Mini Chart */}
-              <div className="h-12 flex items-end gap-1 mb-2">
-                {[50, 75, 60, 85, 70, 90, 65].map((height, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ height: 0 }}
-                    animate={{ height: `${height}%` }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: i * 0.1 + 0.5,
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      repeatDelay: 2
-                    }}
-                    className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t"
-                  />
-                ))}
-              </div>
               <p className="text-xs text-gray-600">
-                Real-time GPS + Satellite backup
+                GPS + Satellite backup
               </p>
             </motion.div>
           </motion.div>
