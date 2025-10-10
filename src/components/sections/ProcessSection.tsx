@@ -214,39 +214,21 @@ export function ProcessSection() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.a 
-              href="/contact" 
-              className="group relative px-8 py-4 bg-black text-white font-semibold rounded-xl overflow-hidden shadow-lg"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className="relative z-10">Get Started</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-gray-800 to-black"
-                initial={{ x: "-100%" }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              ></motion.div>
-            </motion.a>
-            
-            <motion.a 
-              href="/platform" 
-              className="group relative px-8 py-4 bg-white border-2 border-gray-900 text-gray-900 font-semibold rounded-xl overflow-hidden"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.2 }}
-            >
-              <span className="relative z-10 group-hover:text-white transition-colors duration-300">Book a Demo</span>
-              <motion.div
-                className="absolute inset-0 bg-black"
-                initial={{ y: "100%" }}
-                whileHover={{ y: 0 }}
-                transition={{ duration: 0.3 }}
-              ></motion.div>
-            </motion.a>
-          </div>
+          <motion.a 
+            href="#contact" 
+            className="group relative inline-block px-8 py-4 bg-black text-white font-semibold rounded-xl overflow-hidden shadow-lg"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+          >
+            <span className="relative z-10">Get Started</span>
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-gray-800 to-black"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+            ></motion.div>
+          </motion.a>
         </motion.div>
       </div>
     </section>

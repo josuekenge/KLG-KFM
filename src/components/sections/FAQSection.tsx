@@ -6,24 +6,36 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "What is Kyeto Logistics?",
-    answer: "Kyeto Logistics is an AI-powered fleet management platform that helps businesses connect, manage, and optimize their fleet operations effortlessly. We provide integrated logistics, telematics, AI, and data analytics solutions."
+    question: "What makes KFM different from other telematics providers?",
+    answer: "KFM is purpose-built for frontier markets with rugged hardware, satellite backup for connectivity in remote areas, and local support teams who understand African logistics challenges. Unlike global competitors like Cartrack, Samsara, and Geotab, we specialize in environments with unreliable cellular coverage and harsh operating conditions."
   },
   {
-    question: "Can I integrate Kyeto Logistics with my existing tools?",
-    answer: "Yes! Kyeto Logistics supports integration with a wide range of tools and platforms. Our flexible APIs allow you to connect with your data sources effortlessly, enabling a smooth workflow."
+    question: "How does the satellite backup work?",
+    answer: "Our hybrid connectivity approach automatically switches to satellite communication when cellular networks are unavailable. This ensures continuous tracking even in the most remote mining sites, border crossings, and rural routes where traditional GPS devices fail."
   },
   {
-    question: "How does Kyeto Logistics automate tasks?",
-    answer: "Our platform uses advanced AI algorithms to identify repetitive tasks and create automated workflows. You can set up custom automation rules, triggers, and conditions to streamline your operations and save time."
+    question: "Can KFM integrate with KLG's logistics platform?",
+    answer: "Yes! KFM data flows seamlessly into KLG's dispatch system and marketplace, improving route optimization, job allocation, and ETA accuracy. This integration provides end-to-end visibility from port to city across the entire supply chain."
   },
   {
-    question: "Is my data secure with Kyeto Logistics?",
-    answer: "Absolutely. We take data security very seriously. All data is encrypted in transit and at rest using industry-standard encryption protocols. We're compliant with major security standards and regulations including GDPR and SOC 2."
+    question: "What kind of fuel savings can we expect?",
+    answer: "Our clients typically see a 35% reduction in fuel costs through advanced fuel monitoring sensors that detect theft patterns and anomalies. The AI-powered insights help identify inefficiencies and optimize routes for maximum fuel economy."
   },
   {
-    question: "What kind of support do you offer?",
-    answer: "We offer 24/7 customer support through multiple channels including email, chat, and phone. All plans include access to our comprehensive documentation and knowledge base. Enterprise customers also get dedicated account managers and priority support."
+    question: "How does KFM improve driver safety?",
+    answer: "Our AI-powered driver scorecards track harsh braking, speeding, and unsafe driving behaviors. Clients have reduced accidents by 40% and lowered insurance premiums. The AI cameras also provide invaluable evidence when incidents do occur."
+  },
+  {
+    question: "What type of vehicles can you track?",
+    answer: "We track all types of fleet vehicles including trucks, mining equipment, delivery vans, government fleets, and specialized cargo vehicles. Our rugged hardware is designed to withstand harsh conditions and can be installed on any vehicle type."
+  },
+  {
+    question: "Do you offer maintenance alerts?",
+    answer: "Yes! Our predictive maintenance system provides alerts based on engine hours, mileage, and diagnostic codes. This helps prevent costly breakdowns, maximize uptime, and extend vehicle lifespan through data-driven maintenance scheduling."
+  },
+  {
+    question: "What kind of support do you provide?",
+    answer: "We offer local support teams across 12 African countries who understand frontier market challenges. Our expert team handles installation, provides training, and offers ongoing technical support to ensure your fleet operations run smoothly."
   }
 ];
 
@@ -66,7 +78,7 @@ export function FAQSection() {
               Still have a question?
             </p>
             <a 
-              href="/contact" 
+              href="#contact" 
               className="text-black hover:text-gray-700 font-semibold underline"
             >
               Contact us! We&apos;ll be happy to help you.

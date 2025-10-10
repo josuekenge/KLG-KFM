@@ -123,20 +123,12 @@ export function BenefitsSection() {
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="/contact" 
-              className="px-8 py-4 bg-black hover:bg-gray-800 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
-            >
-              Get Started
-            </a>
-            <a 
-              href="/platform" 
-              className="px-8 py-4 bg-white border-2 border-gray-900 hover:bg-gray-50 text-gray-900 font-semibold rounded-xl transition-all duration-200"
-            >
-              Book a Demo
-            </a>
-          </div>
+          <a 
+            href="#contact" 
+            className="inline-block px-8 py-4 bg-black hover:bg-gray-800 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            Get Started
+          </a>
         </motion.div>
       </div>
     </section>
