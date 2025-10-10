@@ -8,8 +8,8 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Call Us",
-    detail: "+254 700 000 000",
-    subtitle: "Mon-Fri 8AM-6PM EAT"
+    detail: "+243 XX XXX XXXX",
+    subtitle: "Mon-Fri 8AM-6PM WAT"
   },
   {
     icon: Mail,
@@ -20,8 +20,8 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Visit Us",
-    detail: "Nairobi, Kenya",
-    subtitle: "By appointment"
+    detail: "Kinshasa, DRC",
+    subtitle: "Democratic Republic of Congo"
   }
 ];
 
