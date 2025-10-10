@@ -71,8 +71,14 @@ const achievements = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="about" className="relative py-24 bg-gradient-to-b from-white via-gray-50/30 to-white overflow-hidden">
+      {/* Subtle radial gradient spots */}
+      <div className="absolute inset-0 opacity-[0.4]">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-gray-100 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gray-100 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <motion.p
