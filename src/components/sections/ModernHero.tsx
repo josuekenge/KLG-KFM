@@ -36,25 +36,25 @@ export function ModernHero() {
 
     // Road network nodes (representing cities/waypoints)
     const nodes: Array<{ x: number; y: number }> = [];
-    const nodeCount = 15;
+    const nodeCount = 12;
     
-    // Create nodes
+    // Create nodes with better spacing
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: (Math.random() * 0.8 + 0.1) * canvas.width,
+        y: (Math.random() * 0.8 + 0.1) * canvas.height,
       });
     }
 
-    // Create vehicles (trucks)
-    const vehicleCount = 25;
+    // Create vehicles (trucks) - fewer but more visible
+    const vehicleCount = 15;
     for (let i = 0; i < vehicleCount; i++) {
       vehicles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        size: 6,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: (Math.random() - 0.5) * 1.2,
+        size: 12, // Larger trucks
         routeProgress: Math.random() * 100,
         routeLength: Math.random() * 200 + 100,
       });
@@ -64,9 +64,10 @@ export function ModernHero() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw subtle road network (connecting nodes)
-      ctx.strokeStyle = "rgba(0, 0, 0, 0.06)";
-      ctx.lineWidth = 1;
+      // Draw road network with dashed lines
+      ctx.strokeStyle = "rgba(0, 0, 0, 0.12)";
+      ctx.lineWidth = 2;
+      ctx.setLineDash([10, 10]);
       nodes.forEach((node, i) => {
         // Connect to nearest neighbors
         nodes.slice(i + 1, i + 4).forEach((otherNode) => {
@@ -76,12 +77,21 @@ export function ModernHero() {
           ctx.stroke();
         });
       });
+      ctx.setLineDash([]); // Reset dash
 
-      // Draw nodes (cities/waypoints)
+      // Draw nodes (cities/waypoints) - larger and more visible
       nodes.forEach((node) => {
+        // Outer ring
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+        ctx.arc(node.x, node.y, 8, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(0, 0, 0, 0.15)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Inner dot
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
         ctx.fill();
       });
 
@@ -101,7 +111,7 @@ export function ModernHero() {
           vehicle.routeProgress = 0;
         }
 
-        // Draw vehicle (truck icon)
+        // Draw vehicle (truck icon) - larger and more detailed
         ctx.save();
         ctx.translate(vehicle.x, vehicle.y);
         
@@ -109,20 +119,48 @@ export function ModernHero() {
         const angle = Math.atan2(vehicle.vy, vehicle.vx);
         ctx.rotate(angle);
 
-        // Draw truck shape
-        ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
-        ctx.fillRect(-vehicle.size, -vehicle.size / 2, vehicle.size * 1.5, vehicle.size);
+        // Shadow for depth
+        ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
+        ctx.shadowBlur = 4;
+        ctx.shadowOffsetX = 2;
+        ctx.shadowOffsetY = 2;
+
+        // Trailer (back of truck)
+        ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+        ctx.fillRect(-vehicle.size * 1.2, -vehicle.size / 2.5, vehicle.size * 1.8, vehicle.size * 0.8);
         
         // Cab (front of truck)
-        ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
-        ctx.fillRect(vehicle.size * 0.5, -vehicle.size / 2.5, vehicle.size * 0.8, vehicle.size * 0.8);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.95)";
+        ctx.fillRect(vehicle.size * 0.6, -vehicle.size / 2, vehicle.size * 0.8, vehicle.size);
+        
+        // Windshield
+        ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+        ctx.fillRect(vehicle.size * 0.7, -vehicle.size / 3, vehicle.size * 0.4, vehicle.size * 0.6);
+
+        // Wheels
+        ctx.shadowColor = "transparent";
+        ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        // Back wheels
+        ctx.beginPath();
+        ctx.arc(-vehicle.size * 0.5, vehicle.size / 2.5, vehicle.size / 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(-vehicle.size * 0.5, -vehicle.size / 2.5, vehicle.size / 6, 0, Math.PI * 2);
+        ctx.fill();
+        // Front wheels
+        ctx.beginPath();
+        ctx.arc(vehicle.size * 0.9, vehicle.size / 2.5, vehicle.size / 6, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(vehicle.size * 0.9, -vehicle.size / 2.5, vehicle.size / 6, 0, Math.PI * 2);
+        ctx.fill();
 
         ctx.restore();
 
-        // Draw route trail
+        // Subtle motion trail
         ctx.beginPath();
-        ctx.arc(vehicle.x, vehicle.y, vehicle.size * 2, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 0, 0, 0.03)";
+        ctx.arc(vehicle.x, vehicle.y, vehicle.size * 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.02)";
         ctx.fill();
       });
 
@@ -223,19 +261,34 @@ export function ModernHero() {
               <div className="bg-white rounded-xl p-6 shadow-inner">
                 {/* Dashboard mockup */}
                 <div className="space-y-4">
-                  {/* Header */}
+                  {/* Header with Real Data */}
                   <div className="flex items-center justify-between pb-4 border-b border-gray-200">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-lg"></div>
+                      <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center">
+                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
+                      </div>
                       <div>
-                        <div className="h-3 w-32 bg-gray-200 rounded"></div>
-                        <div className="h-2 w-24 bg-gray-100 rounded mt-2"></div>
+                        <div className="text-sm font-semibold text-gray-900">KFM Fleet Dashboard</div>
+                        <div className="text-xs text-gray-500">Last updated: 2 min ago</div>
                       </div>
                     </div>
-                    <div className="flex gap-2">
-                      <div className="w-8 h-8 bg-black rounded-lg"></div>
-                      <div className="w-8 h-8 bg-gray-200 rounded-lg"></div>
-                      <div className="w-8 h-8 bg-gray-200 rounded-lg"></div>
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1.5 px-2 py-1 bg-green-50 border border-green-200 rounded-lg">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-xs font-medium text-green-700">Live</span>
+                      </div>
+                      <div className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer">
+                        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
+                      </div>
+                      <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center cursor-pointer">
+                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                   
