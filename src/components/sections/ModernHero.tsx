@@ -38,23 +38,23 @@ export function ModernHero() {
     const nodes: Array<{ x: number; y: number }> = [];
     const nodeCount = 12;
     
-    // Create nodes with better spacing
+    // Create nodes with even better centering
     for (let i = 0; i < nodeCount; i++) {
       nodes.push({
-        x: (Math.random() * 0.8 + 0.1) * canvas.width,
-        y: (Math.random() * 0.8 + 0.1) * canvas.height,
+        x: (Math.random() * 0.6 + 0.2) * canvas.width,
+        y: (Math.random() * 0.6 + 0.2) * canvas.height,
       });
     }
 
-    // Create vehicles (trucks) - fewer but more visible
-    const vehicleCount = 15;
+    // Create vehicles (trucks) - fewer and more centered
+    const vehicleCount = 8;
     for (let i = 0; i < vehicleCount; i++) {
       vehicles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 1.2,
-        vy: (Math.random() - 0.5) * 1.2,
-        size: 12, // Larger trucks
+        x: (Math.random() * 0.6 + 0.2) * canvas.width,
+        y: (Math.random() * 0.6 + 0.2) * canvas.height,
+        vx: (Math.random() - 0.5) * 0.6, // Slower movement
+        vy: (Math.random() - 0.5) * 0.6,
+        size: 10, // Slightly smaller for subtlety
         routeProgress: Math.random() * 100,
         routeLength: Math.random() * 200 + 100,
       });
@@ -64,13 +64,13 @@ export function ModernHero() {
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw road network with dashed lines
-      ctx.strokeStyle = "rgba(0, 0, 0, 0.12)";
-      ctx.lineWidth = 2;
-      ctx.setLineDash([10, 10]);
+      // Draw subtle road network with dashed lines
+      ctx.strokeStyle = "rgba(0, 0, 0, 0.08)";
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([8, 8]);
       nodes.forEach((node, i) => {
         // Connect to nearest neighbors
-        nodes.slice(i + 1, i + 4).forEach((otherNode) => {
+        nodes.slice(i + 1, i + 3).forEach((otherNode) => {
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
           ctx.lineTo(otherNode.x, otherNode.y);
@@ -79,19 +79,19 @@ export function ModernHero() {
       });
       ctx.setLineDash([]); // Reset dash
 
-      // Draw nodes (cities/waypoints) - larger and more visible
+      // Draw nodes (cities/waypoints) - subtle
       nodes.forEach((node) => {
         // Outer ring
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 8, 0, Math.PI * 2);
-        ctx.strokeStyle = "rgba(0, 0, 0, 0.15)";
-        ctx.lineWidth = 2;
+        ctx.arc(node.x, node.y, 6, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(0, 0, 0, 0.1)";
+        ctx.lineWidth = 1.5;
         ctx.stroke();
         
         // Inner dot
         ctx.beginPath();
-        ctx.arc(node.x, node.y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 0, 0, 0.3)";
+        ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
         ctx.fill();
       });
 
@@ -119,27 +119,27 @@ export function ModernHero() {
         const angle = Math.atan2(vehicle.vy, vehicle.vx);
         ctx.rotate(angle);
 
-        // Shadow for depth
-        ctx.shadowColor = "rgba(0, 0, 0, 0.3)";
-        ctx.shadowBlur = 4;
-        ctx.shadowOffsetX = 2;
-        ctx.shadowOffsetY = 2;
+        // Subtle shadow for depth
+        ctx.shadowColor = "rgba(0, 0, 0, 0.2)";
+        ctx.shadowBlur = 3;
+        ctx.shadowOffsetX = 1;
+        ctx.shadowOffsetY = 1;
 
-        // Trailer (back of truck)
-        ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+        // Trailer (back of truck) - more subtle
+        ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
         ctx.fillRect(-vehicle.size * 1.2, -vehicle.size / 2.5, vehicle.size * 1.8, vehicle.size * 0.8);
         
         // Cab (front of truck)
-        ctx.fillStyle = "rgba(0, 0, 0, 0.95)";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
         ctx.fillRect(vehicle.size * 0.6, -vehicle.size / 2, vehicle.size * 0.8, vehicle.size);
         
-        // Windshield
-        ctx.fillStyle = "rgba(255, 255, 255, 0.3)";
+        // Windshield - very subtle
+        ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
         ctx.fillRect(vehicle.size * 0.7, -vehicle.size / 3, vehicle.size * 0.4, vehicle.size * 0.6);
 
-        // Wheels
+        // Wheels - simplified
         ctx.shadowColor = "transparent";
-        ctx.fillStyle = "rgba(0, 0, 0, 1)";
+        ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
         // Back wheels
         ctx.beginPath();
         ctx.arc(-vehicle.size * 0.5, vehicle.size / 2.5, vehicle.size / 6, 0, Math.PI * 2);
@@ -156,12 +156,6 @@ export function ModernHero() {
         ctx.fill();
 
         ctx.restore();
-
-        // Subtle motion trail
-        ctx.beginPath();
-        ctx.arc(vehicle.x, vehicle.y, vehicle.size * 1.5, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(0, 0, 0, 0.02)";
-        ctx.fill();
       });
 
       requestAnimationFrame(animate);
@@ -343,30 +337,54 @@ export function ModernHero() {
                     </div>
                   </div>
 
-                  {/* Fuel Consumption Chart */}
+                  {/* Fuel Consumption Chart with Mock Data */}
                   <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6">
                     <div className="flex items-center justify-between mb-4">
-                      <div className="text-sm font-semibold text-gray-900">Fuel Consumption (L/100km)</div>
-                      <div className="text-xs text-gray-500">Last 7 Days</div>
+                      <div className="text-sm font-semibold text-gray-900">Weekly Fleet Overview</div>
+                      <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1">
+                          <div className="w-2 h-2 bg-black rounded-full"></div>
+                          <span className="text-xs text-gray-500">Distance (km)</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="h-32 flex items-end gap-2">
+                    <div className="h-32 flex items-end justify-between gap-1.5">
                       {[
-                        { value: 45, label: "Mon" },
-                        { value: 72, label: "Tue" },
-                        { value: 58, label: "Wed" },
-                        { value: 85, label: "Thu" },
-                        { value: 68, label: "Fri" },
-                        { value: 92, label: "Sat" },
-                        { value: 55, label: "Sun" },
+                        { value: 65, label: "Mon", km: "1,245" },
+                        { value: 78, label: "Tue", km: "1,486" },
+                        { value: 55, label: "Wed", km: "1,050" },
+                        { value: 88, label: "Thu", km: "1,678" },
+                        { value: 72, label: "Fri", km: "1,372" },
+                        { value: 45, label: "Sat", km: "856" },
                       ].map((day, i) => (
-                        <div key={i} className="flex-1 flex flex-col items-center gap-1">
+                        <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
                           <div
-                            className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg transition-all duration-500 hover:opacity-80"
+                            className="w-full bg-gradient-to-t from-gray-900 to-black rounded-t-lg transition-all duration-300 hover:from-gray-800 hover:to-gray-700 cursor-pointer"
                             style={{ height: `${day.value}%` }}
+                            title={`${day.label}: ${day.km}km`}
                           ></div>
-                          <span className="text-[10px] text-gray-600">{day.label}</span>
+                          <span className="text-[9px] text-gray-600 font-medium">{day.label}</span>
+                          {/* Tooltip on hover */}
+                          <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[9px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                            {day.km}km
+                          </div>
                         </div>
                       ))}
+                    </div>
+                    <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div>
+                          <div className="text-xs text-gray-500">Total Distance</div>
+                          <div className="text-sm font-bold text-gray-900">7,687 km</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-gray-500">Avg/Day</div>
+                          <div className="text-sm font-bold text-gray-900">1,281 km</div>
+                        </div>
+                      </div>
+                      <div className="text-xs text-gray-500 flex items-center gap-1">
+                        <span className="text-green-600 font-semibold">↑ 12%</span> vs last week
+                      </div>
                     </div>
                   </div>
                 </div>
