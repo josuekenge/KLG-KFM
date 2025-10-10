@@ -101,15 +101,15 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 text-sm">
-            © {new Date().getFullYear()} Kyeto Logistics Group. All rights reserved.
-          </p>
-          <div className="text-gray-600 text-sm">
-            Nairobi, Kenya
-          </div>
-        </div>
+            {/* Bottom Bar */}
+            <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+              <p className="text-gray-600 text-sm">
+                © {new Date().getFullYear()} Kyeto Logistics Group. All rights reserved.
+              </p>
+              <div className="text-gray-600 text-sm">
+                Kinshasa, Democratic Republic of Congo
+              </div>
+            </div>
       </div>
     </footer>
   );

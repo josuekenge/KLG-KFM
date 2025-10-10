@@ -71,7 +71,7 @@ const achievements = [
 
 export function AboutSection() {
   return (
-    <section className="py-24 bg-white">
+    <section id="about" className="py-24 bg-white">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -82,7 +82,7 @@ export function AboutSection() {
             viewport={{ once: true }}
             className="text-sm font-semibold text-black uppercase tracking-wider mb-4"
           >
-            About KFM
+            About Us
           </motion.p>
           
           <motion.h2
@@ -92,7 +92,7 @@ export function AboutSection() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
           >
-            Fleet Management Built for Africa
+            Who We Are & What We Do
           </motion.h2>
           
           <motion.p
@@ -102,9 +102,79 @@ export function AboutSection() {
             viewport={{ once: true }}
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            Kyeto Fleet Management (KFM) is the leading telematics and fleet management solution 
-            for frontier markets, providing reliable tracking, safety, and efficiency tools where they&apos;re needed most.
+            Headquartered in Kinshasa, Democratic Republic of Congo
           </motion.p>
+        </div>
+
+        {/* Detailed Content Paragraphs */}
+        <div className="max-w-4xl mx-auto mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            {/* Who We Are */}
+            <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-2xl p-8 hover:border-black hover:shadow-lg transition-all duration-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
+                  <Target className="w-5 h-5 text-white" />
+                </div>
+                Who We Are
+              </h3>
+              <div className="space-y-4 text-gray-700 leading-relaxed">
+                <p>
+                  Kyeto Fleet Management (KFM) is a leading telematics and fleet management provider operating from the heart of Central Africa. Based in Kinshasa, Democratic Republic of Congo, we understand the unique challenges of managing vehicle fleets in frontier markets where infrastructure is unpredictable, connectivity is inconsistent, and operational demands are extreme.
+                </p>
+                <p>
+                  We are part of the Kyeto Logistics Group (KLG), a comprehensive logistics ecosystem that connects shippers, carriers, and fleet operators across Africa. KFM serves as the technological backbone of this network, providing real-time visibility and data-driven insights that power efficient, transparent logistics operations from port to final destination.
+                </p>
+                <p>
+                  Our team combines international expertise in telematics technology with deep local knowledge of African markets. We&apos;ve built our reputation by delivering solutions that actually work in challenging environments—where satellite backup isn&apos;t optional, where rugged hardware is essential, and where local support makes the difference between success and failure.
+                </p>
+              </div>
+            </div>
+
+            {/* What We Do */}
+            <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-2xl p-8 hover:border-black hover:shadow-lg transition-all duration-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
+                  <Zap className="w-5 h-5 text-white" />
+                </div>
+                What We Do
+              </h3>
+              <div className="space-y-4 text-gray-700 leading-relaxed">
+                <p>
+                  KFM provides enterprise-grade fleet management solutions specifically engineered for frontier and emerging markets. Our platform combines GPS tracking, fuel monitoring, driver behavior analysis, and predictive maintenance into a unified system that helps businesses reduce costs, improve safety, and optimize operations.
+                </p>
+                <p>
+                  We serve a diverse range of clients across 12 African countries: from SME transport companies managing 5-10 vehicles, to mining operations with hundreds of heavy-duty trucks, to government fleets requiring specialized compliance and security features. Our scalable subscription model allows businesses to start with basic GPS tracking and expand into advanced analytics, AI-powered safety cameras, and comprehensive diagnostic tools as they grow.
+                </p>
+                <p>
+                  What sets us apart is our hybrid connectivity approach. While global competitors rely solely on cellular networks, KFM devices automatically switch to satellite communication when cellular coverage fails. This ensures continuous tracking even in remote mining sites, border crossings, or rural distribution routes where traditional telematics simply don&apos;t work.
+                </p>
+              </div>
+            </div>
+
+            {/* Our Impact */}
+            <div className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-2xl p-8 hover:border-black hover:shadow-lg transition-all duration-200">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                <div className="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
+                  <TrendingUp className="w-5 h-5 text-white" />
+                </div>
+                Our Impact
+              </h3>
+              <div className="space-y-4 text-gray-700 leading-relaxed">
+                <p>
+                  Since launching in the DRC, we&apos;ve tracked over 15,000 vehicles across Central and East Africa, helping clients save more than $42 million through fuel theft prevention, route optimization, and reduced accident rates. Our clients typically see 35% reduction in fuel costs within the first six months, 40% fewer accidents after implementing our driver safety programs, and 20% improvement in overall fleet utilization.
+                </p>
+                <p>
+                  Beyond the numbers, we&apos;re helping African businesses compete on a global stage. Our clients use KFM data to provide professional reporting to international partners, secure better insurance rates, improve customer service with accurate ETAs, and make data-driven decisions that were previously impossible. We&apos;re not just selling tracking devices—we&apos;re enabling the digital transformation of African logistics.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Stats Grid */}
