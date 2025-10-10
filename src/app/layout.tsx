@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/contexts/ThemeContext";
+import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ModernNavbar } from "@/components/layout/ModernNavbar";
 import { Footer } from "@/components/layout/Footer";
@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
-        <ThemeProvider>
+        <ThemeProvider defaultTheme="light" storageKey="klg-theme">
           <QueryProvider>
             <div className="relative flex min-h-screen flex-col">
               <ModernNavbar />

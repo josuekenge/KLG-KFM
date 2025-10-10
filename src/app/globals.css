@@ -5,10 +5,6 @@
   border-color: rgb(229 231 235);
 }
 
-.dark * {
-  border-color: rgb(31 41 55);
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -18,12 +14,6 @@ body {
   color: rgb(17 24 39);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.dark body {
-  background: black;
-  color: rgb(255 255 255);
 }
 
 /* Modern scrollbar */
@@ -42,14 +32,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(156 163 175);
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: rgb(55 65 81);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgb(75 85 99);
 }
 
 /* Focus styles */
