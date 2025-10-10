@@ -295,115 +295,117 @@ export function ModernHero() {
                     </div>
                   </div>
                   
-                  {/* Fleet Stats */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="h-8 w-8 bg-black rounded-lg flex items-center justify-center">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
+                  {/* Fleet Stats - More Natural Layout */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+                    <div className="bg-white border border-gray-200 rounded-lg p-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="text-xs text-gray-500 font-medium">Active Vehicles</div>
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
                       </div>
                       <div className="text-2xl font-bold text-gray-900">142</div>
-                      <div className="text-xs text-gray-600">Active Vehicles</div>
+                      <div className="text-xs text-gray-500 mt-1">of 156 total</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="h-8 w-8 bg-black rounded-lg flex items-center justify-center">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                          </svg>
-                        </div>
+                    <div className="bg-white border border-gray-200 rounded-lg p-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="text-xs text-gray-500 font-medium">Distance Today</div>
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
                       </div>
                       <div className="text-2xl font-bold text-gray-900">8,456</div>
-                      <div className="text-xs text-gray-600">km Today</div>
+                      <div className="text-xs text-green-600 mt-1">+12% vs yesterday</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="h-8 w-8 bg-black rounded-lg flex items-center justify-center">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                          </svg>
-                        </div>
+                    <div className="bg-white border border-gray-200 rounded-lg p-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="text-xs text-gray-500 font-medium">Fleet Efficiency</div>
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
                       </div>
                       <div className="text-2xl font-bold text-gray-900">94%</div>
-                      <div className="text-xs text-gray-600">Fleet Efficiency</div>
+                      <div className="text-xs text-gray-500 mt-1">Target: 95%</div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <div className="h-8 w-8 bg-black rounded-lg flex items-center justify-center">
-                          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                          </svg>
-                        </div>
+                    <div className="bg-white border border-gray-200 rounded-lg p-3">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="text-xs text-gray-500 font-medium">Active Alerts</div>
+                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                        </svg>
                       </div>
                       <div className="text-2xl font-bold text-gray-900">23</div>
-                      <div className="text-xs text-gray-600">Alerts Today</div>
+                      <div className="text-xs text-gray-500 mt-1">5 critical</div>
                     </div>
                   </div>
 
-                  {/* Middle Section - Additional Charts */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    {/* Route Efficiency Chart */}
-                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="text-sm font-semibold text-gray-900">Route Efficiency</div>
-                        <div className="text-xs text-green-600 font-semibold">+18%</div>
+                  {/* Realistic Performance Charts */}
+                  <div className="bg-white border border-gray-200 rounded-lg p-4 mb-3">
+                    <div className="flex items-center justify-between mb-4">
+                      <div>
+                        <div className="text-sm font-semibold text-gray-900">Fleet Performance Overview</div>
+                        <div className="text-xs text-gray-500 mt-1">Last 12 hours</div>
                       </div>
-                      <div className="h-24 flex items-end gap-1">
-                        {[45, 62, 55, 72, 68, 85, 78, 90, 82, 95].map((height, i) => (
-                          <motion.div
-                            key={i}
-                            initial={{ height: 0 }}
-                            animate={{ height: `${height}%` }}
-                            transition={{ 
-                              duration: 0.8, 
-                              delay: i * 0.06,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              repeatDelay: 1.5
-                            }}
-                            className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t"
-                          />
-                        ))}
-                      </div>
-                      <div className="mt-3 flex items-center justify-between text-xs text-gray-600">
-                        <span>Avg: 8.2 km/L</span>
-                        <span>Best: 9.5 km/L</span>
+                      <div className="flex items-center gap-4 text-xs">
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-2 h-2 bg-gray-900 rounded-full"></div>
+                          <span className="text-gray-600">Active</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                          <span className="text-gray-600">Idle</span>
+                        </div>
                       </div>
                     </div>
-
-                    {/* Driver Performance Chart */}
-                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
-                      <div className="flex items-center justify-between mb-3">
-                        <div className="text-sm font-semibold text-gray-900">Driver Scores</div>
-                        <div className="text-xs text-green-600 font-semibold">+12%</div>
-                      </div>
-                      <div className="h-24 flex items-end gap-1">
-                        {[70, 65, 80, 75, 85, 78, 90, 82, 88, 92].map((height, i) => (
+                    
+                    <div className="h-32 flex items-end gap-1">
+                      {[
+                        { active: 85, idle: 12 },
+                        { active: 92, idle: 8 },
+                        { active: 88, idle: 10 },
+                        { active: 95, idle: 5 },
+                        { active: 90, idle: 8 },
+                        { active: 78, idle: 18 },
+                        { active: 82, idle: 15 },
+                        { active: 88, idle: 10 },
+                        { active: 93, idle: 7 },
+                        { active: 87, idle: 11 },
+                        { active: 91, idle: 8 },
+                        { active: 94, idle: 6 },
+                      ].map((data, i) => (
+                        <div key={i} className="flex-1 flex flex-col gap-0.5 items-end h-full justify-end">
                           <motion.div
-                            key={i}
                             initial={{ height: 0 }}
-                            animate={{ height: `${height}%` }}
+                            animate={{ height: `${data.active}%` }}
                             transition={{ 
-                              duration: 0.8, 
-                              delay: i * 0.06 + 0.3,
-                              repeat: Infinity,
-                              repeatType: "reverse",
-                              repeatDelay: 1.5
+                              duration: 1.2, 
+                              delay: i * 0.08,
+                              ease: [0.4, 0, 0.2, 1]
                             }}
-                            className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t"
+                            className="w-full bg-gray-900 rounded-t"
                           />
-                        ))}
-                      </div>
-                      <div className="mt-3 flex items-center justify-between text-xs text-gray-600">
-                        <span>Avg Score: 82/100</span>
-                        <span>Top: 95/100</span>
-                      </div>
+              <motion.div
+                            initial={{ height: 0 }}
+                            animate={{ height: `${data.idle}%` }}
+                            transition={{ 
+                              duration: 1.2, 
+                              delay: i * 0.08 + 0.1,
+                              ease: [0.4, 0, 0.2, 1]
+                            }}
+                            className="w-full bg-gray-400 rounded-t"
+                          />
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
+                      <div className="text-xs text-gray-600">00:00</div>
+                      <div className="text-xs text-gray-600">06:00</div>
+                      <div className="text-xs text-gray-600">12:00</div>
+                      <div className="text-xs text-gray-900 font-medium">Now</div>
                     </div>
                   </div>
 
