@@ -183,56 +183,44 @@ export function ProductShowcase() {
                 {item.visualType === "flow" && (
                   <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 shadow-2xl">
                     <div className="bg-white rounded-xl p-6">
-                      {/* Flow diagram */}
-                      <div className="space-y-4">
-                        {/* Nodes */}
+                      {/* Simple 3-node flow */}
+                      <div className="flex items-center justify-between py-8">
                         {[
-                          { label: "Port", icon: MapPin, delay: 0 },
-                          { label: "Warehouse", icon: MapPin, delay: 0.2 },
-                          { label: "Distribution", icon: Zap, delay: 0.4 },
-                          { label: "Delivery", icon: TrendingUp, delay: 0.6 }
+                          { label: "Port", icon: MapPin },
+                          { label: "Dispatch", icon: Zap },
+                          { label: "Delivery", icon: TrendingUp }
                         ].map((node, i) => (
-                          <motion.div
-                            key={node.label}
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.5, delay: node.delay }}
-                            viewport={{ once: true }}
-                            className="flex items-center gap-4"
-                          >
-                            <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
-                              <node.icon className="w-6 h-6 text-white" />
-                            </div>
-                            <div className="flex-1">
-                              <div className="text-sm font-semibold text-gray-900 mb-1">{node.label}</div>
-                              <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                                <motion.div
-                                  className="h-full bg-gradient-to-r from-gray-900 to-black"
-                                  initial={{ width: 0 }}
-                                  whileInView={{ width: `${Math.random() * 40 + 60}%` }}
-                                  transition={{ duration: 1.5, delay: node.delay + 0.3 }}
-                                  viewport={{ once: true }}
-                                />
+                          <div key={node.label} className="flex items-center gap-4">
+                            <motion.div
+                              initial={{ scale: 0, opacity: 0 }}
+                              whileInView={{ scale: 1, opacity: 1 }}
+                              transition={{ duration: 0.5, delay: i * 0.3 }}
+                              viewport={{ once: true }}
+                              className="flex flex-col items-center gap-2"
+                            >
+                              <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center">
+                                <node.icon className="w-8 h-8 text-white" />
                               </div>
-                            </div>
-                            {i < 3 && (
+                              <span className="text-sm font-semibold text-gray-900">{node.label}</span>
+                            </motion.div>
+                            
+                            {i < 2 && (
                               <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: [0.2, 1, 0.2] }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                                className="text-gray-400"
-                              >
-                                ↓
-                              </motion.div>
+                                initial={{ scaleX: 0 }}
+                                whileInView={{ scaleX: 1 }}
+                                transition={{ duration: 0.8, delay: i * 0.3 + 0.4 }}
+                                viewport={{ once: true }}
+                                className="w-12 h-0.5 bg-black origin-left mx-2"
+                              />
                             )}
-                          </motion.div>
+                          </div>
                         ))}
                       </div>
                       
-                      <div className="mt-6 pt-4 border-t border-gray-100">
-                        <div className="flex items-center justify-between text-sm">
-                          <span className="text-gray-600">Integration Status</span>
-                          <span className="font-semibold text-green-600">Active</span>
+                      <div className="text-center pt-4 border-t border-gray-100">
+                        <div className="flex items-center justify-center gap-2">
+                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                          <span className="text-sm font-semibold text-gray-900">Real-time Sync</span>
                         </div>
                       </div>
                     </div>
@@ -242,61 +230,37 @@ export function ProductShowcase() {
                 {item.visualType === "stats" && (
                   <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 shadow-2xl">
                     <div className="bg-white rounded-xl p-6">
-                      {/* Stats grid */}
-                      <div className="grid grid-cols-2 gap-4 mb-6">
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className="bg-gray-50 rounded-lg p-4 border border-gray-200"
-                        >
-                          <Fuel className="w-6 h-6 text-black mb-2" />
-                          <div className="text-2xl font-bold text-gray-900">-35%</div>
-                          <div className="text-xs text-gray-600">Fuel Costs</div>
-                        </motion.div>
-                        
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className="bg-gray-50 rounded-lg p-4 border border-gray-200"
-                        >
-                          <Shield className="w-6 h-6 text-black mb-2" />
-                          <div className="text-2xl font-bold text-gray-900">-40%</div>
-                          <div className="text-xs text-gray-600">Accidents</div>
-                        </motion.div>
-                        
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className="bg-gray-50 rounded-lg p-4 border border-gray-200"
-                        >
-                          <TrendingUp className="w-6 h-6 text-black mb-2" />
-                          <div className="text-2xl font-bold text-gray-900">+28%</div>
-                          <div className="text-xs text-gray-600">Efficiency</div>
-                        </motion.div>
-                        
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          className="bg-gray-50 rounded-lg p-4 border border-gray-200"
-                        >
-                          <Zap className="w-6 h-6 text-black mb-2" />
-                          <div className="text-2xl font-bold text-gray-900">99.9%</div>
-                          <div className="text-xs text-gray-600">Uptime</div>
-                        </motion.div>
-                      </div>
-                      
-                      {/* Line chart visualization */}
-                      <div className="bg-gray-50 rounded-lg p-4 h-24 flex items-end gap-1">
-                        {[40, 55, 45, 70, 60, 85, 75, 90, 80, 95].map((height, i) => (
+                      {/* Simple 3 key metrics */}
+                      <div className="flex items-center justify-around py-8">
+                        {[
+                          { icon: Fuel, value: "-35%", label: "Fuel Costs" },
+                          { icon: Shield, value: "-40%", label: "Accidents" },
+                          { icon: TrendingUp, value: "+28%", label: "Efficiency" }
+                        ].map((stat, i) => (
                           <motion.div
-                            key={i}
-                            initial={{ height: 0 }}
-                            whileInView={{ height: `${height}%` }}
-                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                            key={stat.label}
+                            initial={{ scale: 0, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.5, delay: i * 0.2 }}
                             viewport={{ once: true }}
-                            className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t"
-                          />
+                            className="flex flex-col items-center gap-3"
+                          >
+                            <div className="w-16 h-16 bg-black rounded-xl flex items-center justify-center">
+                              <stat.icon className="w-8 h-8 text-white" />
+                            </div>
+                            <div className="text-center">
+                              <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+                              <div className="text-xs text-gray-600 mt-1">{stat.label}</div>
+                            </div>
+                          </motion.div>
                         ))}
                       </div>
                       
-                      <div className="mt-3 text-center text-xs text-gray-500">
-                        Performance Improvement Over Time
+                      <div className="text-center pt-4 border-t border-gray-100">
+                        <div className="flex items-center justify-center gap-2">
+                          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                          <span className="text-sm font-semibold text-gray-900">AI-Powered Insights</span>
+                        </div>
                       </div>
                     </div>
                   </div>
