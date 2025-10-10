@@ -296,7 +296,7 @@ export function ModernHero() {
                   </div>
                   
                   {/* Fleet Stats */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                     <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="h-8 w-8 bg-black rounded-lg flex items-center justify-center">
@@ -343,6 +343,67 @@ export function ModernHero() {
                       </div>
                       <div className="text-2xl font-bold text-gray-900">23</div>
                       <div className="text-xs text-gray-600">Alerts Today</div>
+                    </div>
+                  </div>
+
+                  {/* Middle Section - Additional Charts */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    {/* Route Efficiency Chart */}
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="text-sm font-semibold text-gray-900">Route Efficiency</div>
+                        <div className="text-xs text-green-600 font-semibold">+18%</div>
+                      </div>
+                      <div className="h-24 flex items-end gap-1">
+                        {[45, 62, 55, 72, 68, 85, 78, 90, 82, 95].map((height, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ height: 0 }}
+                            animate={{ height: `${height}%` }}
+                            transition={{ 
+                              duration: 0.8, 
+                              delay: i * 0.06,
+                              repeat: Infinity,
+                              repeatType: "reverse",
+                              repeatDelay: 1.5
+                            }}
+                            className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t"
+                          />
+                        ))}
+                      </div>
+                      <div className="mt-3 flex items-center justify-between text-xs text-gray-600">
+                        <span>Avg: 8.2 km/L</span>
+                        <span>Best: 9.5 km/L</span>
+                      </div>
+                    </div>
+
+                    {/* Driver Performance Chart */}
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="text-sm font-semibold text-gray-900">Driver Scores</div>
+                        <div className="text-xs text-green-600 font-semibold">+12%</div>
+                      </div>
+                      <div className="h-24 flex items-end gap-1">
+                        {[70, 65, 80, 75, 85, 78, 90, 82, 88, 92].map((height, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ height: 0 }}
+                            animate={{ height: `${height}%` }}
+                            transition={{ 
+                              duration: 0.8, 
+                              delay: i * 0.06 + 0.3,
+                              repeat: Infinity,
+                              repeatType: "reverse",
+                              repeatDelay: 1.5
+                            }}
+                            className="flex-1 bg-gradient-to-t from-gray-900 to-black rounded-t"
+                          />
+                        ))}
+                      </div>
+                      <div className="mt-3 flex items-center justify-between text-xs text-gray-600">
+                        <span>Avg Score: 82/100</span>
+                        <span>Top: 95/100</span>
+                      </div>
                     </div>
                   </div>
 
