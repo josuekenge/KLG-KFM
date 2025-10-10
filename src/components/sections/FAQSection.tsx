@@ -43,8 +43,19 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(1);
 
   return (
-    <section id="faq" className="py-24 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="faq" className="relative py-24 bg-white overflow-hidden">
+      {/* Subtle crosshatch pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `
+            repeating-linear-gradient(45deg, transparent, transparent 30px, black 30px, black 31px),
+            repeating-linear-gradient(-45deg, transparent, transparent 30px, black 30px, black 31px)
+          `,
+        }}
+      />
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <motion.p

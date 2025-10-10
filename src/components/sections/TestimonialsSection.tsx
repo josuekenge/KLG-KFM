@@ -53,8 +53,16 @@ const infiniteTestimonials = [...testimonials, ...testimonials, ...testimonials]
 
 export function TestimonialsSection() {
   return (
-    <section id="testimonials" className="py-24 bg-white overflow-hidden">
-      <div className="container mx-auto px-4 mb-12">
+    <section id="testimonials" className="relative py-24 bg-white overflow-hidden">
+      {/* Subtle wave pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 50px, black 50px, black 51px)`,
+        }}
+      />
+      
+      <div className="container mx-auto px-4 mb-12 relative z-10">
         {/* Section Header */}
         <div className="text-center">
           <motion.p

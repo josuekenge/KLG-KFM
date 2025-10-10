@@ -42,8 +42,21 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="relative py-24 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+      {/* Subtle hexagon pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at 0% 50%, transparent 9px, black 10px, black 11px, transparent 11px),
+            radial-gradient(circle at 100% 50%, transparent 9px, black 10px, black 11px, transparent 11px)
+          `,
+          backgroundSize: '40px 23px',
+          backgroundPosition: '0 0, 20px 11.5px'
+        }}
+      />
+      
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <motion.p
