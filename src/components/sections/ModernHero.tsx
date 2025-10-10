@@ -231,7 +231,7 @@ export function ModernHero() {
                   href="#contact" 
                   className="group px-8 py-4 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-xl hover:scale-105"
                 >
-                  Start Tracking Now
+                  Get Started
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </a>
 
