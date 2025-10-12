@@ -3,30 +3,19 @@
 import Link from "next/link";
 import { Truck, Shield } from "lucide-react";
 
+const footerFeatures = [
+  "GPS Tracking",
+  "Fuel Monitoring",
+  "Driver Safety",
+  "AI Cameras",
+];
+
 const footerLinks = {
-  solutions: [
-    { name: "GPS Tracking", href: "/solutions/gps-tracking" },
-    { name: "Fuel Monitoring", href: "/solutions/fuel-monitoring" },
-    { name: "Driver Safety", href: "/solutions/driver-safety" },
-    { name: "AI Cameras", href: "/solutions/ai-cameras" },
-  ],
-  platform: [
-    { name: "Dashboard", href: "/platform" },
-    { name: "Analytics", href: "/platform/analytics" },
-    { name: "Reports", href: "/platform/reports" },
-    { name: "API", href: "/platform/api" },
-  ],
   company: [
-    { name: "About", href: "/about" },
+    { name: "About", href: "/#about" },
     { name: "Careers", href: "/careers" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact", href: "/#contact" },
     { name: "Support", href: "/support" },
-  ],
-  legal: [
-    { name: "Privacy Policy", href: "/privacy" },
-    { name: "Terms of Service", href: "/terms" },
-    { name: "Cookie Policy", href: "/cookies" },
-    { name: "GDPR", href: "/gdpr" },
   ],
 };
 
@@ -61,15 +50,13 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Feature */}
+          {/* Features */}
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Features</h3>
             <ul className="space-y-2 text-sm">
-              {footerLinks.solutions.slice(0, 4).map((link) => (
-                <li key={link.name}>
-                  <Link href={link.href} className="text-gray-600 hover:text-black transition-colors">
-                    {link.name}
-                  </Link>
+              {footerFeatures.map((feature) => (
+                <li key={feature}>
+                  <span className="text-gray-600">{feature}</span>
                 </li>
               ))}
             </ul>
@@ -94,8 +81,6 @@ export function Footer() {
             <h3 className="font-semibold text-gray-900 mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/blog" className="text-gray-600 hover:text-black transition-colors">Blog</Link></li>
-              <li><Link href="/contact" className="text-gray-600 hover:text-black transition-colors">Contact</Link></li>
-              <li><Link href="/support" className="text-gray-600 hover:text-black transition-colors">Support</Link></li>
               <li><Link href="/privacy" className="text-gray-600 hover:text-black transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
