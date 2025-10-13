@@ -39,8 +39,24 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center space-x-2 mb-4 group">
-              <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                <span className="text-white font-bold text-xs">KLG</span>
+              <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-200 relative overflow-hidden">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  className="w-5 h-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  {/* Truck icon for fleet management */}
+                  <path
+                    d="M16 6H3C2.44772 6 2 6.44772 2 7V16C2 16.5523 2.44772 17 3 17H4M16 6V17M16 6H18L21 9V16C21 16.5523 20.5523 17 20 17H19M16 17H4M16 17H19M4 17C4 18.1046 4.89543 19 6 19C7.10457 19 8 18.1046 8 17M19 17C19 18.1046 18.1046 19 17 19C15.8954 19 15 18.1046 15 17M8 17H15"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* GPS pin on truck */}
+                  <circle cx="11" cy="10" r="1.5" fill="white" opacity="0.8" />
+                </svg>
               </div>
               <span className="font-bold text-lg text-gray-900">
                 Kyeto Logistics
