@@ -5,42 +5,22 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ModernNavbar } from "@/components/layout/ModernNavbar";
 import { Footer } from "@/components/layout/Footer";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
+import { StructuredData } from "@/components/seo/StructuredData";
+import { constructMetadata, organizationSchema, productSchema, localBusinessSchema } from "@/lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap", // Optimize font loading
+  preload: true,
 });
 
-export const metadata: Metadata = {
-  title: "Kyeto Logistics Group - Fleet Management & Transportation Solutions",
-  description: "Digitizing and optimizing transportation operations in frontier and emerging markets with integrated logistics, telematics, AI, and data analytics.",
-  keywords: [
-    "fleet management",
-    "GPS tracking",
-    "telematics",
-    "logistics",
-    "transportation",
-    "KFM",
-    "KLG",
-    "Kyeto Logistics",
-  ],
-  authors: [{ name: "Kyeto Logistics Group" }],
-  openGraph: {
-    title: "Kyeto Logistics Group - Fleet Management Solutions",
-    description: "Integrated logistics, telematics, AI, and data analytics for transparent, efficient supply chain operations.",
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Kyeto Logistics Group - Fleet Management Solutions",
-    description: "Integrated logistics, telematics, AI, and data analytics for transparent, efficient supply chain operations.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+export const metadata: Metadata = constructMetadata({
+  title: "Kyeto Fleet Management - GPS Tracking & Fleet Solutions for Africa",
+  description: "Fleet management solutions built for frontier markets. Real-time GPS tracking, fuel monitoring, driver safety, and AI cameras across 12 African countries.",
+  canonical: "https://kyetofleet.com",
+});
 
 export default function RootLayout({
   children,
@@ -49,7 +29,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <StructuredData 
+          data={[organizationSchema, productSchema, localBusinessSchema]} 
+        />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <GoogleAnalytics />
         <ThemeProvider defaultTheme="light" storageKey="klg-theme">
           <QueryProvider>
             <div className="relative flex min-h-screen flex-col">
