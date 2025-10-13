@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { prefetchSection } from "@/lib/performance";
 
 const navigation = [
   { name: "Features", href: "/#features" },
@@ -77,6 +78,20 @@ export function ModernNavbar() {
               <Link
                 key={item.name}
                 href={item.href}
+                onMouseEnter={() => {
+                  const sectionId = item.href.split("#")[1];
+                  if (sectionId) prefetchSection(sectionId);
+                }}
+                onClick={(e) => {
+                  const sectionId = item.href.split("#")[1];
+                  if (sectionId) {
+                    e.preventDefault();
+                    const element = document.getElementById(sectionId);
+                    if (element) {
+                      element.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }
+                }}
                 className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 font-medium text-sm rounded-lg hover:bg-gray-50"
               >
                 {item.name}

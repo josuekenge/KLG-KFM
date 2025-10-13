@@ -86,6 +86,18 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
+
+  // Performance optimizations
+  poweredByHeader: false, // Remove X-Powered-By header
+  
+  // Optimize fonts
+  optimizeFonts: true,
+
+  // Production source maps (disable for faster builds)
+  productionBrowserSourceMaps: false,
+
+  // Output standalone for faster deploys
+  output: "standalone",
 };
 
 export default nextConfig;
