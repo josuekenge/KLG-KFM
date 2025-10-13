@@ -2,12 +2,12 @@
 
 import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 
 // Replace with your actual Google Analytics ID
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-XXXXXXXXXX";
 
-export function GoogleAnalytics() {
+function GoogleAnalyticsContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -17,6 +17,10 @@ export function GoogleAnalytics() {
     }
   }, [pathname, searchParams]);
 
+  return null;
+}
+
+export function GoogleAnalytics() {
   // Only load analytics in production
   if (process.env.NODE_ENV !== "production") {
     return null;
@@ -42,6 +46,9 @@ export function GoogleAnalytics() {
           `,
         }}
       />
+      <Suspense fallback={null}>
+        <GoogleAnalyticsContent />
+      </Suspense>
     </>
   );
 }
