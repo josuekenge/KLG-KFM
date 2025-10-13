@@ -1,5 +1,4 @@
 import { ModernHero } from "@/components/sections/ModernHero";
-import { CustomerLogosSection } from "@/components/sections/CustomerLogosSection";
 import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { ProductShowcase } from "@/components/sections/ProductShowcase";
 import { AboutSection } from "@/components/sections/AboutSection";
@@ -13,7 +12,6 @@ export default function HomePage() {
   return (
     <>
       <ModernHero />
-      <CustomerLogosSection />
       <FeaturesSection />
       <ProductShowcase />
       <AboutSection />
