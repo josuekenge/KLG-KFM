@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 15, "column": 0}, "map": {"version":3,"sources":["file:///C:/Users/josue/OneDrive/Desktop/KFM-KLG/klg-app/src/app/pricing/page.tsx"],"sourcesContent":["export default function PricingPage() {\r\n  return (\r\n    <div className=\"min-h-screen bg-gray-900 pt-16\">\r\n      <div className=\"container mx-auto px-4 py-20\">\r\n        <div className=\"text-center\">\r\n          <h1 className=\"text-4xl md:text-5xl font-bold text-white mb-6\">\r\n            Pricing Plans\r\n          </h1>\r\n          <p className=\"text-xl text-gray-300 max-w-3xl mx-auto\">\r\n            Flexible subscription-based pricing with clear upsell paths and data-driven insights.\r\n          </p>\r\n        </div>\r\n        {/* Pricing cards will be added here */}\r\n      </div>\r\n    </div>\r\n  );\r\n}\r\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;YAAI,WAAU;sBACb,cAAA,8OAAC;gBAAI,WAAU;;kCACb,8OAAC;wBAAG,WAAU;kCAAiD;;;;;;kCAG/D,8OAAC;wBAAE,WAAU;kCAA0C;;;;;;;;;;;;;;;;;;;;;;AAQjE","debugId":null}}]
+}
