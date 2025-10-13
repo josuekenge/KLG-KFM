@@ -101,7 +101,7 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/support" className="text-gray-600 hover:text-black transition-colors">Support <span className="text-xs text-orange-500">(Coming Soon)</span></Link></li>
+              <li><span className="text-gray-600 cursor-default">Support <span className="text-xs text-orange-500">(Coming Soon)</span></span></li>
               <li><Link href="/privacy" className="text-gray-600 hover:text-black transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
