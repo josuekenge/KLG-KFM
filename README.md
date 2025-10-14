@@ -41,33 +41,79 @@ klg-app/
 
 ## 🛠️ Tech Stack
 
-### Core Framework
-- **Next.js 15** - React framework with App Router
-- **TypeScript** - Type-safe JavaScript
-- **React 19** - Latest React features
+### 🚀 Core Framework & Runtime
+- **Next.js 15.5.4** - React framework with App Router for server-side rendering and static generation
+- **React 18** - Modern UI library with concurrent features and hooks
+- **TypeScript** - Type-safe JavaScript with advanced type checking and IntelliSense
+- **Node.js** - JavaScript runtime environment
+- **Turbopack** - Ultra-fast bundler for development (Next.js default)
 
-### UI & Styling
-- **Tailwind CSS** - Utility-first CSS framework
-- **shadcn/ui** - Pre-built accessible components
-- **Radix UI** - Headless UI primitives
-- **Framer Motion** - Animation library
-- **Lucide React** - Icon library
+### 🎨 UI & Styling
+- **Tailwind CSS** - Utility-first CSS framework for rapid UI development
+- **Framer Motion** - Production-ready motion library for smooth animations and transitions
+- **Lucide React** - Beautiful & consistent icon toolkit with 1000+ icons
+- **Custom CSS** - Global styles and component-specific styling
+- **Tailwind Merge** - Utility for intelligently merging Tailwind CSS classes
 
-### State & Data
-- **Zustand** - Lightweight state management
-- **TanStack Query** - Data fetching and caching
-- **React Hook Form** - Form handling
-- **Zod** - Schema validation
+### 🔄 State Management & Data Fetching
+- **Zustand** - Lightweight, scalable state management with minimal boilerplate
+- **TanStack Query (React Query)** - Powerful data synchronization for React applications
+- **Motion DOM** - Framer Motion's DOM utilities for enhanced performance
 
-### Development Tools
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-- **Husky** - Git hooks
-- **commitlint** - Commit message linting
-- **Vitest** - Testing framework
+### 🛠️ Development Tools & Quality
+- **ESLint** - Static code analysis and linting for JavaScript/TypeScript
+- **Prettier** - Opinionated code formatter for consistent code style
+- **Husky** - Git hooks made easy for pre-commit and pre-push validation
+- **Commitlint** - Lint commit messages to ensure conventional commit format
+- **Vitest** - Fast unit testing framework powered by Vite
+- **npm** - Package manager for dependency management
 
-### Visualization
-- **Recharts** - Chart library for dashboards
+### ⚡ Performance & Optimization
+- **Dynamic Imports** - Code splitting for optimal bundle sizes and faster loading
+- **Next.js Image Optimization** - Automatic image optimization with WebP/AVIF support
+- **Smart Prefetching** - Intelligent resource prefetching for improved navigation
+- **Standalone Output** - Optimized production builds for containerized deployments
+- **Lazy Loading** - Component and image lazy loading for better performance
+
+### 🔍 SEO & Analytics
+- **Google Analytics GA4** - Advanced web analytics and user behavior tracking
+- **JSON-LD Structured Data** - Rich snippets for better search engine understanding
+- **Open Graph & Twitter Cards** - Enhanced social media sharing with rich previews
+- **Meta Tags** - Comprehensive SEO meta tags for search engine optimization
+- **XML Sitemap** - Automatic sitemap generation for search engine indexing
+- **robots.txt** - Search engine crawler directives and sitemap references
+
+### 🔒 Security & Headers
+- **Security Headers** - Comprehensive security headers (CSP, HSTS, XSS protection)
+- **Content Security Policy** - Protection against XSS attacks
+- **Strict Transport Security** - HTTPS enforcement and security
+- **X-Frame-Options** - Clickjacking protection
+- **Referrer Policy** - Control referrer information leakage
+
+### 🐳 Containerization & Deployment
+- **Docker** - Containerization for consistent development and production environments
+- **Docker Compose** - Multi-container Docker application management
+- **Standalone Build** - Optimized production builds for cloud deployment
+
+### 📱 Features & Capabilities
+- **Responsive Design** - Mobile-first approach with breakpoint-based layouts
+- **Dark/Light Theme** - Custom theme system with seamless switching
+- **Accessibility** - WCAG compliant components with keyboard navigation
+- **Progressive Web App** - Modern web app capabilities with offline support
+- **Internationalization Ready** - Built with i18n support for multiple languages
+
+### 🔧 Build & Development
+- **Hot Module Replacement** - Instant feedback during development
+- **TypeScript Compilation** - Real-time type checking and error reporting
+- **CSS-in-JS** - Scoped styling with Tailwind CSS
+- **Module Federation** - Micro-frontend architecture support
+- **Tree Shaking** - Dead code elimination for smaller bundle sizes
+
+### 📊 Monitoring & Debugging
+- **React DevTools** - Browser extension for React component debugging
+- **Next.js DevTools** - Built-in development tools for performance monitoring
+- **Error Boundaries** - Graceful error handling and user experience
+- **Performance Monitoring** - Built-in performance metrics and optimization
 
 ## 🚀 Quick Start
 
