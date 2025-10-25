@@ -10,7 +10,7 @@ import { prefetchSection } from "@/lib/performance";
 const navigation = [
   { name: "Features", href: "/#features" },
   { name: "About", href: "/#about" },
-  { name: "Testimonials", href: "/#testimonials" },
+  { name: "Blog", href: "/blog" },
   { name: "FAQ", href: "/#faq" },
 ];
 
