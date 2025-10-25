@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,19 +16,15 @@ export function ModernNavbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const { scrollY } = useScroll();
-
-  // Prefetch homepage on mount for instant navigation
+  // Simple scroll listener without framer-motion
   useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.href = '/';
-    document.head.appendChild(link);
-  }, []);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 10);
-  });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,7 +38,7 @@ export function ModernNavbar() {
   }, []);
 
   return (
-    <motion.nav
+    <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
@@ -86,7 +81,6 @@ export function ModernNavbar() {
                 key={item.name}
                 href={item.href}
                 prefetch={true}
-                scroll={true}
                 className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 font-medium text-sm rounded-lg hover:bg-gray-50"
               >
                 {item.name}
@@ -99,7 +93,6 @@ export function ModernNavbar() {
             <Link
               href="/#contact"
               prefetch={true}
-              scroll={true}
               className="px-6 py-2.5 bg-black hover:bg-gray-900 text-white font-semibold rounded-lg transition-all duration-200 text-sm shadow-sm hover:shadow-md hover:scale-105"
             >
               Contact
@@ -120,15 +113,12 @@ export function ModernNavbar() {
           </button>
         </div>
 
-        {/* Mobile Menu - Fluence style */}
-        <motion.div
-          className="md:hidden overflow-hidden"
-          initial={false}
-          animate={{
-            height: isMobileMenuOpen ? "auto" : 0,
-            opacity: isMobileMenuOpen ? 1 : 0,
-          }}
-          transition={{ duration: 0.3 }}
+        {/* Mobile Menu - Simple CSS transition instead of framer-motion */}
+        <div
+          className={cn(
+            "md:hidden overflow-hidden transition-all duration-300",
+            isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          )}
         >
           <div className="py-4 space-y-1 border-t border-gray-100">
             {navigation.map((item) => (
@@ -136,7 +126,6 @@ export function ModernNavbar() {
                 key={item.name}
                 href={item.href}
                 prefetch={true}
-                scroll={true}
                 className="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors duration-200 font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -147,7 +136,6 @@ export function ModernNavbar() {
               <Link
                 href="/#contact"
                 prefetch={true}
-                scroll={true}
                 className="block w-full text-center px-6 py-2.5 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -155,14 +143,8 @@ export function ModernNavbar() {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
-
-
-
-
-
-

@@ -1,8 +1,5 @@
-"use client";
-
-import { ExternalLink, Calendar, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
 
 const blogPosts = [
   {
@@ -211,21 +208,7 @@ const blogPosts = [
   },
 ];
 
-const POSTS_PER_PAGE = 9;
-
 export default function BlogPage() {
-  const [currentPage, setCurrentPage] = useState(1);
-  
-  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
-  const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
-  const endIndex = startIndex + POSTS_PER_PAGE;
-  const currentPosts = blogPosts.slice(startIndex, endIndex);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -268,12 +251,12 @@ export default function BlogPage() {
           {/* Page indicator */}
           <div className="text-center mb-8">
             <p className="text-sm text-gray-600">
-              Showing {startIndex + 1}-{Math.min(endIndex, blogPosts.length)} of {blogPosts.length} articles
+              Showing {blogPosts.length} articles
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {currentPosts.map((post) => (
+            {blogPosts.map((post) => (
               <article
                 key={post.id}
                 className="group bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300"
@@ -336,59 +319,8 @@ export default function BlogPage() {
               </article>
             ))}
           </div>
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="mt-16 flex items-center justify-center gap-2">
-              {/* Previous Button */}
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                  currentPage === 1
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-black'
-                }`}
-              >
-                <ChevronLeft className="w-4 h-4" />
-                Previous
-              </button>
-
-              {/* Page Numbers */}
-              <div className="flex items-center gap-2">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`w-10 h-10 rounded-lg font-semibold transition-all duration-200 ${
-                      currentPage === page
-                        ? 'bg-black text-white shadow-md'
-                        : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-black'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
-              </div>
-
-              {/* Next Button */}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                  currentPage === totalPages
-                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-black'
-                }`}
-              >
-                Next
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          )}
         </div>
       </section>
     </div>
   );
 }
-

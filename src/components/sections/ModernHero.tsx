@@ -1,13 +1,39 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Play } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
+
+const LOCATIONS = ["Africa", "Kenya", "Congo", "Nigeria"];
 
 export function ModernHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [currentLocationIndex, setCurrentLocationIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
+  // Rotating location text effect
+  useEffect(() => {
+    console.log('Setting up location rotation interval');
+    const interval = setInterval(() => {
+      console.log('Changing location...');
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentLocationIndex((prev) => {
+          const next = (prev + 1) % LOCATIONS.length;
+          console.log('New location index:', next, 'Location:', LOCATIONS[next]);
+          return next;
+        });
+        setIsAnimating(false);
+      }, 300);
+    }, 3000);
+
+    return () => {
+      console.log('Cleaning up location rotation interval');
+      clearInterval(interval);
+    };
+  }, []);
+
+  // Canvas animation with moving trucks
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -52,9 +78,9 @@ export function ModernHero() {
       vehicles.push({
         x: (Math.random() * 0.6 + 0.2) * canvas.width,
         y: (Math.random() * 0.6 + 0.2) * canvas.height,
-        vx: (Math.random() - 0.5) * 0.6, // Slower movement
+        vx: (Math.random() - 0.5) * 0.6,
         vy: (Math.random() - 0.5) * 0.6,
-        size: 10, // Slightly smaller for subtlety
+        size: 10,
         routeProgress: Math.random() * 100,
         routeLength: Math.random() * 200 + 100,
       });
@@ -69,7 +95,6 @@ export function ModernHero() {
       ctx.lineWidth = 1.5;
       ctx.setLineDash([8, 8]);
       nodes.forEach((node, i) => {
-        // Connect to nearest neighbors
         nodes.slice(i + 1, i + 3).forEach((otherNode) => {
           ctx.beginPath();
           ctx.moveTo(node.x, node.y);
@@ -77,18 +102,16 @@ export function ModernHero() {
           ctx.stroke();
         });
       });
-      ctx.setLineDash([]); // Reset dash
+      ctx.setLineDash([]);
 
-      // Draw nodes (cities/waypoints) - subtle
+      // Draw nodes (cities/waypoints)
       nodes.forEach((node) => {
-        // Outer ring
         ctx.beginPath();
         ctx.arc(node.x, node.y, 6, 0, Math.PI * 2);
         ctx.strokeStyle = "rgba(0, 0, 0, 0.1)";
         ctx.lineWidth = 1.5;
         ctx.stroke();
         
-        // Inner dot
         ctx.beginPath();
         ctx.arc(node.x, node.y, 3, 0, Math.PI * 2);
         ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
@@ -97,57 +120,50 @@ export function ModernHero() {
 
       // Update and draw vehicles (trucks)
       vehicles.forEach((vehicle) => {
-        // Update position
         vehicle.x += vehicle.vx;
         vehicle.y += vehicle.vy;
 
-        // Bounce off edges
         if (vehicle.x < 0 || vehicle.x > canvas.width) vehicle.vx *= -1;
         if (vehicle.y < 0 || vehicle.y > canvas.height) vehicle.vy *= -1;
 
-        // Update route progress
         vehicle.routeProgress += 0.5;
         if (vehicle.routeProgress > vehicle.routeLength) {
           vehicle.routeProgress = 0;
         }
 
-        // Draw vehicle (truck icon) - larger and more detailed
+        // Draw vehicle (truck icon)
         ctx.save();
         ctx.translate(vehicle.x, vehicle.y);
         
-        // Rotate based on direction
         const angle = Math.atan2(vehicle.vy, vehicle.vx);
         ctx.rotate(angle);
 
-        // Subtle shadow for depth
         ctx.shadowColor = "rgba(0, 0, 0, 0.2)";
         ctx.shadowBlur = 3;
         ctx.shadowOffsetX = 1;
         ctx.shadowOffsetY = 1;
 
-        // Trailer (back of truck) - more subtle
+        // Trailer
         ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
         ctx.fillRect(-vehicle.size * 1.2, -vehicle.size / 2.5, vehicle.size * 1.8, vehicle.size * 0.8);
         
-        // Cab (front of truck)
+        // Cab
         ctx.fillStyle = "rgba(0, 0, 0, 0.8)";
         ctx.fillRect(vehicle.size * 0.6, -vehicle.size / 2, vehicle.size * 0.8, vehicle.size);
         
-        // Windshield - very subtle
+        // Windshield
         ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
         ctx.fillRect(vehicle.size * 0.7, -vehicle.size / 3, vehicle.size * 0.4, vehicle.size * 0.6);
 
-        // Wheels - simplified
+        // Wheels
         ctx.shadowColor = "transparent";
         ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
-        // Back wheels
         ctx.beginPath();
         ctx.arc(-vehicle.size * 0.5, vehicle.size / 2.5, vehicle.size / 6, 0, Math.PI * 2);
         ctx.fill();
         ctx.beginPath();
         ctx.arc(-vehicle.size * 0.5, -vehicle.size / 2.5, vehicle.size / 6, 0, Math.PI * 2);
         ctx.fill();
-        // Front wheels
         ctx.beginPath();
         ctx.arc(vehicle.size * 0.9, vehicle.size / 2.5, vehicle.size / 6, 0, Math.PI * 2);
         ctx.fill();
@@ -167,10 +183,9 @@ export function ModernHero() {
       window.removeEventListener("resize", setCanvasSize);
     };
   }, []);
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-      {/* Animated particle background - Dark Veil effect adapted to black/white */}
+      {/* Animated canvas background with moving trucks */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-0"
@@ -182,96 +197,79 @@ export function ModernHero() {
 
       <div className="container relative z-10 px-4 py-20">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Simple badge - Fluence style */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-gray-100 border border-gray-200 rounded-full text-gray-900 text-sm font-medium"
-          >
+          {/* Simple badge */}
+          <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 bg-gray-100 border border-gray-200 rounded-full text-gray-900 text-sm font-medium">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-black"></span>
             </span>
             Fleet Management & Logistics Solution
-          </motion.div>
+          </div>
 
-          {/* Clean headline - Fluence style */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight tracking-tight"
-          >
+          {/* Clean headline with rotating location */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
             Fleet Management{" "}
             <span className="block mt-2 text-black">
-              Built for Africa
+              Built for{" "}
+              <span className="inline-block relative min-w-[200px] md:min-w-[280px] text-left">
+                <span 
+                  className={`inline-block transition-all duration-500 relative ${
+                    isAnimating 
+                      ? 'opacity-0 -translate-y-8 scale-95' 
+                      : 'opacity-100 translate-y-0 scale-100'
+                  }`}
+                >
+                  {LOCATIONS[currentLocationIndex]}
+                  {/* Subtle underline that draws attention */}
+                  <span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-black via-gray-600 to-black opacity-40"></span>
+                </span>
+              </span>
             </span>
-          </motion.h1>
+          </h1>
 
           {/* Clean subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
-          >
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
             Built for frontier markets with rugged hardware, satellite backup, and AI-powered insights. 
             Reduce fuel theft, improve driver safety, and optimize your fleet operations across Africa.
-          </motion.p>
+          </p>
 
-              {/* Clean CTA buttons - Fluence style */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8"
-              >
-                <a 
-                  href="#contact" 
-                  className="group px-8 py-4 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-xl hover:scale-105"
-                >
-                  Get Started
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
-                </a>
+          {/* Clean CTA buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+            <a 
+              href="#contact" 
+              className="group px-8 py-4 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-xl hover:scale-105"
+            >
+              Get Started
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+            </a>
 
-                <Link 
-                  href="/platform" 
-                  className="group px-8 py-4 bg-white border-2 border-gray-900 hover:border-black hover:bg-gray-50 text-gray-900 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-md"
-                >
-                  <Play className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
-                  Book a Demo
-                </Link>
-              </motion.div>
+            <Link 
+              href="/platform" 
+              className="group px-8 py-4 bg-white border-2 border-gray-900 hover:border-black hover:bg-gray-50 text-gray-900 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-md"
+            >
+              <Play className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+              Book a Demo
+            </Link>
+          </div>
 
-              {/* Trust badges */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="flex flex-wrap items-center justify-center gap-6 mb-16 text-sm text-gray-600"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="font-medium">500+ Active Fleets</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="font-medium">99.9% Uptime</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="font-medium">24/7 Support</span>
-                </div>
-              </motion.div>
+          {/* Trust badges */}
+          <div className="flex flex-wrap items-center justify-center gap-6 mb-16 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span className="font-medium">500+ Active Fleets</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span className="font-medium">99.9% Uptime</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span className="font-medium">24/7 Support</span>
+            </div>
+          </div>
 
-          {/* Mockup/Dashboard preview - Fluence style */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="relative max-w-6xl mx-auto"
-          >
+          {/* Mockup/Dashboard preview - No animations */}
+          <div className="relative max-w-6xl mx-auto">
             <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 shadow-2xl">
               <div className="bg-white rounded-xl p-6 shadow-inner">
                 {/* Dashboard mockup */}
@@ -345,7 +343,7 @@ export function ModernHero() {
                         <div key={i} className="flex-1 flex flex-col items-center gap-2">
                           <div className="w-full flex flex-col justify-end h-full">
                             <div 
-                              className="w-full bg-black rounded-t transition-all duration-700"
+                              className="w-full bg-black rounded-t"
                               style={{ height: `${day.height}%` }}
                             ></div>
                           </div>
@@ -384,12 +382,8 @@ export function ModernHero() {
               </div>
             </div>
 
-            {/* Simple Floating Cards */}
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -left-4 md:-left-12 bg-white rounded-xl shadow-lg p-4 max-w-[200px] hidden md:block border border-gray-200"
-            >
+            {/* Simple Floating Cards - No animations */}
+            <div className="absolute -top-4 -left-4 md:-left-12 bg-white rounded-xl shadow-lg p-4 max-w-[200px] hidden md:block border border-gray-200">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -404,13 +398,9 @@ export function ModernHero() {
               <p className="text-xs text-gray-600">
                 $12,400 saved this month
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -bottom-4 -right-4 md:-right-12 bg-white rounded-xl shadow-lg p-4 max-w-[200px] hidden md:block border border-gray-200"
-            >
+            <div className="absolute -bottom-4 -right-4 md:-right-12 bg-white rounded-xl shadow-lg p-4 max-w-[200px] hidden md:block border border-gray-200">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
                   <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -425,16 +415,10 @@ export function ModernHero() {
               <p className="text-xs text-gray-600">
                 GPS + Satellite backup
               </p>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-
-
-
-
-

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Satellite, HardDrive, TrendingUp, Users } from "lucide-react";
 
 const features = [
@@ -43,59 +42,30 @@ export function FeaturesSection() {
       />
       
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
+        {/* Section Header - No animations */}
         <div className="text-center mb-16">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-sm font-semibold text-black uppercase tracking-wider mb-4"
-          >
+          <p className="text-sm font-semibold text-black uppercase tracking-wider mb-4">
             Built for Frontier Markets
-          </motion.p>
+          </p>
           
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
-          >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             The digital backbone for vehicle operations
-          </motion.h2>
+          </h2>
           
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="text-xl text-gray-600 max-w-3xl mx-auto"
-          >
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             KFM provides end-to-end fleet management designed for emerging markets. From rugged hardware to AI-powered analytics, we deliver solutions that work in the toughest conditions.
-          </motion.p>
+          </p>
         </div>
 
-        {/* Features Grid */}
+        {/* Features Grid - Simple hover effects only */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group"
-            >
+          {features.map((feature) => (
+            <div key={feature.title} className="group">
               <div className="text-center group">
                 {/* Icon with gradient background */}
-                <motion.div 
-                  className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-2xl`}
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                >
+                <div className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-br ${feature.gradient} rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-2xl transition-shadow duration-200`}>
                   <feature.icon className="w-8 h-8 text-white" />
-                </motion.div>
+                </div>
 
                 {/* Title */}
                 <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-black transition-colors duration-200">
@@ -107,11 +77,10 @@ export function FeaturesSection() {
                   {feature.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
 }
-
