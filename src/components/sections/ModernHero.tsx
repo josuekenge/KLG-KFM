@@ -333,19 +333,30 @@ export function ModernHero() {
                     </div>
                     <div className="h-40 flex items-end gap-2">
                       {[
-                        { height: 65, label: "Mon" },
-                        { height: 78, label: "Tue" },
-                        { height: 55, label: "Wed" },
-                        { height: 88, label: "Thu" },
-                        { height: 72, label: "Fri" },
-                        { height: 45, label: "Sat" },
+                        { height: 65, label: "Mon", miniChart: [45, 60, 52, 65] },
+                        { height: 78, label: "Tue", miniChart: [55, 70, 78, 65] },
+                        { height: 55, label: "Wed", miniChart: [38, 48, 55, 42] },
+                        { height: 88, label: "Thu", miniChart: [65, 80, 88, 75] },
+                        { height: 72, label: "Fri", miniChart: [50, 65, 72, 68] },
+                        { height: 45, label: "Sat", miniChart: [30, 38, 45, 35] },
                       ].map((day, i) => (
                         <div key={i} className="flex-1 flex flex-col items-center gap-2">
-                          <div className="w-full flex flex-col justify-end h-full">
+                          <div className="w-full flex flex-col justify-end h-full relative group">
                             <div 
-                              className="w-full bg-black rounded-t"
+                              className="w-full bg-black rounded-t relative overflow-hidden"
                               style={{ height: `${day.height}%` }}
-                            ></div>
+                            >
+                              {/* Mini chart overlay - shows hourly activity */}
+                              <div className="absolute bottom-0 left-0 right-0 h-8 flex items-end justify-around gap-[1px] px-1 opacity-30">
+                                {day.miniChart.map((h, idx) => (
+                                  <div 
+                                    key={idx} 
+                                    className="flex-1 bg-white rounded-t"
+                                    style={{ height: `${h}%` }}
+                                  ></div>
+                                ))}
+                              </div>
+                            </div>
                           </div>
                           <span className="text-xs text-gray-600">{day.label}</span>
                         </div>
