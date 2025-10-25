@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Calendar, Clock } from "lucide-react";
+import { ArrowRight, ExternalLink, Calendar, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 const blogPosts = [
   {
@@ -125,9 +126,107 @@ const blogPosts = [
     category: "Sustainability",
     tags: ["Electric Vehicles", "Future", "Environment"],
   },
+  {
+    id: 11,
+    title: "Telematics Development in Africa: Orange Business Océan Insights",
+    description: "Discover how embedded telematics is experiencing strong development across Africa with Orange Cameroon's experience and market trends in fleet management solutions.",
+    excerpt: "Orange Cameroon shares insights on the African telematics market evolution, customer needs beyond basic GPS tracking, and emerging use cases in transportation and logistics.",
+    url: "https://ocean.fr/telematique-embarquee-un-fort-developpement-en-afrique/?utm_source=kyetologistics",
+    source: "Océan by Orange Business",
+    readTime: "7 min read",
+    date: "2024",
+    category: "Market Trends",
+    tags: ["Telematics", "Africa", "Orange"],
+  },
+  {
+    id: 12,
+    title: "Fleet Management in Kenya: Market Insights & Opportunities",
+    description: "Explore the Kenyan fleet management market with Wialon's comprehensive guide covering local challenges, opportunities, and the growing adoption of telematics solutions.",
+    excerpt: "A detailed look at Kenya's fleet management landscape, from matatu transport to logistics companies, and how telematics is transforming East African operations.",
+    url: "https://wialon.com/fr/blog/trip-to-kenya?utm_source=kyetologistics",
+    source: "Wialon",
+    readTime: "10 min read",
+    date: "2024",
+    category: "Regional Focus",
+    tags: ["Kenya", "East Africa", "Market Analysis"],
+  },
+  {
+    id: 13,
+    title: "Fleeti Blog: Fleet Management Best Practices & Innovation",
+    description: "Access comprehensive fleet management resources covering best practices, technology innovations, and operational strategies for modern fleet operations.",
+    excerpt: "Explore articles on fleet optimization, driver safety, maintenance management, and the latest innovations shaping the future of fleet management.",
+    url: "https://www.fleeti.co/blog?utm_source=kyetologistics",
+    source: "Fleeti",
+    readTime: "Various",
+    date: "2024",
+    category: "Resources",
+    tags: ["Best Practices", "Innovation", "Operations"],
+  },
+  {
+    id: 14,
+    title: "Globo Afrique: Transportation & Logistics Insights for Africa",
+    description: "Comprehensive blog covering transportation, logistics, and fleet management across African markets with local expertise and industry insights.",
+    excerpt: "Stay informed about African transportation trends, logistics innovations, and fleet management solutions tailored for the continent's unique challenges.",
+    url: "https://globoafrique.com/blog/?utm_source=kyetologistics",
+    source: "Globo Afrique",
+    readTime: "Various",
+    date: "2024",
+    category: "African Logistics",
+    tags: ["Africa", "Transportation", "Logistics"],
+  },
+  {
+    id: 15,
+    title: "Telematics Solution Against Rising Fuel Prices in Africa",
+    description: "How embedded telematics helps African companies combat rising fuel costs through consumption monitoring, theft prevention, and efficiency optimization.",
+    excerpt: "Discover practical strategies using telematics to reduce fuel expenses, detect theft, and optimize consumption in African fleet operations.",
+    url: "https://ocean.fr/la-telematique-embarquee-une-solution-face-a-la-hausse-des-prix-du-carburant-en-afrique/?utm_source=kyetologistics",
+    source: "Océan by Orange Business",
+    readTime: "6 min read",
+    date: "2024",
+    category: "Cost Optimization",
+    tags: ["Fuel Management", "Cost Reduction", "Africa"],
+  },
+  {
+    id: 16,
+    title: "SLI Afrika: Transport & Logistics Intelligence",
+    description: "Industry intelligence and analysis for African transport and logistics sectors, covering market trends, regulations, and operational strategies.",
+    excerpt: "Expert insights on African transport markets, regulatory developments, and strategic approaches to logistics challenges across the continent.",
+    url: "https://www.sliafrika.com/public/index.php/fr/articles/38?utm_source=kyetologistics",
+    source: "SLI Afrika",
+    readTime: "8 min read",
+    date: "2024",
+    category: "Industry Intelligence",
+    tags: ["Market Intelligence", "Regulations", "Strategy"],
+  },
+  {
+    id: 17,
+    title: "Essential Fleet Management Technologies 2025: STG Analysis",
+    description: "In-depth analysis of must-have fleet management technologies for 2025, including AI, IoT, predictive analytics, and emerging innovations from STG Telematics.",
+    excerpt: "Explore the cutting-edge technologies shaping fleet management in 2025, from artificial intelligence to connected vehicles and data-driven decision making.",
+    url: "https://stgtelematics.com/les-technologies-incontournables-de-gestion-de-flotte-en-2025-analyse-et-perspectives-de-stg-telematics/?utm_source=kyetologistics",
+    source: "STG Telematics",
+    readTime: "11 min read",
+    date: "2025",
+    category: "Future Tech",
+    tags: ["2025 Trends", "AI", "Technology"],
+  },
 ];
 
+const POSTS_PER_PAGE = 9;
+
 export default function BlogPage() {
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  const currentPosts = blogPosts.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -178,8 +277,15 @@ export default function BlogPage() {
       {/* Blog Posts Grid */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
+          {/* Page indicator */}
+          <div className="text-center mb-8">
+            <p className="text-sm text-gray-600">
+              Showing {startIndex + 1}-{Math.min(endIndex, blogPosts.length)} of {blogPosts.length} articles
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {blogPosts.map((post, index) => (
+            {currentPosts.map((post, index) => (
               <motion.article
                 key={post.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -246,6 +352,62 @@ export default function BlogPage() {
               </motion.article>
             ))}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="mt-16 flex items-center justify-center gap-2"
+            >
+              {/* Previous Button */}
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  currentPage === 1
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-black'
+                }`}
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Previous
+              </button>
+
+              {/* Page Numbers */}
+              <div className="flex items-center gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`w-10 h-10 rounded-lg font-semibold transition-all duration-200 ${
+                      currentPage === page
+                        ? 'bg-black text-white shadow-md'
+                        : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-black'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                ))}
+              </div>
+
+              {/* Next Button */}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  currentPage === totalPages
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:border-black'
+                }`}
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </motion.div>
+          )}
 
           {/* CTA Section */}
           <motion.div
