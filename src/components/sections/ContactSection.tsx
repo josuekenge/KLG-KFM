@@ -51,29 +51,41 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submitted!", formData);
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "9e6c1a0f-b7ea-4007-a1f1-4ea05180b3d1";
+    console.log("Access key loaded:", accessKey ? "Yes" : "No");
+
     try {
+      const payload = {
+        access_key: accessKey,
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        fleet_size: formData.fleetSize,
+        message: formData.message,
+        from_name: "Kyeto Logistics Website",
+        subject: "New Contact Form Submission",
+      };
+      
+      console.log("Sending payload:", payload);
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          company: formData.company,
-          fleet_size: formData.fleetSize,
-          message: formData.message,
-          from_name: "Kyeto Logistics Website",
-          subject: "New Contact Form Submission",
-        }),
+        body: JSON.stringify(payload),
       });
 
+      console.log("Response status:", response.status);
+
       const result = await response.json();
+      console.log("API Response:", result);
       
       if (result.success) {
+        console.log("✅ Form submitted successfully!");
         setSubmitStatus("success");
         setFormData({
           name: "",
@@ -89,19 +101,21 @@ export function ContactSection() {
           setSubmitStatus("idle");
         }, 5000);
       } else {
+        console.error("❌ Form submission failed:", result);
         setSubmitStatus("error");
         setTimeout(() => {
           setSubmitStatus("idle");
         }, 5000);
       }
     } catch (error) {
-      console.error("Form submission error:", error);
+      console.error("❌ Form submission error:", error);
       setSubmitStatus("error");
       setTimeout(() => {
         setSubmitStatus("idle");
       }, 5000);
     } finally {
       setIsSubmitting(false);
+      console.log("Form submission complete");
     }
   };
 
