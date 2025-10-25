@@ -244,7 +244,7 @@ export function ModernHero() {
             </a>
 
             <Link 
-              href="/platform" 
+              href="/#contact" 
               className="group px-8 py-4 bg-white border-2 border-gray-900 hover:border-black hover:bg-gray-50 text-gray-900 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-md"
             >
               <Play className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />

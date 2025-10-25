@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -71,19 +72,19 @@ export function CTASection() {
             viewport={{ once: true }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <a 
+            <Link 
               href="/contact" 
               className="group px-8 py-4 bg-white hover:bg-gray-100 text-black font-semibold rounded-xl transition-all duration-200 shadow-md hover:shadow-xl hover:scale-105 flex items-center gap-2"
             >
               Get Started
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
-            </a>
-            <a 
-              href="/platform" 
+            </Link>
+            <Link 
+              href="/#contact" 
               className="px-8 py-4 bg-white/10 border-2 border-white/30 hover:bg-white/20 hover:border-white/50 text-white font-semibold rounded-xl transition-all duration-200 backdrop-blur-sm shadow-sm hover:shadow-md"
             >
               Book a Demo
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>
