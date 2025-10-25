@@ -31,8 +31,8 @@ export const siteConfig = {
   creator: "Kyeto Logistics Group",
   publisher: "Kyeto Logistics Group",
   contact: {
-    email: "sales@kyetofleet.com",
-    phone: "+243 XX XXX XXXX",
+    email: "sales@kyetologistics.com",
+    phone: "WhatsApp: +243 899 905 483 & +243 904 570 799",
     address: "Kinshasa, Democratic Republic of Congo"
   }
 };
@@ -198,4 +198,7 @@ export const localBusinessSchema = {
     "https://twitter.com/kyetofleet",
   ],
 };
+
+
+
 

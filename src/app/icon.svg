@@ -1,0 +1,14 @@
+<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="6" fill="#000000"/>
+  <!-- Truck icon for fleet management -->
+  <path
+    d="M21 8H6C5.26 8 4.67 8.59 4.67 9.33V21.33C4.67 22.07 5.26 22.67 6 22.67H8M21 8V22.67M21 8H24L28 12V21.33C28 22.07 27.41 22.67 26.67 22.67H25.33M21 22.67H8M21 22.67H25.33M8 22.67C8 24.14 9.19 25.33 10.67 25.33C12.14 25.33 13.33 24.14 13.33 22.67M25.33 22.67C25.33 24.14 24.14 25.33 22.67 25.33C21.19 25.33 20 24.14 20 22.67M13.33 22.67H20"
+    stroke="white"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  />
+  <!-- GPS pin on truck -->
+  <circle cx="15" cy="14" r="2" fill="white" opacity="0.8" />
+</svg>
+

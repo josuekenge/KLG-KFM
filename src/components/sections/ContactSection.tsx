@@ -3,25 +3,37 @@
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { LucideIcon } from "lucide-react";
 
-const contactInfo = [
+interface ContactInfo {
+  icon: LucideIcon;
+  title: string;
+  detail: string | string[];
+  subtitle: string;
+  isMultiLine: boolean;
+}
+
+const contactInfo: ContactInfo[] = [
   {
     icon: Phone,
-    title: "Call Us",
-    detail: "+243 XX XXX XXXX",
-    subtitle: "Mon-Fri 8AM-6PM WAT"
+    title: "WhatsApp",
+    detail: ["+243 899 905 483", "+243 904 570 799"],
+    subtitle: "Mon-Fri 8AM-6PM WAT",
+    isMultiLine: true
   },
   {
     icon: Mail,
     title: "Email Us",
-    detail: "sales@kyetofleet.com",
-    subtitle: "We reply within 24 hours"
+    detail: "sales@kyetologistics.com",
+    subtitle: "We reply within 24 hours",
+    isMultiLine: false
   },
   {
     icon: MapPin,
     title: "Visit Us",
     detail: "Kinshasa, DRC",
-    subtitle: "Democratic Republic of Congo"
+    subtitle: "Democratic Republic of Congo",
+    isMultiLine: false
   }
 ];
 
@@ -103,7 +115,15 @@ export function ContactSection() {
                 <info.icon className="w-6 h-6 text-white" />
               </div>
               <h3 className="font-semibold text-gray-900 mb-1">{info.title}</h3>
-              <p className="text-sm font-medium text-black mb-1">{info.detail}</p>
+              {Array.isArray(info.detail) ? (
+                <div className="text-sm font-medium text-black mb-1 space-y-1">
+                  {info.detail.map((line, idx) => (
+                    <div key={idx}>{line}</div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm font-medium text-black mb-1">{info.detail as string}</p>
+              )}
               <p className="text-xs text-gray-600">{info.subtitle}</p>
             </motion.div>
           ))}

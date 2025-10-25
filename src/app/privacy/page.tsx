@@ -210,8 +210,12 @@ export default function PrivacyPolicyPage() {
               
               <div className="bg-gray-50 rounded-lg p-6 mb-6">
                 <p className="text-gray-700 mb-2"><strong>Kyeto Logistics Group</strong></p>
-                <p className="text-gray-600 mb-2">Email: privacy@kyetologistics.com</p>
-                <p className="text-gray-600 mb-2">Phone: +243 XXX XXX XXX</p>
+                <p className="text-gray-600 mb-2">Email: sales@kyetologistics.com</p>
+                <div className="text-gray-600 mb-2">
+                  <p className="font-medium mb-1">WhatsApp:</p>
+                  <p className="ml-2">+243 899 905 483</p>
+                  <p className="ml-2">+243 904 570 799</p>
+                </div>
                 <p className="text-gray-600">Address: Kinshasa, Democratic Republic of Congo</p>
               </div>
 
