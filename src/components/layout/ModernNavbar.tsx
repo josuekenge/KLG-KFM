@@ -7,10 +7,10 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navigation = [
-  { name: "Blog", href: "/blog" },
-  { name: "Features", href: "/#features" },
-  { name: "About", href: "/#about" },
-  { name: "FAQ", href: "/#faq" },
+  { name: "Blog", href: "/blog", external: false },
+  { name: "Features", href: "/#features", external: false },
+  { name: "About", href: "/#about", external: false },
+  { name: "FAQ", href: "/#faq", external: false },
 ];
 
 export function ModernNavbar() {
@@ -18,6 +18,14 @@ export function ModernNavbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const { scrollY } = useScroll();
+
+  // Prefetch homepage on mount for instant navigation
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = '/';
+    document.head.appendChild(link);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 10);
@@ -77,6 +85,8 @@ export function ModernNavbar() {
               <Link
                 key={item.name}
                 href={item.href}
+                prefetch={true}
+                scroll={true}
                 className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 font-medium text-sm rounded-lg hover:bg-gray-50"
               >
                 {item.name}
@@ -88,6 +98,8 @@ export function ModernNavbar() {
           <div className="hidden md:flex items-center space-x-3">
             <Link
               href="/#contact"
+              prefetch={true}
+              scroll={true}
               className="px-6 py-2.5 bg-black hover:bg-gray-900 text-white font-semibold rounded-lg transition-all duration-200 text-sm shadow-sm hover:shadow-md hover:scale-105"
             >
               Contact
@@ -123,6 +135,8 @@ export function ModernNavbar() {
               <Link
                 key={item.name}
                 href={item.href}
+                prefetch={true}
+                scroll={true}
                 className="block px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors duration-200 font-medium"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
@@ -132,6 +146,8 @@ export function ModernNavbar() {
             <div className="px-4 pt-4">
               <Link
                 href="/#contact"
+                prefetch={true}
+                scroll={true}
                 className="block w-full text-center px-6 py-2.5 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
