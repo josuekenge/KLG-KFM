@@ -342,23 +342,24 @@ export function ModernHero() {
                       ].map((day, i) => (
                         <div key={i} className="flex-1 flex flex-col items-center gap-2">
                           <div className="w-full flex flex-col justify-end h-full relative group">
+                            {/* Main bar with gradient */}
                             <div 
-                              className="w-full bg-black rounded-t relative overflow-hidden"
+                              className="w-full bg-gradient-to-t from-black to-gray-800 rounded-t relative overflow-visible"
                               style={{ height: `${day.height}%` }}
                             >
-                              {/* Mini chart overlay - shows hourly activity */}
-                              <div className="absolute bottom-0 left-0 right-0 h-12 flex items-end justify-around gap-[2px] px-1">
+                              {/* Mini chart bars - hourly breakdown */}
+                              <div className="absolute inset-0 flex items-end justify-around gap-[1px] p-1">
                                 {day.miniChart.map((h, idx) => (
                                   <div 
                                     key={idx} 
-                                    className="flex-1 bg-white/60 rounded-t-sm"
+                                    className="flex-1 bg-white/70 rounded-t border-t border-white/90"
                                     style={{ height: `${h}%` }}
                                   ></div>
                                 ))}
                               </div>
                             </div>
                           </div>
-                          <span className="text-xs text-gray-600">{day.label}</span>
+                          <span className="text-xs text-gray-600 font-medium">{day.label}</span>
                         </div>
                       ))}
                     </div>
