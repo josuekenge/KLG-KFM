@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 import { prefetchSection } from "@/lib/performance";
 
 const navigation = [
+  { name: "Blog", href: "/blog" },
   { name: "Features", href: "/#features" },
   { name: "About", href: "/#about" },
-  { name: "Blog", href: "/blog" },
   { name: "FAQ", href: "/#faq" },
 ];
 
