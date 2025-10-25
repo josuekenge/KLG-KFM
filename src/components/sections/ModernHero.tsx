@@ -347,11 +347,11 @@ export function ModernHero() {
                               style={{ height: `${day.height}%` }}
                             >
                               {/* Mini chart overlay - shows hourly activity */}
-                              <div className="absolute bottom-0 left-0 right-0 h-8 flex items-end justify-around gap-[1px] px-1 opacity-30">
+                              <div className="absolute bottom-0 left-0 right-0 h-12 flex items-end justify-around gap-[2px] px-1">
                                 {day.miniChart.map((h, idx) => (
                                   <div 
                                     key={idx} 
-                                    className="flex-1 bg-white rounded-t"
+                                    className="flex-1 bg-white/60 rounded-t-sm"
                                     style={{ height: `${h}%` }}
                                   ></div>
                                 ))}
