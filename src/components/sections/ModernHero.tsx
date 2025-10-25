@@ -352,7 +352,7 @@ export function ModernHero() {
                                 {day.miniChart.map((h, idx) => (
                                   <div 
                                     key={idx} 
-                                    className="flex-1 bg-white/70 rounded-t border-t border-white/90"
+                                    className="flex-1 bg-gray-900 rounded-t border-t border-gray-700"
                                     style={{ height: `${h}%` }}
                                   ></div>
                                 ))}
