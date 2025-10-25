@@ -78,20 +78,6 @@ export function ModernNavbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                onMouseEnter={() => {
-                  const sectionId = item.href.split("#")[1];
-                  if (sectionId) prefetchSection(sectionId);
-                }}
-                onClick={(e) => {
-                  const sectionId = item.href.split("#")[1];
-                  if (sectionId) {
-                    e.preventDefault();
-                    const element = document.getElementById(sectionId);
-                    if (element) {
-                      element.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }
-                  }
-                }}
                 className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors duration-200 font-medium text-sm rounded-lg hover:bg-gray-50"
               >
                 {item.name}
@@ -101,12 +87,12 @@ export function ModernNavbar() {
 
           {/* CTA Button - Fluence style */}
           <div className="hidden md:flex items-center space-x-3">
-            <a
-              href="#contact"
+            <Link
+              href="/#contact"
               className="px-6 py-2.5 bg-black hover:bg-gray-900 text-white font-semibold rounded-lg transition-all duration-200 text-sm shadow-sm hover:shadow-md hover:scale-105"
             >
               Contact
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Menu Button - Fluence style */}
@@ -145,13 +131,13 @@ export function ModernNavbar() {
               </Link>
             ))}
             <div className="px-4 pt-4">
-              <a
-                href="#contact"
+              <Link
+                href="/#contact"
                 className="block w-full text-center px-6 py-2.5 bg-black hover:bg-gray-800 text-white font-semibold rounded-lg transition-all duration-200 text-sm"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>
