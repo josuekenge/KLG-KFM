@@ -65,6 +65,66 @@ const blogPosts = [
     category: "Regional Insights",
     tags: ["South Africa", "Challenges", "Solutions"],
   },
+  {
+    id: 6,
+    title: "FleetRabbit Blog: Fleet Management Insights & Best Practices",
+    description: "Access a comprehensive collection of fleet management articles covering industry trends, technology updates, and operational best practices for modern fleet operations.",
+    excerpt: "Stay updated with the latest fleet management insights, from telematics innovations to driver safety programs and cost optimization strategies.",
+    url: "https://fleetrabbit.com/blogs/?utm_source=kyetologistics",
+    source: "FleetRabbit",
+    readTime: "Various",
+    date: "2024",
+    category: "Industry News",
+    tags: ["Best Practices", "Trends", "Innovation"],
+  },
+  {
+    id: 7,
+    title: "Africa Fleet Management Market: Growth & Opportunities",
+    description: "Comprehensive market analysis of Africa's fleet management industry, covering market size, growth drivers, key players, and future opportunities across the continent.",
+    excerpt: "Explore the booming African fleet management market with insights on technology adoption, market trends, and investment opportunities in this rapidly growing sector.",
+    url: "https://mobilityforesights.com/product/africa-fleet-management-market?utm_source=kyetologistics",
+    source: "Mobility Foresights",
+    readTime: "10 min read",
+    date: "2024",
+    category: "Market Analysis",
+    tags: ["Market Research", "Africa", "Growth"],
+  },
+  {
+    id: 8,
+    title: "Tech-Powered Fleets: Safer, Smarter Transport Solutions",
+    description: "Discover how technology is revolutionizing fleet safety and efficiency with AI-powered dashcams, telematics, and real-time monitoring for smarter transport operations.",
+    excerpt: "Learn about cutting-edge technologies transforming fleet safety - from collision avoidance systems to driver behavior analytics and predictive maintenance.",
+    url: "https://focusontransport.co.za/tech-powered-fleets-safer-smarter-transport/?utm_source=kyetologistics",
+    source: "Focus on Transport",
+    readTime: "6 min read",
+    date: "2024",
+    category: "Safety Tech",
+    tags: ["Safety", "AI", "Technology"],
+  },
+  {
+    id: 9,
+    title: "The Rise of Logistics Startups in Africa & Marketing Platforms",
+    description: "Explore how logistics startups are transforming African supply chains with innovative solutions and the critical role of marketing platforms in their growth.",
+    excerpt: "Discover the boom in African logistics startups and how digital marketing platforms are helping them scale operations and reach new markets across the continent.",
+    url: "https://yournotify.com/blog/the-rise-of-logistics-startups-in-africa-and-the-role-of-marketing-platforms/?utm_source=kyetologistics",
+    source: "YourNotify",
+    readTime: "8 min read",
+    date: "2024",
+    category: "Startups",
+    tags: ["Logistics", "Africa", "Marketing"],
+  },
+  {
+    id: 10,
+    title: "Africa's Vehicle Fleet Could Double by 2050: EV Implications",
+    description: "Analysis of Africa's projected vehicle fleet growth and the critical implications for electric vehicle adoption, infrastructure, and sustainable transport solutions.",
+    excerpt: "With Africa's fleet set to double by 2050, explore the opportunities and challenges for EV adoption, charging infrastructure, and the future of sustainable transport.",
+    url: "https://energyforgrowth.org/article/africas-vehicle-fleet-could-double-by-2050-what-does-this-mean-for-evs/?utm_source=kyetologistics",
+    source: "Energy for Growth",
+    readTime: "9 min read",
+    date: "2024",
+    category: "Sustainability",
+    tags: ["Electric Vehicles", "Future", "Environment"],
+  },
 ];
 
 export default function BlogPage() {
@@ -180,7 +240,7 @@ export default function BlogPage() {
                     className="inline-flex items-center gap-2 text-black font-semibold text-sm group-hover:gap-3 transition-all duration-200"
                   >
                     Read Full Article
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-4 h-4 text-blue-600" />
                   </Link>
                 </div>
               </motion.article>
