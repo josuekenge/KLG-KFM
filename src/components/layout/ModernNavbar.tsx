@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { prefetchSection } from "@/lib/performance";
 
 const navigation = [
   { name: "Blog", href: "/blog" },
