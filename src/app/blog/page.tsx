@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Calendar, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import { ExternalLink, Calendar, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
