@@ -18,7 +18,7 @@ const footerLinks = {
   ],
   company: [
     { name: "About", href: "#about", clickable: true },
-    { name: "Careers", href: "/careers", clickable: true },
+    { name: "Careers", href: "#", clickable: false, comingSoon: true },
     { name: "Contact", href: "#contact", clickable: true },
     { name: "Support", href: "#", clickable: false, comingSoon: true },
   ],

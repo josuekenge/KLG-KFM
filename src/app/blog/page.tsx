@@ -408,31 +408,6 @@ export default function BlogPage() {
               </button>
             </motion.div>
           )}
-
-          {/* CTA Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mt-16 text-center"
-          >
-            <div className="inline-block bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Ready to Transform Your Fleet?
-              </h3>
-              <p className="text-gray-600 mb-6 max-w-xl">
-                Get expert insights and discover how our fleet management solutions can optimize your operations.
-              </p>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-black hover:bg-gray-900 text-white font-semibold rounded-lg transition-all duration-200 shadow-md hover:shadow-lg group"
-              >
-                Contact Our Team
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
-              </Link>
-            </div>
-          </motion.div>
         </div>
       </section>
     </div>
