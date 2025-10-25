@@ -329,31 +329,67 @@ export function ModernHero() {
                   <div className="bg-gray-50 rounded-lg p-5 mb-4">
                     <div className="flex items-center justify-between mb-4">
                       <div className="text-sm font-medium text-gray-900">Weekly Distance</div>
-                      <div className="text-xs text-gray-500">Kilometers</div>
+                      <div className="text-xs text-gray-500">Total Kilometers</div>
                     </div>
-                    <div className="h-56 flex items-end gap-4">
-                      {[
-                        { height: 55, label: "Mon", bars: [45, 68, 52, 75] },
-                        { height: 88, label: "Tue", bars: [70, 88, 82, 65] },
-                        { height: 42, label: "Wed", bars: [30, 42, 38, 35] },
-                        { height: 98, label: "Thu", bars: [85, 98, 92, 88] },
-                        { height: 72, label: "Fri", bars: [58, 72, 68, 65] },
-                        { height: 35, label: "Sat", bars: [20, 35, 28, 25] },
-                      ].map((day, i) => (
-                        <div key={i} className="flex-1 flex flex-col items-center gap-3">
-                          <div className="w-full h-full flex items-end justify-around gap-1">
-                            {/* Full-size individual bars for each hour */}
-                            {day.bars.map((barHeight, idx) => (
-                              <div 
-                                key={idx} 
-                                className="flex-1 bg-gradient-to-t from-black via-gray-900 to-gray-800 rounded-t shadow-lg hover:shadow-xl transition-all duration-200 border-t-2 border-gray-700"
-                                style={{ height: `${barHeight}%` }}
-                              ></div>
-                            ))}
-                          </div>
-                          <span className="text-xs text-gray-700 font-bold uppercase tracking-wide">{day.label}</span>
+                    
+                    <div className="flex gap-4">
+                      {/* Y-axis with labels */}
+                      <div className="flex flex-col justify-between h-56 py-1">
+                        <div className="text-right">
+                          <div className="text-[10px] font-bold text-gray-900">2000</div>
+                          <div className="text-[9px] text-gray-500">km</div>
                         </div>
-                      ))}
+                        <div className="text-right">
+                          <div className="text-[10px] font-semibold text-gray-700">1500</div>
+                          <div className="text-[9px] text-gray-400">km</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-[10px] font-semibold text-gray-700">1000</div>
+                          <div className="text-[9px] text-gray-400">km</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-[10px] font-semibold text-gray-700">500</div>
+                          <div className="text-[9px] text-gray-400">km</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-[10px] font-semibold text-gray-700">0</div>
+                          <div className="text-[9px] text-gray-400">km</div>
+                        </div>
+                      </div>
+
+                      {/* Chart area with bars */}
+                      <div className="flex-1 h-56 flex items-end gap-4 border-l-2 border-gray-300 pl-4 relative">
+                        {/* Horizontal grid lines */}
+                        <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
+                          {[0, 1, 2, 3, 4].map((i) => (
+                            <div key={i} className="w-full border-t border-gray-200 border-dashed"></div>
+                          ))}
+                        </div>
+
+                        {/* Bar chart */}
+                        {[
+                          { height: 55, label: "Mon", bars: [45, 68, 52, 75] },
+                          { height: 88, label: "Tue", bars: [70, 88, 82, 65] },
+                          { height: 42, label: "Wed", bars: [30, 42, 38, 35] },
+                          { height: 98, label: "Thu", bars: [85, 98, 92, 88] },
+                          { height: 72, label: "Fri", bars: [58, 72, 68, 65] },
+                          { height: 35, label: "Sat", bars: [20, 35, 28, 25] },
+                        ].map((day, i) => (
+                          <div key={i} className="flex-1 flex flex-col items-center gap-3 relative z-10">
+                            <div className="w-full h-full flex items-end justify-around gap-1">
+                              {/* Full-size individual bars for each hour */}
+                              {day.bars.map((barHeight, idx) => (
+                                <div 
+                                  key={idx} 
+                                  className="flex-1 bg-gradient-to-t from-black via-gray-900 to-gray-800 rounded-t shadow-lg hover:shadow-xl transition-all duration-200 border-t-2 border-gray-700"
+                                  style={{ height: `${barHeight}%` }}
+                                ></div>
+                              ))}
+                            </div>
+                            <span className="text-xs text-gray-700 font-bold uppercase tracking-wide">{day.label}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                     <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-200">
                       <div className="text-xs text-gray-600">Total: 7,687 km</div>
