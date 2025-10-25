@@ -331,35 +331,35 @@ export function ModernHero() {
                       <div className="text-sm font-medium text-gray-900">Weekly Distance</div>
                       <div className="text-xs text-gray-500">Kilometers</div>
                     </div>
-                    <div className="h-40 flex items-end gap-2">
+                    <div className="h-48 flex items-end gap-3">
                       {[
-                        { height: 65, label: "Mon", miniChart: [45, 60, 52, 65] },
-                        { height: 78, label: "Tue", miniChart: [55, 70, 78, 65] },
-                        { height: 55, label: "Wed", miniChart: [38, 48, 55, 42] },
-                        { height: 88, label: "Thu", miniChart: [65, 80, 88, 75] },
-                        { height: 72, label: "Fri", miniChart: [50, 65, 72, 68] },
-                        { height: 45, label: "Sat", miniChart: [30, 38, 45, 35] },
+                        { height: 60, label: "Mon", miniChart: [40, 65, 58, 70] },
+                        { height: 85, label: "Tue", miniChart: [60, 75, 85, 72] },
+                        { height: 48, label: "Wed", miniChart: [35, 48, 45, 40] },
+                        { height: 95, label: "Thu", miniChart: [70, 85, 95, 80] },
+                        { height: 75, label: "Fri", miniChart: [55, 68, 75, 70] },
+                        { height: 40, label: "Sat", miniChart: [28, 40, 38, 35] },
                       ].map((day, i) => (
                         <div key={i} className="flex-1 flex flex-col items-center gap-2">
                           <div className="w-full flex flex-col justify-end h-full relative group">
                             {/* Main bar with gradient */}
                             <div 
-                              className="w-full bg-gradient-to-t from-black to-gray-800 rounded-t relative overflow-visible"
+                              className="w-full bg-gradient-to-t from-black via-gray-900 to-gray-800 rounded-t relative overflow-visible shadow-lg"
                               style={{ height: `${day.height}%` }}
                             >
-                              {/* Mini chart bars - hourly breakdown */}
-                              <div className="absolute inset-0 flex items-end justify-around gap-[1px] p-1">
+                              {/* Mini chart bars - hourly breakdown - MUCH TALLER */}
+                              <div className="absolute inset-0 flex items-end justify-around gap-[2px] p-2">
                                 {day.miniChart.map((h, idx) => (
                                   <div 
                                     key={idx} 
-                                    className="flex-1 bg-gray-900 rounded-t border-t border-gray-700"
+                                    className="flex-1 bg-gray-950 rounded-t border-2 border-black/80 shadow-md"
                                     style={{ height: `${h}%` }}
                                   ></div>
                                 ))}
                               </div>
                             </div>
                           </div>
-                          <span className="text-xs text-gray-600 font-medium">{day.label}</span>
+                          <span className="text-xs text-gray-600 font-semibold">{day.label}</span>
                         </div>
                       ))}
                     </div>
