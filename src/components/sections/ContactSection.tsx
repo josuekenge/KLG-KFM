@@ -43,6 +43,7 @@ export function ContactSection() {
     email: "",
     phone: "",
     company: "",
+    companyType: "",
     fleetSize: "",
     message: ""
   });
@@ -65,10 +66,11 @@ export function ContactSection() {
         email: formData.email,
         phone: formData.phone,
         company: formData.company,
+        company_type: formData.companyType,
         fleet_size: formData.fleetSize,
         message: formData.message,
         from_name: "Kyeto Logistics Website",
-        subject: "New Contact Form Submission",
+        subject: "🚛 New Fleet Inquiry - Kyeto Logistics",
       };
       
       console.log("Sending payload:", payload);
@@ -92,6 +94,7 @@ export function ContactSection() {
           email: "",
           phone: "",
           company: "",
+          companyType: "",
           fleetSize: "",
           message: ""
         });
@@ -270,7 +273,7 @@ export function ContactSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-900 mb-2">
-                      Phone *
+                      Phone (WhatsApp) *
                     </label>
                     <input
                       type="tel"
@@ -278,12 +281,12 @@ export function ContactSection() {
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-black focus:ring-1 focus:ring-black focus:outline-none transition-colors"
-                      placeholder="+254 700 000 000"
+                      placeholder="+243 899 905 483"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-900 mb-2">
-                      Company
+                      Company Name
                     </label>
                     <input
                       type="text"
@@ -292,6 +295,52 @@ export function ContactSection() {
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-black focus:ring-1 focus:ring-black focus:outline-none transition-colors"
                       placeholder="Your Company"
                     />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
+                      Type of Company *
+                    </label>
+                    <select
+                      required
+                      value={formData.companyType}
+                      onChange={(e) => setFormData({ ...formData, companyType: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-black focus:ring-1 focus:ring-black focus:outline-none transition-colors bg-white"
+                    >
+                      <option value="">Select Type</option>
+                      <option value="Logistics Company">Logistics Company</option>
+                      <option value="Mining Company">Mining Company</option>
+                      <option value="Transportation Company">Transportation Company</option>
+                      <option value="Construction Company">Construction Company</option>
+                      <option value="Government/Public Sector">Government/Public Sector</option>
+                      <option value="Manufacturing">Manufacturing</option>
+                      <option value="Agriculture">Agriculture</option>
+                      <option value="Retail/Distribution">Retail/Distribution</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-900 mb-2">
+                      Fleet Size *
+                    </label>
+                    <select
+                      required
+                      value={formData.fleetSize}
+                      onChange={(e) => setFormData({ ...formData, fleetSize: e.target.value })}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-black focus:ring-1 focus:ring-black focus:outline-none transition-colors bg-white"
+                    >
+                      <option value="">Select Fleet Size</option>
+                      <option value="1-10 vehicles">1-10 vehicles</option>
+                      <option value="11-25 vehicles">11-25 vehicles</option>
+                      <option value="26-50 vehicles">26-50 vehicles</option>
+                      <option value="51-100 vehicles">51-100 vehicles</option>
+                      <option value="101-250 vehicles">101-250 vehicles</option>
+                      <option value="251-500 vehicles">251-500 vehicles</option>
+                      <option value="500+ vehicles">500+ vehicles</option>
+                      <option value="Planning to expand">Planning to expand</option>
+                    </select>
                   </div>
                 </div>
 
