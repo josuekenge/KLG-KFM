@@ -150,14 +150,13 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion", "@radix-ui/react-slot"],
     // Cross-browser optimizations
     esmExternals: true,
-    serverComponentsExternalPackages: ["three", "@react-three/fiber"],
   },
+  
+  // External packages for server components
+  serverExternalPackages: ["three", "@react-three/fiber"],
 
   // Performance optimizations
   poweredByHeader: false, // Remove X-Powered-By header
-  
-  // Optimize fonts
-  optimizeFonts: true,
 
   // Production source maps (disable for faster builds)
   productionBrowserSourceMaps: false,
