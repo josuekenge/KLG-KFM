@@ -34,6 +34,9 @@ export const siteConfig = {
     email: "sales@kyetologistics.com",
     phone: "WhatsApp: +243 899 905 483 & +243 904 570 799",
     address: "Kinshasa, Democratic Republic of Congo"
+  },
+  verification: {
+    google: "google-site-verification-token",
   }
 };
 
@@ -52,7 +55,7 @@ export function constructMetadata({
   noIndex?: boolean;
   keywords?: string[];
 } = {}): Metadata {
-  return {
+  const metadata: Metadata = {
     title: {
       default: title,
       template: `%s | ${siteConfig.shortName}`
@@ -100,13 +103,15 @@ export function constructMetadata({
         "max-snippet": -1,
       },
     },
-    verification: {
-      // Add your verification tokens here when ready
-      google: "google-site-verification-token",
-      // yandex: "yandex-verification-token",
-      // bing: "bing-verification-token",
-    },
   };
+
+  if (siteConfig.verification?.google && siteConfig.verification.google !== "google-site-verification-token") {
+    metadata.verification = {
+      google: siteConfig.verification.google,
+    };
+  }
+
+  return metadata;
 }
 
 // Structured Data for Organization
