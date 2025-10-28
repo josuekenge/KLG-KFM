@@ -144,7 +144,11 @@ export const SilkBackground = ({
           antialias: false,
           alpha: true,
           powerPreference: "high-performance",
-          failIfMajorPerformanceCaveat: false
+          failIfMajorPerformanceCaveat: false,
+          // Cross-browser compatibility
+          preserveDrawingBuffer: false,
+          depth: true,
+          stencil: false,
         }}
       >
         <SilkPlane ref={meshRef} uniforms={uniforms} />

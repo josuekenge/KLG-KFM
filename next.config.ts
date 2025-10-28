@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   reactStrictMode: true,
 
-  // Image optimization with Chrome-specific fixes
+  // Image optimization with cross-browser support
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-    // Chrome-specific optimizations
+    // Cross-browser optimizations
     unoptimized: process.env.NODE_ENV === "development",
     loader: "default",
   },
@@ -26,11 +26,11 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === "production" ? {
       exclude: ["error", "warn"],
     } : false,
-    // Chrome-specific optimizations
+    // Cross-browser optimizations
     styledComponents: true,
   },
 
-  // Enhanced headers for Chrome compatibility and security
+  // Enhanced headers for cross-browser compatibility and security
   async headers() {
     return [
       {
@@ -72,7 +72,7 @@ const nextConfig: NextConfig = {
             value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()",
           },
           
-          // Chrome-specific security headers
+          // Cross-browser security headers
           {
             key: "Cross-Origin-Embedder-Policy",
             value: "require-corp",
@@ -86,13 +86,13 @@ const nextConfig: NextConfig = {
             value: "same-origin",
           },
           
-          // Content Security Policy for Chrome
+          // Content Security Policy for all browsers
           {
             key: "Content-Security-Policy",
             value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';",
           },
           
-          // Chrome performance headers
+          // Performance headers for modern browsers
           {
             key: "Accept-CH",
             value: "DPR, Viewport-Width, Width",
@@ -148,7 +148,7 @@ const nextConfig: NextConfig = {
   // Optimize external packages
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion", "@radix-ui/react-slot"],
-    // Chrome-specific optimizations
+    // Cross-browser optimizations
     esmExternals: true,
     serverComponentsExternalPackages: ["three", "@react-three/fiber"],
   },
@@ -165,9 +165,9 @@ const nextConfig: NextConfig = {
   // Output standalone for faster deploys
   output: "standalone",
 
-  // Chrome-specific webpack optimizations
+  // Cross-browser webpack optimizations
   webpack: (config, { dev, isServer }) => {
-    // Chrome-specific optimizations
+    // Cross-browser optimizations
     if (!dev && !isServer) {
       config.optimization.splitChunks = {
         chunks: "all",

@@ -7,21 +7,26 @@
 
 html {
   scroll-behavior: smooth;
-  /* Chrome-specific optimizations */
+  /* Cross-browser optimizations */
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  /* Firefox */
+  -moz-text-size-adjust: 100%;
 }
 
 body {
   background: white;
   color: rgb(17 24 39);
+  /* Cross-browser font smoothing */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Chrome-specific optimizations */
+  /* Cross-browser optimizations */
   -webkit-overflow-scrolling: touch;
   text-rendering: optimizeLegibility;
   -webkit-font-feature-settings: "kern" 1;
   font-feature-settings: "kern" 1;
+  /* Firefox font rendering */
+  -moz-font-feature-settings: "kern" 1;
 }
 
 /* Modern scrollbar */

@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { QueryProvider } from "@/components/providers/QueryProvider";
 import { ErrorBoundary } from "@/components/providers/ErrorBoundary";
-import { ChromeOptimizer } from "@/components/providers/ChromeOptimizer";
+import { BrowserOptimizer } from "@/components/providers/BrowserOptimizer";
 import { ModernNavbar } from "@/components/layout/ModernNavbar";
 import { Footer } from "@/components/layout/Footer";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
@@ -33,22 +33,22 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Critical resource hints for Chrome optimization */}
+        {/* Critical resource hints for cross-browser optimization */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://api.web3forms.com" />
         
-        {/* DNS prefetch for faster external resource loading - Chrome optimized */}
+        {/* DNS prefetch for faster external resource loading - universal optimization */}
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://api.web3forms.com" />
         
-        {/* Chrome-specific meta tags */}
+        {/* Universal meta tags for all browsers */}
         <meta name="theme-color" content="#000000" />
         <meta name="color-scheme" content="light dark" />
         <meta name="format-detection" content="telephone=no" />
         
-        {/* Chrome performance hints */}
+        {/* Performance hints for modern browsers */}
         <meta httpEquiv="Accept-CH" content="DPR, Viewport-Width, Width" />
         
         <StructuredData 
@@ -58,7 +58,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased`}>
         <GoogleAnalytics />
         <PerformanceMonitor />
-        <ChromeOptimizer />
+        <BrowserOptimizer />
         <ErrorBoundary>
           <ThemeProvider defaultTheme="light" storageKey="klg-theme">
             <QueryProvider>
