@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   reactStrictMode: true,
 
-  // Image optimization
+  // Image optimization with Chrome-specific fixes
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Chrome-specific optimizations
+    unoptimized: process.env.NODE_ENV === "development",
+    loader: "default",
   },
 
   // Compression
@@ -23,18 +26,27 @@ const nextConfig: NextConfig = {
     removeConsole: process.env.NODE_ENV === "production" ? {
       exclude: ["error", "warn"],
     } : false,
+    // Chrome-specific optimizations
+    styledComponents: true,
   },
 
-  // Headers for security and performance
+  // Enhanced headers for Chrome compatibility and security
   async headers() {
     return [
       {
         source: "/:path*",
         headers: [
+          // DNS and performance headers
           {
             key: "X-DNS-Prefetch-Control",
             value: "on",
           },
+          {
+            key: "X-DNS-Prefetch-Control",
+            value: "on",
+          },
+          
+          // Security headers
           {
             key: "Strict-Transport-Security",
             value: "max-age=63072000; includeSubDomains; preload",
@@ -53,11 +65,41 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Referrer-Policy",
-            value: "origin-when-cross-origin",
+            value: "strict-origin-when-cross-origin",
           },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
+            value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()",
+          },
+          
+          // Chrome-specific security headers
+          {
+            key: "Cross-Origin-Embedder-Policy",
+            value: "require-corp",
+          },
+          {
+            key: "Cross-Origin-Opener-Policy",
+            value: "same-origin",
+          },
+          {
+            key: "Cross-Origin-Resource-Policy",
+            value: "same-origin",
+          },
+          
+          // Content Security Policy for Chrome
+          {
+            key: "Content-Security-Policy",
+            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';",
+          },
+          
+          // Chrome performance headers
+          {
+            key: "Accept-CH",
+            value: "DPR, Viewport-Width, Width",
+          },
+          {
+            key: "Accept-CH-Lifetime",
+            value: "86400",
           },
         ],
       },
@@ -67,6 +109,10 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
+          },
+          {
+            key: "Cross-Origin-Resource-Policy",
+            value: "cross-origin",
           },
         ],
       },
@@ -79,12 +125,32 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/api/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store, no-cache, must-revalidate, proxy-revalidate",
+          },
+          {
+            key: "Pragma",
+            value: "no-cache",
+          },
+          {
+            key: "Expires",
+            value: "0",
+          },
+        ],
+      },
     ];
   },
 
   // Optimize external packages
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizePackageImports: ["lucide-react", "framer-motion", "@radix-ui/react-slot"],
+    // Chrome-specific optimizations
+    esmExternals: true,
+    serverComponentsExternalPackages: ["three", "@react-three/fiber"],
   },
 
   // Performance optimizations
@@ -98,6 +164,43 @@ const nextConfig: NextConfig = {
 
   // Output standalone for faster deploys
   output: "standalone",
+
+  // Chrome-specific webpack optimizations
+  webpack: (config, { dev, isServer }) => {
+    // Chrome-specific optimizations
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        chunks: "all",
+        cacheGroups: {
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            priority: -10,
+            chunks: "all",
+          },
+          framerMotion: {
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            name: "framer-motion",
+            priority: 10,
+            chunks: "all",
+          },
+          three: {
+            test: /[\\/]node_modules[\\/](three|@react-three)[\\/]/,
+            name: "three",
+            priority: 10,
+            chunks: "all",
+          },
+        },
+      };
+    }
+    
+    return config;
+  },
 };
 
 export default nextConfig;

@@ -136,7 +136,17 @@ export const SilkBackground = ({
 
   return (
     <div className={`absolute inset-0 ${className}`}>
-      <Canvas dpr={[1, 2]} frameloop="always">
+      <Canvas 
+        dpr={[1, 2]} 
+        frameloop="always"
+        performance={{ min: 0.5 }}
+        gl={{ 
+          antialias: false,
+          alpha: true,
+          powerPreference: "high-performance",
+          failIfMajorPerformanceCaveat: false
+        }}
+      >
         <SilkPlane ref={meshRef} uniforms={uniforms} />
       </Canvas>
     </div>

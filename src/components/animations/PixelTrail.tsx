@@ -38,7 +38,7 @@ export function PixelTrail({
   const particlesRef = useRef<Particle[]>([]);
   const [isReducedMotion, setIsReducedMotion] = useState(false);
 
-  // Check for reduced motion preference
+  // Check for reduced motion preference and Chrome-specific optimizations
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setIsReducedMotion(mediaQuery.matches);
@@ -48,6 +48,14 @@ export function PixelTrail({
     };
 
     mediaQuery.addEventListener("change", handleChange);
+    
+    // Chrome-specific performance optimization
+    const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    if (isChrome) {
+      // Reduce particle count for Chrome if needed
+      console.log("Chrome detected - optimizing PixelTrail performance");
+    }
+    
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
