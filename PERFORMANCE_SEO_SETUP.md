@@ -71,7 +71,7 @@ The `constructMetadata()` function allows easy per-page customization:
 export const metadata = constructMetadata({
   title: "Custom Page Title",
   description: "Custom description",
-  canonical: "https://kyetofleet.com/custom-page",
+  canonical: "https://kyetologistics.com/custom-page",
 });
 ```
 

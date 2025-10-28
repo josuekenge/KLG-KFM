@@ -4,8 +4,8 @@ export const siteConfig = {
   name: "Kyeto Fleet Management",
   shortName: "KFM",
   description: "Fleet management solutions built for frontier markets with rugged hardware, GPS tracking, fuel monitoring, and AI-powered insights across 12 African countries.",
-  url: "https://kyetofleet.com",
-  ogImage: "https://kyetofleet.com/og-image.jpg",
+  url: "https://kyetologistics.com",
+  ogImage: "https://kyetologistics.com/og-image.jpg",
   keywords: [
     "fleet management Africa",
     "GPS tracking DRC",
@@ -25,7 +25,7 @@ export const siteConfig = {
   authors: [
     {
       name: "Kyeto Logistics Group",
-      url: "https://kyetofleet.com"
+      url: "https://kyetologistics.com"
     }
   ],
   creator: "Kyeto Logistics Group",
