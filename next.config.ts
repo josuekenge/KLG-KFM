@@ -41,10 +41,6 @@ const nextConfig: NextConfig = {
             key: "X-DNS-Prefetch-Control",
             value: "on",
           },
-          {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
-          },
           
           // Security headers
           {
