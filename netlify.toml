@@ -2,8 +2,8 @@
 # Domain: kyetologistics.com & www.kyetologistics.com
 
 [build]
-  # Build command - Use npm install to include devDependencies
-  command = "npm install --legacy-peer-deps --include=optional && npm run build"
+  # Build command - Clear cache and install all dependencies
+  command = "rm -rf node_modules .next && npm install --legacy-peer-deps --include=optional --include=dev && npm run build"
   
   # Output directory - Next.js standalone output
   publish = ".next"
