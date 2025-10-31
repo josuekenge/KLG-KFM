@@ -2,8 +2,8 @@
 # Domain: kyetologistics.com & www.kyetologistics.com
 
 [build]
-  # Build command - Install dependencies with optional packages
-  command = "npm ci --include=optional && npm run build"
+  # Build command - Use npm install to include devDependencies
+  command = "npm install --legacy-peer-deps --include=optional && npm run build"
   
   # Output directory - Next.js standalone output
   publish = ".next"
@@ -18,8 +18,7 @@
   # Next.js specific
   NEXT_TELEMETRY_DISABLED = "1"
   
-  # Build optimizations - Skip husky installation in CI
-  NPM_FLAGS = "--legacy-peer-deps"
+  # Skip husky installation in CI
   CI = "true"
 
 # Redirect rules
