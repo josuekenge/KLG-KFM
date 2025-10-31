@@ -5,21 +5,22 @@
   # Build command
   command = "npm run build"
   
-  # Output directory
+  # Output directory - Next.js standalone output
   publish = ".next"
   
   # Functions directory (if using Netlify Functions)
   functions = "netlify/functions"
 
 [build.environment]
-  # Node version
-  NODE_VERSION = "18"
+  # Node version - Updated to 20 for compatibility
+  NODE_VERSION = "20"
   
   # Next.js specific
   NEXT_TELEMETRY_DISABLED = "1"
   
-  # Build optimizations
+  # Build optimizations - Skip husky installation in CI
   NPM_FLAGS = "--legacy-peer-deps"
+  CI = "true"
 
 # Redirect rules
 [[redirects]]
