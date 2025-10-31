@@ -268,73 +268,68 @@ export function ModernHero() {
             </div>
           </div>
 
-          {/* Mockup/Dashboard preview - Mobile optimized */}
+          {/* Mockup/Dashboard preview - Compact for mobile */}
           <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-0">
-            <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
-              <div className="bg-white rounded-lg md:rounded-xl p-3 sm:p-4 md:p-6 shadow-inner">
+            <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-lg md:rounded-2xl p-2 sm:p-4 md:p-8 shadow-2xl">
+              <div className="bg-white rounded-md md:rounded-xl p-2 sm:p-3 md:p-6 shadow-inner">
                 {/* Dashboard mockup */}
-                <div className="space-y-4">
-                  {/* Header with Real Data */}
-                  <div className="flex items-center justify-between pb-4 border-b border-gray-200">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-gray-900 to-black rounded-lg flex items-center justify-center">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="space-y-2 sm:space-y-3 md:space-y-4">
+                  {/* Header with Real Data - Compact for mobile */}
+                  <div className="flex items-center justify-between pb-2 sm:pb-3 md:pb-4 border-b border-gray-200">
+                    <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-gradient-to-br from-gray-900 to-black rounded-md sm:rounded-lg flex items-center justify-center">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                         </svg>
                       </div>
                       <div>
-                        <div className="text-sm font-semibold text-gray-900">KFM Fleet Dashboard</div>
-                        <div className="text-xs text-gray-500">Last updated: 2 min ago</div>
+                        <div className="text-xs sm:text-sm font-semibold text-gray-900">KFM Fleet Dashboard</div>
+                        <div className="text-[10px] sm:text-xs text-gray-500 hidden sm:block">Last updated: 2 min ago</div>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center gap-1.5 px-2 py-1 bg-green-50 border border-green-200 rounded-lg">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-xs font-medium text-green-700">Live</span>
+                    <div className="flex items-center gap-1 sm:gap-2">
+                      <div className="flex items-center gap-1 sm:gap-1.5 px-1.5 sm:px-2 py-0.5 sm:py-1 bg-green-50 border border-green-200 rounded-md sm:rounded-lg">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-[10px] sm:text-xs font-medium text-green-700">Live</span>
                       </div>
-                      <div className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-center cursor-pointer">
-                        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                        </svg>
-                      </div>
-                      <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center cursor-pointer">
-                        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-gray-900 rounded-md sm:rounded-lg flex items-center justify-center cursor-pointer">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                         </svg>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Simple Stats */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="text-xs text-gray-500 mb-1">Active Vehicles</div>
-                      <div className="text-2xl font-bold text-gray-900">142</div>
+                  {/* Simple Stats - Compact for mobile */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5 sm:gap-2 md:gap-3 mb-2 sm:mb-3 md:mb-4">
+                    <div className="bg-gray-50 rounded-md sm:rounded-lg p-2 sm:p-3 md:p-4">
+                      <div className="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">Active Vehicles</div>
+                      <div className="text-base sm:text-xl md:text-2xl font-bold text-gray-900">142</div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="text-xs text-gray-500 mb-1">km Today</div>
-                      <div className="text-2xl font-bold text-gray-900">8,456</div>
+                    <div className="bg-gray-50 rounded-md sm:rounded-lg p-2 sm:p-3 md:p-4">
+                      <div className="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">km Today</div>
+                      <div className="text-base sm:text-xl md:text-2xl font-bold text-gray-900">8,456</div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="text-xs text-gray-500 mb-1">Fleet Efficiency</div>
-                      <div className="text-2xl font-bold text-gray-900">94%</div>
+                    <div className="bg-gray-50 rounded-md sm:rounded-lg p-2 sm:p-3 md:p-4">
+                      <div className="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">Fleet Efficiency</div>
+                      <div className="text-base sm:text-xl md:text-2xl font-bold text-gray-900">94%</div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="text-xs text-gray-500 mb-1">Alerts Today</div>
-                      <div className="text-2xl font-bold text-gray-900">23</div>
+                    <div className="bg-gray-50 rounded-md sm:rounded-lg p-2 sm:p-3 md:p-4">
+                      <div className="text-[10px] sm:text-xs text-gray-500 mb-0.5 sm:mb-1">Alerts Today</div>
+                      <div className="text-base sm:text-xl md:text-2xl font-bold text-gray-900">23</div>
                     </div>
                   </div>
 
-                  {/* Main Chart */}
-                  <div className="bg-gray-50 rounded-lg p-5 mb-4">
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="text-sm font-medium text-gray-900">Weekly Distance</div>
-                      <div className="text-xs text-gray-500">Total Kilometers</div>
+                  {/* Main Chart - Much smaller on mobile */}
+                  <div className="bg-gray-50 rounded-md sm:rounded-lg p-2 sm:p-3 md:p-5 mb-2 sm:mb-3 md:mb-4">
+                    <div className="flex items-center justify-between mb-2 sm:mb-3 md:mb-4">
+                      <div className="text-xs sm:text-sm font-medium text-gray-900">Weekly Distance</div>
+                      <div className="text-[10px] sm:text-xs text-gray-500 hidden sm:block">Total Kilometers</div>
                     </div>
                     
-                    <div className="flex gap-4">
+                    <div className="flex gap-1.5 sm:gap-2 md:gap-4">
                       {/* Y-axis with labels */}
-                      <div className="flex flex-col justify-between h-56 py-1">
+                      <div className="flex flex-col justify-between h-24 sm:h-32 md:h-56 py-1">
                         <div className="text-right">
                           <div className="text-[10px] font-bold text-gray-900">2000</div>
                           <div className="text-[9px] text-gray-500">km</div>
@@ -358,7 +353,7 @@ export function ModernHero() {
                       </div>
 
                       {/* Chart area with bars */}
-                      <div className="flex-1 h-56 flex items-end gap-4 border-l-2 border-gray-300 pl-4 relative">
+                      <div className="flex-1 h-24 sm:h-32 md:h-56 flex items-end gap-1 sm:gap-2 md:gap-4 border-l border-l-2 border-gray-300 pl-1.5 sm:pl-2 md:pl-4 relative">
                         {/* Horizontal grid lines */}
                         <div className="absolute inset-0 flex flex-col justify-between pointer-events-none">
                           {[0, 1, 2, 3, 4].map((i) => (
@@ -375,43 +370,43 @@ export function ModernHero() {
                           { height: 72, label: "Fri", bars: [58, 72, 68, 65] },
                           { height: 35, label: "Sat", bars: [20, 35, 28, 25] },
                         ].map((day, i) => (
-                          <div key={i} className="flex-1 flex flex-col items-center gap-3 relative z-10">
-                            <div className="w-full h-full flex items-end justify-around gap-1">
+                          <div key={i} className="flex-1 flex flex-col items-center gap-1 sm:gap-2 md:gap-3 relative z-10">
+                            <div className="w-full h-full flex items-end justify-around gap-0.5 sm:gap-1">
                               {/* Full-size individual bars for each hour */}
                               {day.bars.map((barHeight, idx) => (
                                 <div 
                                   key={idx} 
-                                  className="flex-1 bg-gradient-to-t from-black via-gray-900 to-gray-800 rounded-t shadow-lg hover:shadow-xl transition-all duration-200 border-t-2 border-gray-700"
+                                  className="flex-1 bg-gradient-to-t from-black via-gray-900 to-gray-800 rounded-t shadow-sm sm:shadow-lg hover:shadow-xl transition-all duration-200 border-t border-t-2 border-gray-700"
                                   style={{ height: `${barHeight}%` }}
                                 ></div>
                               ))}
                             </div>
-                            <span className="text-xs text-gray-700 font-bold uppercase tracking-wide">{day.label}</span>
+                            <span className="text-[9px] sm:text-[10px] md:text-xs text-gray-700 font-bold uppercase tracking-wide">{day.label}</span>
                           </div>
                         ))}
                       </div>
                     </div>
-                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-200">
-                      <div className="text-xs text-gray-600">Total: 7,687 km</div>
-                      <div className="text-xs text-green-600">↑ 12% vs last week</div>
+                    <div className="flex items-center justify-between mt-2 sm:mt-3 md:mt-4 pt-2 sm:pt-3 border-t border-gray-200">
+                      <div className="text-[10px] sm:text-xs text-gray-600">Total: 7,687 km</div>
+                      <div className="text-[10px] sm:text-xs text-green-600">↑ 12% vs last week</div>
                     </div>
                   </div>
 
-                  {/* Secondary Stats */}
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="text-xs text-gray-500 mb-2">Fuel Consumption</div>
-                      <div className="text-xl font-bold text-gray-900 mb-3">5,152 L</div>
-                      <div className="h-16 flex items-end gap-1">
+                  {/* Secondary Stats - Compact for mobile */}
+                  <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-3">
+                    <div className="bg-gray-50 rounded-md sm:rounded-lg p-2 sm:p-3 md:p-4">
+                      <div className="text-[10px] sm:text-xs text-gray-500 mb-1 sm:mb-2">Fuel Consumption</div>
+                      <div className="text-sm sm:text-lg md:text-xl font-bold text-gray-900 mb-1.5 sm:mb-2 md:mb-3">5,152 L</div>
+                      <div className="h-8 sm:h-12 md:h-16 flex items-end gap-0.5 sm:gap-1">
                         {[70, 82, 60, 92, 75, 50].map((h, i) => (
                           <div key={i} className="flex-1 bg-gray-300 rounded-t" style={{ height: `${h}%` }}></div>
                         ))}
                       </div>
                     </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <div className="text-xs text-gray-500 mb-2">Completed Trips</div>
-                      <div className="text-xl font-bold text-gray-900 mb-3">740</div>
-                      <div className="h-16 flex items-end gap-1">
+                    <div className="bg-gray-50 rounded-md sm:rounded-lg p-2 sm:p-3 md:p-4">
+                      <div className="text-[10px] sm:text-xs text-gray-500 mb-1 sm:mb-2">Completed Trips</div>
+                      <div className="text-sm sm:text-lg md:text-xl font-bold text-gray-900 mb-1.5 sm:mb-2 md:mb-3">740</div>
+                      <div className="h-8 sm:h-12 md:h-16 flex items-end gap-0.5 sm:gap-1">
                         {[68, 75, 58, 85, 70, 48].map((h, i) => (
                           <div key={i} className="flex-1 bg-gray-300 rounded-t" style={{ height: `${h}%` }}></div>
                         ))}
@@ -462,3 +457,4 @@ export function ModernHero() {
     </section>
   );
 }
+
