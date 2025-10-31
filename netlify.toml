@@ -2,8 +2,8 @@
 # Domain: kyetologistics.com & www.kyetologistics.com
 
 [build]
-  # Build command
-  command = "npm run build"
+  # Build command - Install dependencies with optional packages
+  command = "npm ci --include=optional && npm run build"
   
   # Output directory - Next.js standalone output
   publish = ".next"
