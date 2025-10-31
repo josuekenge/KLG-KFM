@@ -2,6 +2,32 @@
 
 A modern, premium TypeScript React application for Kyeto Logistics Group (KLG) and Kyeto Fleet Management (KFM), featuring integrated logistics, telematics, AI, and data analytics solutions.
 
+---
+
+## ⚠️ IMPORTANT: Development Access
+
+### 🚨 If You See "ERR_SSL_PROTOCOL_ERROR"
+
+**You're trying to access the production domain without SSL!**
+
+#### ✅ For Local Development, Use:
+```
+http://localhost:3001
+```
+
+#### ❌ Do NOT Use:
+- `https://kyetologistics.com` (production domain, deployed on Netlify)
+- `https://localhost:3001` (HTTPS not available in development)
+
+#### 📖 Quick Reference:
+- **Development**: `http://localhost:3001` (HTTP, no SSL)
+- **Production**: `https://kyetologistics.com` (HTTPS, auto-SSL via Netlify)
+
+**See [QUICK_START.md](./QUICK_START.md) for local development**
+**See [NETLIFY_DEPLOYMENT.md](./NETLIFY_DEPLOYMENT.md) for deployment guide**
+
+---
+
 ## 🚀 Features
 
 - **Modern Tech Stack**: Next.js 15 with App Router, TypeScript, Tailwind CSS

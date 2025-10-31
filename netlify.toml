@@ -1,0 +1,105 @@
+# Netlify Configuration for Kyeto Logistics Group
+# Domain: kyetologistics.com & www.kyetologistics.com
+
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Output directory
+  publish = ".next"
+  
+  # Functions directory (if using Netlify Functions)
+  functions = "netlify/functions"
+
+[build.environment]
+  # Node version
+  NODE_VERSION = "18"
+  
+  # Next.js specific
+  NEXT_TELEMETRY_DISABLED = "1"
+  
+  # Build optimizations
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# Redirect rules
+[[redirects]]
+  # Force HTTPS
+  from = "http://kyetologistics.com/*"
+  to = "https://kyetologistics.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  # Redirect www to non-www (or vice versa, choose your preference)
+  from = "https://www.kyetologistics.com/*"
+  to = "https://kyetologistics.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  # SPA fallback for client-side routing
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    
+    # HSTS - Force HTTPS for 2 years
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    
+    # Content Security Policy
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com;"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    # Cache static assets for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    # Cache fonts for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+    Cross-Origin-Resource-Policy = "cross-origin"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Content-Type = "text/css; charset=utf-8"
+
+# Plugin configuration
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Context-specific settings
+[context.production]
+  environment = { NODE_ENV = "production" }
+
+[context.deploy-preview]
+  environment = { NODE_ENV = "production" }
+
+[context.branch-deploy]
+  environment = { NODE_ENV = "production" }
+
+# Dev server settings (for Netlify Dev)
+[dev]
+  command = "npm run dev"
+  port = 3001
+  targetPort = 3001
+  autoLaunch = false
+
