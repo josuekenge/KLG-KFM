@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const { pathname, search, protocol, host } = request.nextUrl;
+  const { protocol, host } = request.nextUrl;
 
   // Security: Force HTTPS in production
   if (
