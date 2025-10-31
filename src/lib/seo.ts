@@ -1,12 +1,13 @@
 import { Metadata } from "next";
 
 export const siteConfig = {
-  name: "Kyeto Fleet Management",
-  shortName: "KFM",
-  description: "Fleet management solutions built for frontier markets with rugged hardware, GPS tracking, fuel monitoring, and AI-powered insights across 12 African countries.",
-  url: "https://kyetofleet.com",
-  ogImage: "https://kyetofleet.com/og-image.jpg",
+  name: "Kyeto Logistics Group",
+  shortName: "KLG",
+  description: "Premier logistics and fleet management solutions built for frontier markets with rugged hardware, GPS tracking, fuel monitoring, and AI-powered insights across 12 African countries.",
+  url: "https://kyetologistics.com",
+  ogImage: "https://kyetologistics.com/og-image.jpg",
   keywords: [
+    "logistics Africa",
     "fleet management Africa",
     "GPS tracking DRC",
     "telematics Africa",
@@ -18,14 +19,17 @@ export const siteConfig = {
     "logistics technology",
     "vehicle tracking system",
     "fleet optimization",
-    "KFM",
-    "Kyeto Fleet Management",
-    "frontier markets logistics"
+    "KLG",
+    "Kyeto Logistics Group",
+    "Kyeto Logistics",
+    "frontier markets logistics",
+    "supply chain Africa",
+    "transportation management"
   ],
   authors: [
     {
       name: "Kyeto Logistics Group",
-      url: "https://kyetofleet.com"
+      url: "https://kyetologistics.com"
     }
   ],
   creator: "Kyeto Logistics Group",
@@ -87,7 +91,7 @@ export function constructMetadata({
       title,
       description,
       images: [image],
-      creator: "@kyetofleet",
+      creator: "@kyetologistics",
     },
     robots: {
       index: !noIndex,
@@ -113,8 +117,8 @@ export function constructMetadata({
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Kyeto Fleet Management",
-  alternateName: "KFM",
+  name: "Kyeto Logistics Group",
+  alternateName: "KLG",
   url: siteConfig.url,
   logo: `${siteConfig.url}/logo.png`,
   description: siteConfig.description,
@@ -133,7 +137,7 @@ export const organizationSchema = {
   sameAs: [
     // Add social media links when available
     "https://linkedin.com/company/kyeto-logistics",
-    "https://twitter.com/kyetofleet",
+    "https://twitter.com/kyetologistics",
   ],
 };
 
@@ -141,7 +145,7 @@ export const organizationSchema = {
 export const productSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "Kyeto Fleet Management Platform",
+  name: "Kyeto Logistics Management Platform",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web, iOS, Android",
   offers: {
@@ -171,7 +175,7 @@ export const productSchema = {
 export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "Kyeto Fleet Management",
+  name: "Kyeto Logistics Group",
   image: `${siteConfig.url}/logo.png`,
   "@id": siteConfig.url,
   url: siteConfig.url,
@@ -195,7 +199,7 @@ export const localBusinessSchema = {
   },
   sameAs: [
     "https://linkedin.com/company/kyeto-logistics",
-    "https://twitter.com/kyetofleet",
+    "https://twitter.com/kyetologistics",
   ],
 };
 

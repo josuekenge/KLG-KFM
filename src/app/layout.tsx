@@ -20,9 +20,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = constructMetadata({
-  title: "Kyeto Fleet Management - GPS Tracking & Fleet Solutions for Africa",
-  description: "Fleet management solutions built for frontier markets. Real-time GPS tracking, fuel monitoring, driver safety, and AI cameras across 12 African countries.",
-  canonical: "https://kyetofleet.com",
+  title: "Kyeto Logistics Group - Premier Logistics & Fleet Solutions for Africa",
+  description: "Premier logistics and fleet management solutions built for frontier markets. Real-time GPS tracking, fuel monitoring, driver safety, and AI cameras across 12 African countries.",
+  canonical: "https://kyetologistics.com",
 });
 
 export default function RootLayout({

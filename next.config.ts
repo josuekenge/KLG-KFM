@@ -32,76 +32,78 @@ const nextConfig: NextConfig = {
 
   // Enhanced headers for cross-browser compatibility and security
   async headers() {
+    const isProduction = process.env.NODE_ENV === "production";
+    
+    const securityHeaders = [
+      // DNS and performance headers
+      {
+        key: "X-DNS-Prefetch-Control",
+        value: "on",
+      },
+      
+      // Basic security headers
+      {
+        key: "X-Content-Type-Options",
+        value: "nosniff",
+      },
+      {
+        key: "X-Frame-Options",
+        value: "DENY",
+      },
+      {
+        key: "X-XSS-Protection",
+        value: "1; mode=block",
+      },
+      {
+        key: "Referrer-Policy",
+        value: "strict-origin-when-cross-origin",
+      },
+      {
+        key: "Permissions-Policy",
+        value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()",
+      },
+      
+      // Content Security Policy for all browsers
+      {
+        key: "Content-Security-Policy",
+        value: isProduction
+          ? "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests;"
+          : "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' ws: wss: http: https:;",
+      },
+      
+      // Performance headers for modern browsers
+      {
+        key: "Accept-CH",
+        value: "DPR, Viewport-Width, Width",
+      },
+    ];
+
+    // Only add HSTS in production (requires HTTPS)
+    if (isProduction) {
+      securityHeaders.push(
+        {
+          key: "Strict-Transport-Security",
+          value: "max-age=63072000; includeSubDomains; preload",
+        },
+        {
+          key: "Cross-Origin-Embedder-Policy",
+          value: "credentialless",
+        },
+        {
+          key: "Cross-Origin-Opener-Policy",
+          value: "same-origin-allow-popups",
+        },
+        {
+          key: "Cross-Origin-Resource-Policy",
+          value: "cross-origin",
+        }
+      );
+    }
+
     return [
       {
         source: "/:path*",
-        headers: [
-          // DNS and performance headers
-          {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
-          },
-          {
-            key: "X-DNS-Prefetch-Control",
-            value: "on",
-          },
-          
-          // Security headers
-          {
-            key: "Strict-Transport-Security",
-            value: "max-age=63072000; includeSubDomains; preload",
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
-          {
-            key: "X-XSS-Protection",
-            value: "1; mode=block",
-          },
-          {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin",
-          },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()",
-          },
-          
-          // Cross-browser security headers
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp",
-          },
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
-          },
-          {
-            key: "Cross-Origin-Resource-Policy",
-            value: "same-origin",
-          },
-          
-          // Content Security Policy for all browsers
-          {
-            key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self';",
-          },
-          
-          // Performance headers for modern browsers
-          {
-            key: "Accept-CH",
-            value: "DPR, Viewport-Width, Width",
-          },
-          {
-            key: "Accept-CH-Lifetime",
-            value: "86400",
-          },
-        ],
+        headers: securityHeaders,
       },
       {
         source: "/fonts/:path*",

@@ -6,7 +6,7 @@ Allow: /
 Disallow: /api/
 
 # Sitemap location
-Sitemap: https://kyetofleet.com/sitemap.xml
+Sitemap: https://kyetologistics.com/sitemap.xml
 
 
 
