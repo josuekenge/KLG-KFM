@@ -206,12 +206,12 @@ export function ModernHero() {
             Fleet Management & Logistics Solution
           </div>
 
-          {/* Clean headline with rotating location */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
+          {/* Clean headline with rotating location - Mobile optimized */}
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight tracking-tight px-4 sm:px-0">
             Fleet Management{" "}
-            <span className="block mt-2 text-black">
+            <span className="block mt-1 sm:mt-2 text-black">
               Built for{" "}
-              <span className="inline-block relative min-w-[200px] md:min-w-[280px] text-left">
+              <span className="inline-block relative min-w-[140px] sm:min-w-[200px] md:min-w-[280px] text-left">
                 <span 
                   className={`inline-block transition-all duration-500 relative ${
                     isAnimating 
@@ -221,57 +221,57 @@ export function ModernHero() {
                 >
                   {LOCATIONS[currentLocationIndex]}
                   {/* Subtle underline that draws attention */}
-                  <span className="absolute bottom-0 left-0 w-full h-[3px] bg-gradient-to-r from-black via-gray-600 to-black opacity-40"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] md:h-[3px] bg-gradient-to-r from-black via-gray-600 to-black opacity-40"></span>
                 </span>
               </span>
             </span>
           </h1>
 
-          {/* Clean subheadline */}
-          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+          {/* Clean subheadline - Mobile optimized */}
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6 md:px-0">
             Built for frontier markets with rugged hardware, satellite backup, and AI-powered insights. 
             Reduce fuel theft, improve driver safety, and optimize your fleet operations across Africa.
           </p>
 
-          {/* Clean CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+          {/* Clean CTA buttons - Mobile optimized */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8 px-4 sm:px-0 w-full sm:w-auto">
             <a 
               href="#contact" 
-              className="group px-8 py-4 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-md hover:shadow-xl hover:scale-105"
+              className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-md hover:shadow-xl hover:scale-105 text-sm sm:text-base"
             >
               Get Started
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" />
             </a>
 
             <Link 
               href="/#contact" 
-              className="group px-8 py-4 bg-white border-2 border-gray-900 hover:border-black hover:bg-gray-50 text-gray-900 font-semibold rounded-xl transition-all duration-200 flex items-center gap-2 shadow-sm hover:shadow-md"
+              className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-gray-900 hover:border-black hover:bg-gray-50 text-gray-900 font-semibold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 shadow-sm hover:shadow-md text-sm sm:text-base"
             >
-              <Play className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+              <Play className="w-3 h-3 sm:w-4 sm:h-4 group-hover:scale-110 transition-transform duration-200" />
               Book a Demo
             </Link>
           </div>
 
-          {/* Trust badges */}
-          <div className="flex flex-wrap items-center justify-center gap-6 mb-16 text-sm text-gray-600">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="font-medium">500+ Active Fleets</span>
+          {/* Trust badges - Mobile optimized */}
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6 mb-12 md:mb-16 text-xs sm:text-sm text-gray-600 px-4">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full"></div>
+              <span className="font-medium whitespace-nowrap">500+ Active Fleets</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="font-medium">99.9% Uptime</span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full"></div>
+              <span className="font-medium whitespace-nowrap">99.9% Uptime</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="font-medium">24/7 Support</span>
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-500 rounded-full"></div>
+              <span className="font-medium whitespace-nowrap">24/7 Support</span>
             </div>
           </div>
 
-          {/* Mockup/Dashboard preview - No animations */}
-          <div className="relative max-w-6xl mx-auto">
-            <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl p-8 shadow-2xl">
-              <div className="bg-white rounded-xl p-6 shadow-inner">
+          {/* Mockup/Dashboard preview - Mobile optimized */}
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-0">
+            <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl">
+              <div className="bg-white rounded-lg md:rounded-xl p-3 sm:p-4 md:p-6 shadow-inner">
                 {/* Dashboard mockup */}
                 <div className="space-y-4">
                   {/* Header with Real Data */}

@@ -198,15 +198,15 @@ export function ContactSection() {
           ))}
         </div>
 
-        {/* Simple Contact Form */}
-        <div className="max-w-2xl mx-auto">
+        {/* Simple Contact Form - Mobile optimized */}
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 md:px-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+            <div className="bg-white rounded-xl md:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg border border-gray-200">
               {/* Success/Error Notifications */}
               {submitStatus === "success" && (
                 <motion.div

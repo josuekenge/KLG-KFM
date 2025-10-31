@@ -31,7 +31,7 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="relative py-24 bg-white overflow-hidden">
+    <section id="features" className="relative py-12 sm:py-16 md:py-24 bg-white overflow-hidden">
       {/* Subtle dot grid pattern */}
       <div 
         className="absolute inset-0 opacity-[0.03]"
@@ -41,24 +41,24 @@ export function FeaturesSection() {
         }}
       />
       
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header - No animations */}
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold text-black uppercase tracking-wider mb-4">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header - Mobile optimized */}
+        <div className="text-center mb-12 md:mb-16">
+          <p className="text-xs sm:text-sm font-semibold text-black uppercase tracking-wider mb-3 sm:mb-4">
             Built for Frontier Markets
           </p>
           
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4 sm:px-0">
             The digital backbone for vehicle operations
           </h2>
           
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-6 md:px-0">
             KFM provides end-to-end fleet management designed for emerging markets. From rugged hardware to AI-powered analytics, we deliver solutions that work in the toughest conditions.
           </p>
         </div>
 
-        {/* Features Grid - Simple hover effects only */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* Features Grid - Mobile optimized */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {features.map((feature) => (
             <div key={feature.title} className="group">
               <div className="text-center group">

@@ -65,13 +65,14 @@ src/
 │   ├── pricing/
 │   ├── privacy/
 │   ├── solutions/
+│   ├── globals.css        # Global styles + mobile optimizations
 │   └── layout.tsx
 ├── components/
 │   ├── analytics/         # Google Analytics, Performance
 │   ├── animations/        # PixelTrail, SilkBackground
 │   ├── layout/            # Navbar, Footer
 │   ├── providers/         # Theme, Query, Error, Browser
-│   ├── sections/          # Page sections
+│   ├── sections/          # Page sections (mobile-optimized)
 │   ├── seo/               # Structured data
 │   └── ui/                # Reusable components
 ├── data/                  # Static data
@@ -84,7 +85,24 @@ Configuration:
 ├── next.config.ts        # Next.js config
 ├── tailwind.config.ts    # Tailwind config
 └── tsconfig.json         # TypeScript config
+
+Documentation:
+├── GUIDE.md                    # Complete setup & deployment guide
+└── MOBILE_OPTIMIZATION.md      # Mobile-specific optimizations
 ```
+
+---
+
+## 📱 Mobile Optimization
+
+This website is fully optimized for mobile devices with:
+- **Responsive Design**: Tailored layouts for mobile, tablet, and desktop
+- **Touch Optimization**: 44x44px minimum tap targets
+- **iOS Support**: Safe area insets, no zoom on inputs, web app mode
+- **Performance**: Optimized images, fonts, and animations
+- **Accessibility**: Reduced motion support, proper ARIA labels
+
+**See [MOBILE_OPTIMIZATION.md](./MOBILE_OPTIMIZATION.md) for complete details**
 
 ---
 
