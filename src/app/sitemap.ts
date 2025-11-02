@@ -1,15 +1,23 @@
 import { MetadataRoute } from "next";
+import { blogPosts } from "@/data/blog";
 
 /**
  * Next.js App Router Sitemap
- * This works alongside next-sitemap for comprehensive SEO coverage
+ * Dynamically generates sitemap with all pages and blog posts
  * Optimized for Kyeto Logistics Group - Logistics & Fleet Management
+ * 
+ * SEO Benefits:
+ * - All blog posts indexed with keywords from titles, descriptions, and tags
+ * - Proper priorities for different page types
+ * - Last modified dates for better crawl efficiency
+ * - Change frequencies to guide search engine crawlers
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://kyetologistics.com";
   const currentDate = new Date();
 
-  return [
+  // Static pages
+  const staticPages: MetadataRoute.Sitemap = [
     // Homepage - Highest priority, updated daily
     {
       url: baseUrl,
@@ -68,6 +76,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
   ];
+
+  // Dynamic blog post pages
+  // Each blog post gets its own entry with SEO-rich metadata
+  // Keywords from title, description, category, and tags will be indexed
+  const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.lastModified || currentDate,
+    changeFrequency: "monthly" as const,
+    priority: 0.6, // Medium priority for blog content
+  }));
+
+  // Combine all pages
+  return [...staticPages, ...blogPages];
 }
 
 
