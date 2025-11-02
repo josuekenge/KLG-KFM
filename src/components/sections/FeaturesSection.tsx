@@ -1,6 +1,7 @@
 "use client";
 
 import { Satellite, HardDrive, TrendingUp, Users } from "lucide-react";
+import { DataFlowAnimation } from "@/components/animations";
 
 const features = [
   {
@@ -32,14 +33,8 @@ const features = [
 export function FeaturesSection() {
   return (
     <section id="features" className="relative py-12 sm:py-16 md:py-24 bg-white overflow-hidden">
-      {/* Subtle dot grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `radial-gradient(circle, black 1px, transparent 1px)`,
-          backgroundSize: '24px 24px'
-        }}
-      />
+      {/* API Data Flow Animation */}
+      <DataFlowAnimation />
       
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section Header - Mobile optimized */}

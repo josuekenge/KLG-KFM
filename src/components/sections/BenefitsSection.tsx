@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { DollarSign, TrendingUp, Shield, Clock, Wrench, Globe } from "lucide-react";
+import { NetworkAnimation } from "@/components/animations";
 
 const benefits = [
   {
@@ -49,13 +50,8 @@ const colorClasses = {
 export function BenefitsSection() {
   return (
     <section className="relative py-24 bg-white overflow-hidden">
-      {/* Subtle diagonal lines pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `repeating-linear-gradient(45deg, black, black 1px, transparent 1px, transparent 20px)`,
-        }}
-      />
+      {/* Network Animation */}
+      <NetworkAnimation />
       
       <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
