@@ -140,7 +140,7 @@ export const organizationSchema = {
     availableLanguage: ["English", "French"],
   },
   sameAs: [
-    "https://www.linkedin.com/company/kyeto-logistic-group",
+    "https://www.linkedin.com/company/drc-iae-chamber-of-commerce",
     "https://twitter.com/kyetologistics",
   ],
   potentialAction: {
@@ -207,7 +207,7 @@ export const localBusinessSchema = {
     closes: "18:00",
   },
   sameAs: [
-    "https://www.linkedin.com/company/kyeto-logistic-group",
+    "https://www.linkedin.com/company/drc-iae-chamber-of-commerce",
     "https://twitter.com/kyetologistics",
   ],
 };

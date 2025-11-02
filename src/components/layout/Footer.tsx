@@ -81,7 +81,7 @@ export function Footer() {
             {/* Social Media Links */}
             <div className="flex items-center gap-3">
               <a 
-                href="https://www.linkedin.com/company/kyeto-logistic-group/" 
+                href="https://www.linkedin.com/company/drc-iae-chamber-of-commerce/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-gray-100 hover:bg-black rounded-lg flex items-center justify-center transition-all duration-200 group"
