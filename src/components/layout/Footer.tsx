@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Truck, Shield } from "lucide-react";
+import { Truck, Shield, Linkedin, Twitter, Mail } from "lucide-react";
 
 const footerLinks = {
   solutions: [
@@ -65,7 +65,7 @@ export function Footer() {
             <p className="text-gray-600 mb-6 text-sm max-w-sm">
               Government-backed logistics platform connecting declaration companies, truckers, and cargo across Africa through API partnerships.
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-3 mb-6">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Truck className="w-4 h-4" />
                 <span>Container Transport</span>
@@ -74,6 +74,35 @@ export function Footer() {
                 <Shield className="w-4 h-4" />
                 <span>API Integration</span>
               </div>
+            </div>
+            
+            {/* Social Media Links */}
+            <div className="flex gap-3">
+              <a 
+                href="https://www.linkedin.com/company/kyeto-logistic-group/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gray-100 hover:bg-black rounded-lg flex items-center justify-center transition-all duration-200 group"
+                aria-label="Follow us on LinkedIn"
+              >
+                <Linkedin className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+              </a>
+              <a 
+                href="https://twitter.com/kyetologistics" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 bg-gray-100 hover:bg-black rounded-lg flex items-center justify-center transition-all duration-200 group"
+                aria-label="Follow us on Twitter"
+              >
+                <Twitter className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+              </a>
+              <a 
+                href="mailto:sales@kyetologistics.com" 
+                className="w-10 h-10 bg-gray-100 hover:bg-black rounded-lg flex items-center justify-center transition-all duration-200 group"
+                aria-label="Email us"
+              >
+                <Mail className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+              </a>
             </div>
           </div>
 
