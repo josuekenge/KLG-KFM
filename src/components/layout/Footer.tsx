@@ -65,7 +65,9 @@ export function Footer() {
             <p className="text-gray-600 mb-6 text-sm max-w-sm">
               Government-backed logistics platform connecting declaration companies, truckers, and cargo across Africa through API partnerships.
             </p>
-            <div className="flex gap-3 mb-6">
+            
+            {/* Features Badges */}
+            <div className="flex flex-wrap gap-3 mb-6">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Truck className="w-4 h-4" />
                 <span>Container Transport</span>
@@ -77,7 +79,7 @@ export function Footer() {
             </div>
             
             {/* Social Media Links */}
-            <div className="flex gap-3">
+            <div className="flex items-center gap-3">
               <a 
                 href="https://www.linkedin.com/company/kyeto-logistic-group/" 
                 target="_blank" 
