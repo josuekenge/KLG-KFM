@@ -1,33 +1,5 @@
-# Robots.txt for Kyeto Logistics Group
-# Optimized for SEO and search engine crawling
-
-# Allow all major search engines to crawl the site
 User-agent: *
 Allow: /
-
-# Disallow crawling of API routes and admin areas
 Disallow: /api/
-Disallow: /admin/
-Disallow: /dashboard/
-Disallow: /_next/
-Disallow: /private/
 
-# Special rules for Google
-User-agent: Googlebot
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /dashboard/
-
-# Special rules for Bing
-User-agent: Bingbot
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /dashboard/
-
-# Crawl delay for respectful crawling (optional)
-Crawl-delay: 1
-
-# Sitemap location - CRITICAL for SEO
 Sitemap: https://kyetologistics.com/sitemap.xml
