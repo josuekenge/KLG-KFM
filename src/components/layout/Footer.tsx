@@ -4,29 +4,21 @@ import Link from "next/link";
 import { Truck, Shield, Linkedin, Twitter, Mail } from "lucide-react";
 
 const footerLinks = {
-  solutions: [
-    { name: "GPS Tracking", href: "#", clickable: false },
-    { name: "Fuel Monitoring", href: "#", clickable: false },
-    { name: "Driver Safety", href: "#", clickable: false },
-    { name: "AI Cameras", href: "#", clickable: false },
-  ],
-  platform: [
-    { name: "Dashboard", href: "/platform" },
-    { name: "Analytics", href: "#", clickable: false },
-    { name: "Reports", href: "#", clickable: false },
-    { name: "API", href: "#", clickable: false },
+  features: [
+    { name: "GPS Tracking", href: "/#features" },
+    { name: "Fleet Management", href: "/#features" },
+    { name: "Container Tracking", href: "/#features" },
+    { name: "API Integration", href: "/#features" },
   ],
   company: [
-    { name: "About", href: "#about", clickable: true },
-    { name: "Careers", href: "#", clickable: false, comingSoon: true },
-    { name: "Contact", href: "#contact", clickable: true },
-    { name: "Support", href: "#", clickable: false, comingSoon: true },
+    { name: "About", href: "/#about" },
+    { name: "Contact", href: "/#contact" },
+    { name: "FAQ", href: "/#faq" },
   ],
-  legal: [
-    { name: "Privacy Policy", href: "/privacy", clickable: true },
-    { name: "Terms of Service", href: "/terms", clickable: true },
-    { name: "Cookie Policy", href: "/cookies", clickable: true },
-    { name: "GDPR", href: "/gdpr", clickable: true },
+  resources: [
+    { name: "Blog", href: "/blog" },
+    { name: "Articles", href: "/blog" },
+    { name: "Insights", href: "/blog" },
   ],
 };
 
@@ -112,11 +104,11 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Features</h3>
             <ul className="space-y-2 text-sm">
-              {footerLinks.solutions.slice(0, 4).map((link) => (
+              {footerLinks.features.map((link) => (
                 <li key={link.name}>
-                  <span className="text-gray-600 cursor-default">
+                  <Link href={link.href} className="text-gray-600 hover:text-black transition-colors">
                     {link.name}
-                  </span>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -128,17 +120,9 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  {link.clickable ? (
-                    <Link href={link.href} className="text-gray-600 hover:text-black transition-colors">
-                      {link.name}
-                      {link.comingSoon && <span className="text-xs text-orange-500 ml-1">(Coming Soon)</span>}
-                    </Link>
-                  ) : (
-                    <span className="text-gray-600 cursor-default">
-                      {link.name}
-                      {link.comingSoon && <span className="text-xs text-orange-500 ml-1">(Coming Soon)</span>}
-                    </span>
-                  )}
+                  <Link href={link.href} className="text-gray-600 hover:text-black transition-colors">
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -148,9 +132,13 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/blog" className="text-gray-600 hover:text-black transition-colors">Blog</Link></li>
-              <li><span className="text-gray-600 cursor-default">Support <span className="text-xs text-orange-500">(Coming Soon)</span></span></li>
-              <li><Link href="/privacy" className="text-gray-600 hover:text-black transition-colors">Privacy Policy</Link></li>
+              {footerLinks.resources.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-gray-600 hover:text-black transition-colors">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

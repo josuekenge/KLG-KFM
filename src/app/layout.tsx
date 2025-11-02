@@ -20,8 +20,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = constructMetadata({
-  title: "Kyeto Logistics | Smart Fleet Management in Africa",
-  description: "Kyeto Logistics provides GPS tracking, fleet analytics, and route optimization for logistics companies across Africa.",
+  title: "Kyeto Logistics | GPS Tracking, Fleet Management & Container Logistics Africa",
+  description: "Government-backed logistics platform providing real-time GPS tracking, fleet management, container tracking, and customs clearance solutions for businesses across Africa. API integration with PowerTrack, Tramigo, Frotcom. Serving DRC, Kenya, Tanzania, and 12+ African countries.",
   canonical: "https://kyetologistics.com",
 });
 

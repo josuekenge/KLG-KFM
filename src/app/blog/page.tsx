@@ -4,16 +4,21 @@ import { blogPosts } from "@/data/blog";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Kyeto Blog | Insights on Logistics, GPS, and Transportation",
-  description: "Explore logistics trends, GPS tracking innovations, and success stories from Kyeto Logistics.",
+  title: "Logistics Blog | GPS Tracking & Fleet Management Insights Africa",
+  description: "Expert insights on GPS tracking, fleet management, container logistics, and supply chain technology for African businesses. Read case studies, industry trends, and implementation guides.",
   keywords: [
-    "logistics blog",
-    "GPS tracking insights",
-    "transportation technology",
-    "fleet management trends",
-    "Africa logistics",
-    "supply chain insights",
-    "Kyeto blog"
+    "logistics blog Africa",
+    "GPS tracking insights DRC",
+    "fleet management articles",
+    "container tracking blog",
+    "transportation technology Africa",
+    "supply chain insights Congo",
+    "customs clearance guides",
+    "telematics blog",
+    "Kyeto Logistics blog",
+    "Africa logistics trends",
+    "fleet optimization tips",
+    "cargo tracking articles"
   ],
   openGraph: {
     title: "Kyeto Blog | Insights on Logistics, GPS, and Transportation",
@@ -79,12 +84,22 @@ export default function BlogPage() {
             </div>
 
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
-              Fleet Management <span className="text-black">Insights</span>
+              Logistics & Fleet Management <span className="text-black">Insights</span>
             </h1>
             
-            <p className="text-xl text-gray-600 mb-4 max-w-3xl mx-auto leading-relaxed">
-              Expert articles, guides, and industry insights on fleet management, telematics, and logistics technology across Africa and beyond.
+            <p className="text-xl text-gray-600 mb-6 max-w-3xl mx-auto leading-relaxed">
+              Expert articles, implementation guides, and industry insights on GPS tracking, fleet management, 
+              container logistics, customs clearance, and supply chain technology across Africa. Learn from 
+              real-world case studies, best practices, and success stories from leading logistics operations 
+              in the DRC, Kenya, Tanzania, and across Sub-Saharan Africa.
             </p>
+            
+            <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+              <div className="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full">
+                <span className="font-semibold">Topics:</span>
+                <span>GPS Tracking • Fleet Optimization • Container Logistics • Customs Tech</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

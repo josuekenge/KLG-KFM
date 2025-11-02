@@ -16,9 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://kyetologistics.com";
   const currentDate = new Date();
 
-  // Static pages
+  // Only include pages that actually exist and are used
   const staticPages: MetadataRoute.Sitemap = [
-    // Homepage - Highest priority, updated daily
+    // Homepage - Highest priority, contains all main content
     {
       url: baseUrl,
       lastModified: currentDate,
@@ -26,60 +26,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1.0,
     },
     
-    // Core Platform Pages - High priority
-    {
-      url: `${baseUrl}/platform`,
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/solutions`,
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    
-    // Business Pages - High priority
-    {
-      url: `${baseUrl}/pricing`,
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    
-    // Content Pages - Medium priority
+    // Blog listing page - High priority
     {
       url: `${baseUrl}/blog`,
       lastModified: currentDate,
       changeFrequency: "weekly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/careers`,
-      lastModified: currentDate,
-      changeFrequency: "weekly",
-      priority: 0.6,
-    },
-    
-    // Legal Pages - Lower priority
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.5,
+      priority: 0.9,
     },
   ];
 
@@ -90,10 +42,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: post.lastModified || currentDate,
     changeFrequency: "monthly" as const,
-    priority: 0.6, // Medium priority for blog content
+    priority: 0.8, // High priority for blog content
   }));
 
-  // Combine all pages
+  // Return only Home + Blog + Blog Posts
   return [...staticPages, ...blogPages];
 }
 
