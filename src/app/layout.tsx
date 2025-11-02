@@ -43,6 +43,9 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://api.web3forms.com" />
         
+        {/* Google Site Verification - CRITICAL: DO NOT REMOVE */}
+        <meta name="google-site-verification" content="R4HtcILKXcw9f7gz1Ho2GQWlpIummGKoFBHAWbqtS7I" />
+        
         {/* Universal meta tags for all browsers */}
         <meta name="theme-color" content="#000000" />
         <meta name="color-scheme" content="light dark" />
