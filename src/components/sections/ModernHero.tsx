@@ -137,10 +137,6 @@ export function ModernHero() {
 
       // Update and draw vehicles (trucks)
       vehicles.forEach((vehicle) => {
-        // Get current and target nodes from the vehicle's route
-        const currentNode = nodes[vehicle.route[vehicle.currentNodeIndex]];
-        const targetNode = nodes[vehicle.route[vehicle.targetNodeIndex]];
-
         // Update progress along current segment
         vehicle.routeProgress += vehicle.speed;
 
