@@ -2,14 +2,11 @@
 # Domain: kyetologistics.com & www.kyetologistics.com
 
 [build]
-  # Build command - Force install ALL dependencies including dev
-  command = "rm -rf node_modules .next && npm install --legacy-peer-deps --include=optional --include=dev && npm run build"
+  # Build command
+  command = "npm run build"
   
-  # Output directory - Next.js standalone output
-  publish = ".next"
-  
-  # Functions directory (if using Netlify Functions)
-  functions = "netlify/functions"
+  # Publish directory - must be root for Next.js
+  publish = "."
 
 [build.environment]
   # Node version - Updated to 20 for compatibility
