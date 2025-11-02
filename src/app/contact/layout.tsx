@@ -1,21 +1,20 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us - Get in Touch with KLG Logistics",
-  description: "Contact Kyeto Logistics Group for fleet management and logistics solutions. Reach us via WhatsApp, email, or visit our office in Kinshasa, DRC.",
+  title: "Contact Kyeto Logistics | Talk to Our Fleet Management Team",
+  description: "Get in touch with Kyeto Logistics for partnerships, support, or fleet tracking solutions.",
   keywords: [
-    "contact KLG",
-    "logistics contact",
+    "contact Kyeto Logistics",
     "fleet management contact",
-    "KLG phone number",
-    "KLG email",
-    "Kinshasa office",
-    "contact logistics company"
+    "GPS tracking support",
+    "logistics partnership",
+    "Kyeto support team"
   ],
   openGraph: {
-    title: "Contact Us - Get in Touch with KLG Logistics",
-    description: "Contact Kyeto Logistics Group for fleet management and logistics solutions.",
+    title: "Contact Kyeto Logistics | Talk to Our Fleet Management Team",
+    description: "Get in touch with Kyeto Logistics for partnerships, support, or fleet tracking solutions.",
     url: "https://kyetologistics.com/contact",
+    siteName: "Kyeto Logistics",
     type: "website",
   },
   robots: {

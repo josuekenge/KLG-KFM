@@ -110,32 +110,44 @@ export function constructMetadata({
   };
 }
 
-// Structured Data for Organization
+// Structured Data for Organization (Enhanced for SEO)
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Kyeto Logistics Group",
-  alternateName: "KLG",
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/logo.png`,
-  description: siteConfig.description,
+  name: "Kyeto Logistics",
+  alternateName: ["KLG", "Kyeto Logistics Group"],
+  url: "https://kyetologistics.com",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://kyetologistics.com/logo.png",
+    width: "600",
+    height: "600"
+  },
+  description: "Kyeto Logistics provides GPS tracking, fleet analytics, and route optimization for logistics companies across Africa.",
+  foundingDate: "2020",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Kinshasa",
+    addressRegion: "Kinshasa",
     addressCountry: "CD",
   },
   contactPoint: {
     "@type": "ContactPoint",
     telephone: siteConfig.contact.phone,
     email: siteConfig.contact.email,
-    contactType: "Sales",
+    contactType: "Customer Service",
     areaServed: ["CD", "ZM", "AO", "TZ", "KE", "UG", "RW", "BI"],
+    availableLanguage: ["English", "French"],
   },
   sameAs: [
-    // Add social media links when available
     "https://linkedin.com/company/kyeto-logistics",
     "https://twitter.com/kyetologistics",
   ],
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://kyetologistics.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
 };
 
 // Structured Data for Software/Product

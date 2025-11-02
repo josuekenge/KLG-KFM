@@ -4,39 +4,37 @@ import { blogPosts } from "@/data/blog";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Fleet Management Insights & Industry Resources | KLG Blog",
-  description: "Expert articles, guides, and industry insights on fleet management, telematics, and logistics technology across Africa. Stay updated with KLG's latest resources.",
+  title: "Kyeto Blog | Insights on Logistics, GPS, and Transportation",
+  description: "Explore logistics trends, GPS tracking innovations, and success stories from Kyeto Logistics.",
   keywords: [
-    "fleet management blog",
-    "logistics insights",
-    "telematics resources",
+    "logistics blog",
+    "GPS tracking insights",
+    "transportation technology",
+    "fleet management trends",
     "Africa logistics",
-    "fleet technology",
-    "supply chain management",
-    "container tracking",
-    "customs clearance",
-    "KLG blog"
+    "supply chain insights",
+    "Kyeto blog"
   ],
   openGraph: {
-    title: "Fleet Management Insights & Industry Resources | KLG Blog",
-    description: "Expert articles, guides, and industry insights on fleet management, telematics, and logistics technology across Africa.",
+    title: "Kyeto Blog | Insights on Logistics, GPS, and Transportation",
+    description: "Explore logistics trends, GPS tracking innovations, and success stories from Kyeto Logistics.",
     url: "https://kyetologistics.com/blog",
-    siteName: "Kyeto Logistics Group",
+    siteName: "Kyeto Logistics",
     type: "website",
     images: [
       {
-        url: "https://kyetologistics.com/og-image.jpg",
+        url: "https://kyetologistics.com/logo.png",
         width: 1200,
         height: 630,
-        alt: "KLG Blog - Fleet Management Insights",
+        alt: "Kyeto Blog - Logistics Insights",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fleet Management Insights & Industry Resources | KLG Blog",
-    description: "Expert articles, guides, and industry insights on fleet management, telematics, and logistics technology across Africa.",
-    images: ["https://kyetologistics.com/og-image.jpg"],
+    title: "Kyeto Blog | Insights on Logistics, GPS, and Transportation",
+    description: "Explore logistics trends, GPS tracking innovations, and success stories from Kyeto Logistics.",
+    images: ["https://kyetologistics.com/logo.png"],
   },
   robots: {
     index: true,

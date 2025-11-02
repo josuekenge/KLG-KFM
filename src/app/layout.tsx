@@ -20,8 +20,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = constructMetadata({
-  title: "Kyeto Logistics Group - Premier Logistics & Fleet Solutions for Africa",
-  description: "Premier logistics and fleet management solutions built for frontier markets. Real-time GPS tracking, fuel monitoring, driver safety, and AI cameras across 12 African countries.",
+  title: "Kyeto Logistics | Smart Fleet Management in Africa",
+  description: "Kyeto Logistics provides GPS tracking, fleet analytics, and route optimization for logistics companies across Africa.",
   canonical: "https://kyetologistics.com",
 });
 
