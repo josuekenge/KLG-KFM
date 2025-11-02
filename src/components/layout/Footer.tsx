@@ -106,9 +106,9 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               {footerLinks.features.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-gray-600 hover:text-black transition-colors">
+                  <a href={link.href} className="text-gray-600 hover:text-black transition-colors">
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -120,9 +120,9 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-gray-600 hover:text-black transition-colors">
+                  <a href={link.href} className="text-gray-600 hover:text-black transition-colors">
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -134,9 +134,15 @@ export function Footer() {
             <ul className="space-y-2 text-sm">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-gray-600 hover:text-black transition-colors">
-                    {link.name}
-                  </Link>
+                  {link.href.startsWith('/blog') ? (
+                    <Link href={link.href} className="text-gray-600 hover:text-black transition-colors">
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a href={link.href} className="text-gray-600 hover:text-black transition-colors">
+                      {link.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
