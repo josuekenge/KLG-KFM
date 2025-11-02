@@ -6,36 +6,36 @@ import { useState } from "react";
 
 const faqs = [
   {
-    question: "What makes KFM different from other telematics providers?",
-    answer: "KFM is purpose-built for frontier markets with rugged hardware, satellite backup for connectivity in remote areas, and local support teams who understand African logistics challenges. Unlike global competitors like Cartrack, Samsara, and Geotab, we specialize in environments with unreliable cellular coverage and harsh operating conditions."
+    question: "What makes KLG different from other logistics platforms?",
+    answer: "KLG is a government-backed platform that partners with existing telematics companies via API, avoiding costly hardware purchases. We rapidly onboard 1,300+ container trucks by integrating with providers like PowerTrack, Tramigo, and Frotcom, focusing on declaration companies and container transport."
   },
   {
-    question: "How does the satellite backup work?",
-    answer: "Our hybrid connectivity approach automatically switches to satellite communication when cellular networks are unavailable. This ensures continuous tracking even in the most remote mining sites, border crossings, and rural routes where traditional GPS devices fail."
+    question: "How do telematics API partnerships work?",
+    answer: "KLG integrates with telematics providers' APIs to access real-time GPS data, vehicle status, and route progress for container trucks. This allows us to display and manage fleet data without purchasing hardware, while telematics companies retain their core revenue and gain new business opportunities."
   },
   {
-    question: "Can KFM integrate with KLG's logistics platform?",
-    answer: "Yes! KFM data flows seamlessly into KLG's dispatch system and marketplace, improving route optimization, job allocation, and ETA accuracy. This integration provides end-to-end visibility from port to city across the entire supply chain."
+    question: "Which routes does KLG focus on?",
+    answer: "KLG focuses on major container transport routes like Matadi-Kinshasa and other key import/export corridors across the DRC and 12 African countries. We prioritize routes with high container volume and existing telematics coverage."
   },
   {
-    question: "What kind of fuel savings can we expect?",
-    answer: "Our clients typically see a 35% reduction in fuel costs through advanced fuel monitoring sensors that detect theft patterns and anomalies. The AI-powered insights help identify inefficiencies and optimize routes for maximum fuel economy."
+    question: "How quickly can trucks be onboarded?",
+    answer: "Through API partnerships, trucks can be onboarded instantly once telematics providers grant access. No hardware installation needed—we leverage existing GPS devices already installed on container trucks."
   },
   {
-    question: "How does KFM improve driver safety?",
-    answer: "Our AI-powered driver scorecards track harsh braking, speeding, and unsafe driving behaviors. Clients have reduced accidents by 40% and lowered insurance premiums. The AI cameras also provide invaluable evidence when incidents do occur."
+    question: "What types of clients does KLG serve?",
+    answer: "KLG primarily serves declaration companies (customs brokers) who need reliable container transport, and trucking companies with 20ft/40ft container trucks. We also work with telematics providers seeking new revenue streams through our API partnership model."
   },
   {
-    question: "What type of vehicles can you track?",
-    answer: "We track all types of fleet vehicles including trucks, mining equipment, delivery vans, government fleets, and specialized cargo vehicles. Our rugged hardware is designed to withstand harsh conditions and can be installed on any vehicle type."
+    question: "What data analytics does KLG provide?",
+    answer: "KLG provides comprehensive analytics including route optimization, ETA accuracy, container tracking, and operational efficiency metrics. Our integrated dashboards serve declaration companies, truckers, and government agencies with real-time visibility."
   },
   {
-    question: "Do you offer maintenance alerts?",
-    answer: "Yes! Our predictive maintenance system provides alerts based on engine hours, mileage, and diagnostic codes. This helps prevent costly breakdowns, maximize uptime, and extend vehicle lifespan through data-driven maintenance scheduling."
+    question: "How do you ensure data security?",
+    answer: "KLG implements enterprise-grade security measures including data encryption, secure APIs, and compliance with regional regulations. As a government-backed platform, we meet industry standards for data protection and regulatory tracking."
   },
   {
     question: "What kind of support do you provide?",
-    answer: "We offer local support teams across 12 African countries who understand frontier market challenges. Our expert team handles installation, provides training, and offers ongoing technical support to ensure your fleet operations run smoothly."
+    answer: "We provide dedicated support for declaration companies and telematics partners, including API integration assistance, onboarding coordination, and ongoing technical support. Our local teams in Kinshasa understand frontier market challenges."
   }
 ];
 

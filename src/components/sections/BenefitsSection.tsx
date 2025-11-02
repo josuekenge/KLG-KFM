@@ -67,7 +67,7 @@ export function BenefitsSection() {
             viewport={{ once: true }}
             className="text-sm font-semibold text-black uppercase tracking-wider mb-4"
           >
-            Why KFM?
+            Why KLG?
           </motion.p>
           
           <motion.h2
@@ -87,7 +87,7 @@ export function BenefitsSection() {
             viewport={{ once: true }}
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            While global leaders like Cartrack, Samsara, and Geotab excel in developed markets, KFM provides specialized solutions for challenging environments with unreliable connectivity and harsh conditions.
+            KLG leverages existing telematics infrastructure through API partnerships, avoiding costly hardware purchases. We focus on connecting declaration companies with trucking capacity for rapid market entry.
           </motion.p>
         </div>
 

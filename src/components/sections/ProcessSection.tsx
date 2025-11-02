@@ -8,22 +8,22 @@ const steps = [
   {
     icon: Truck,
     number: "01",
-    title: "Install Hardware",
-    description: "Our team installs rugged GPS devices and sensors on your fleet vehicles.",
+    title: "Partner via API",
+    description: "We integrate with telematics providers to access existing GPS data from container trucks.",
     color: "from-gray-900 to-black"
   },
   {
     icon: Radio,
     number: "02",
-    title: "Connect & Track",
-    description: "Real-time data flows to your dashboard via cellular and satellite networks.",
+    title: "Connect Stakeholders",
+    description: "Declaration companies, truckers, and cargo are connected through our platform.",
     color: "from-black to-gray-800"
   },
   {
     icon: LineChart,
     number: "03",
-    title: "Optimize Operations",
-    description: "Leverage AI insights to reduce costs, improve safety, and boost efficiency.",
+    title: "Track & Optimize",
+    description: "Real-time visibility and route optimization from port to city across the supply chain.",
     color: "from-gray-800 to-gray-900"
   }
 ];
@@ -162,7 +162,7 @@ export function ProcessSection() {
             viewport={{ once: true }}
             className="text-xl text-gray-600 max-w-3xl mx-auto"
           >
-            From installation to optimization, KFM makes fleet management simple. Our expert team handles the technical details so you can focus on growing your business.
+            From API integration to container tracking, KLG makes logistics simple. Our expert team handles the technical details so you can focus on moving cargo and growing your business.
           </motion.p>
         </div>
 
@@ -221,7 +221,7 @@ export function ProcessSection() {
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
           >
-            <span className="relative z-10">Schedule Your Installation</span>
+            <span className="relative z-10">Partner with KLG</span>
             <svg className="relative z-10 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>

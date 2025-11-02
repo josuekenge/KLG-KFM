@@ -203,12 +203,12 @@ export function ModernHero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            Fleet Management & Logistics Solution
+            Logistics & Telematics Platform
           </div>
 
           {/* Clean headline with rotating location - Mobile optimized */}
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 md:mb-6 leading-tight tracking-tight px-4 sm:px-0">
-            Fleet Management{" "}
+            Logistics Platform{" "}
             <span className="block mt-1 sm:mt-2 text-black">
               Built for{" "}
               <span className="inline-block relative min-w-[140px] sm:min-w-[200px] md:min-w-[280px] text-left">
@@ -229,8 +229,8 @@ export function ModernHero() {
 
           {/* Clean subheadline - Mobile optimized */}
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 mb-8 md:mb-12 max-w-3xl mx-auto leading-relaxed px-4 sm:px-6 md:px-0">
-            Built for frontier markets with rugged hardware, satellite backup, and AI-powered insights. 
-            Reduce fuel theft, improve driver safety, and optimize your fleet operations across Africa.
+            End-to-end logistics and telematics platform connecting declaration companies, truckers, and cargo. 
+            Real-time tracking, API partnerships, and AI-powered insights for container transport across Africa.
           </p>
 
           {/* Clean CTA buttons - Mobile optimized */}
@@ -283,7 +283,7 @@ export function ModernHero() {
                         </svg>
                       </div>
                       <div>
-                        <div className="text-xs sm:text-sm font-semibold text-gray-900">KFM Fleet Dashboard</div>
+                        <div className="text-xs sm:text-sm font-semibold text-gray-900">KLG Logistics Dashboard</div>
                         <div className="text-[10px] sm:text-xs text-gray-500 hidden sm:block">Last updated: 2 min ago</div>
                       </div>
                     </div>

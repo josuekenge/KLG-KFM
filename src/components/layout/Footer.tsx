@@ -63,16 +63,16 @@ export function Footer() {
               </span>
             </Link>
             <p className="text-gray-600 mb-6 text-sm max-w-sm">
-              Fleet management solutions built for frontier markets with rugged hardware and AI-powered insights.
+              Government-backed logistics platform connecting declaration companies, truckers, and cargo across Africa through API partnerships.
             </p>
             <div className="flex gap-3">
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Truck className="w-4 h-4" />
-                <span>KLG Logistics</span>
+                <span>Container Transport</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Shield className="w-4 h-4" />
-                <span>KFM Fleet</span>
+                <span>API Integration</span>
               </div>
             </div>
           </div>

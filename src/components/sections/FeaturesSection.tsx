@@ -53,7 +53,7 @@ export function FeaturesSection() {
           </h2>
           
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-6 md:px-0">
-            KFM provides end-to-end fleet management designed for emerging markets. From rugged hardware to AI-powered analytics, we deliver solutions that work in the toughest conditions.
+            KLG provides end-to-end logistics and telematics solutions for emerging markets. From API integrations with existing GPS providers to government-backed container transport, we connect the entire supply chain.
           </p>
         </div>
 

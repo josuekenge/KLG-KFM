@@ -63,10 +63,10 @@ export function AboutSection() {
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-gray-900">Who We Are</h3>
               <p className="text-gray-700 leading-relaxed">
-                Kyeto Fleet Management (KFM) is a leading telematics provider specializing in fleet solutions for frontier markets across 12 African countries.
+                Kyeto Logistics Group (KLG) is a government-backed logistics platform connecting declaration companies, truckers, and cargo across 12 African countries.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Part of Kyeto Logistics Group, we deliver solutions that work in challenging environments with unreliable connectivity and harsh conditions.
+                We partner with existing telematics providers via API to rapidly onboard container trucks, focusing on Matadi-Kinshasa and major trade routes.
               </p>
             </div>
 
@@ -74,10 +74,10 @@ export function AboutSection() {
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-gray-900">What We Do</h3>
               <p className="text-gray-700 leading-relaxed">
-                We provide GPS tracking, fuel monitoring, driver safety analysis, and predictive maintenance—all in one platform.
+                We integrate with telematics companies to access 1,300+ container trucks without buying hardware. Declaration companies get instant trucking capacity.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Our hybrid connectivity automatically switches to satellite when cellular fails, ensuring continuous tracking in remote areas.
+                Our platform provides real-time visibility, route optimization, and seamless coordination from port to city across the entire supply chain.
               </p>
             </div>
           </motion.div>

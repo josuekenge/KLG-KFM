@@ -5,45 +5,45 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "KFM has transformed our mining fleet operations. The satellite backup keeps us connected even in the most remote areas.",
+    quote: "KLG's API integration gave us instant access to 400+ container trucks without buying a single GPS device. Game changer for our customs brokerage.",
     author: "David Mwangi",
-    role: "Fleet Manager",
-    company: "Mining Operations",
+    role: "Operations Director",
+    company: "Declaration Company",
     rating: 5
   },
   {
-    quote: "The integration with KLG's dispatch system has been seamless. Real-time visibility from port to city.",
+    quote: "The platform connects our trucks directly with declaration companies. We're getting more container loads than ever before.",
     author: "Amara Okafor",
-    role: "Logistics Director",
-    company: "Regional Distributor",
+    role: "Fleet Owner",
+    company: "Container Transport",
     rating: 5
   },
   {
-    quote: "Driver safety scores have helped us reduce accidents by 40% and lower our insurance premiums significantly.",
+    quote: "Real-time visibility from Matadi to Kinshasa has transformed our container operations. No more guessing where cargo is.",
     author: "James Kimani",
-    role: "Operations Manager",
-    company: "Transport Company",
+    role: "Customs Broker",
+    company: "Declaration Services",
     rating: 5
   },
   {
-    quote: "Fuel theft dropped by 35% since implementation. The ROI was clear within the first three months.",
+    quote: "As a telematics provider, partnering with KLG opened new revenue streams while we kept our core GPS business intact.",
     author: "Sarah Mutua",
-    role: "CFO",
-    company: "Logistics Group",
+    role: "CEO",
+    company: "PowerTrack DRC",
     rating: 5
   },
   {
-    quote: "Best telematics solution we've used in frontier markets. Support team understands our challenges.",
+    quote: "Government-backed platform gave us confidence to invest. The API integration was seamless and fast.",
     author: "Patrick Nkosi",
-    role: "Fleet Director",
-    company: "Cross-Border Transport",
+    role: "Technical Director",
+    company: "Frotcom Partner",
     rating: 5
   },
   {
-    quote: "The AI-powered cameras provide invaluable evidence when incidents occur. Game changer for our operations.",
+    quote: "We onboarded 200 trucks in one week through KLG's API. Would have taken us 6 months doing it manually.",
     author: "Grace Achieng",
-    role: "Risk Manager",
-    company: "Distribution Network",
+    role: "Logistics Manager",
+    company: "Import/Export Company",
     rating: 5
   }
 ];
