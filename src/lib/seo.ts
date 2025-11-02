@@ -105,10 +105,7 @@ export function constructMetadata({
       },
     },
     verification: {
-      // Add your verification tokens here when ready
-      google: "google-site-verification-token",
-      // yandex: "yandex-verification-token",
-      // bing: "bing-verification-token",
+      google: "R4HtcILKXcw9f7gz1Ho2GQWlpIummGKoFBHAWbqtS7I",
     },
   };
 }

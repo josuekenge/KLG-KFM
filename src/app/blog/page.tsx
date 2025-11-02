@@ -1,6 +1,58 @@
 import { ExternalLink, Calendar, Clock } from "lucide-react";
 import Link from "next/link";
 import { blogPosts } from "@/data/blog";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Fleet Management Insights & Industry Resources | KLG Blog",
+  description: "Expert articles, guides, and industry insights on fleet management, telematics, and logistics technology across Africa. Stay updated with KLG's latest resources.",
+  keywords: [
+    "fleet management blog",
+    "logistics insights",
+    "telematics resources",
+    "Africa logistics",
+    "fleet technology",
+    "supply chain management",
+    "container tracking",
+    "customs clearance",
+    "KLG blog"
+  ],
+  openGraph: {
+    title: "Fleet Management Insights & Industry Resources | KLG Blog",
+    description: "Expert articles, guides, and industry insights on fleet management, telematics, and logistics technology across Africa.",
+    url: "https://kyetologistics.com/blog",
+    siteName: "Kyeto Logistics Group",
+    type: "website",
+    images: [
+      {
+        url: "https://kyetologistics.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "KLG Blog - Fleet Management Insights",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fleet Management Insights & Industry Resources | KLG Blog",
+    description: "Expert articles, guides, and industry insights on fleet management, telematics, and logistics technology across Africa.",
+    images: ["https://kyetologistics.com/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: "https://kyetologistics.com/blog",
+  },
+};
 
 export default function BlogPage() {
   return (
