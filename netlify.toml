@@ -2,8 +2,8 @@
 # Domain: kyetologistics.com & www.kyetologistics.com
 
 [build]
-  # Build command - Use npm install to include devDependencies
-  command = "npm install --legacy-peer-deps --include=optional && npm run build"
+  # Build command - Force install ALL dependencies including dev
+  command = "rm -rf node_modules .next && npm install --legacy-peer-deps --include=optional --include=dev && npm run build"
   
   # Output directory - Next.js standalone output
   publish = ".next"
@@ -87,14 +87,7 @@
   package = "@netlify/plugin-nextjs"
 
 # Context-specific settings
-[context.production]
-  environment = { NODE_ENV = "production" }
-
-[context.deploy-preview]
-  environment = { NODE_ENV = "production" }
-
-[context.branch-deploy]
-  environment = { NODE_ENV = "production" }
+# Note: Removed NODE_ENV = "production" to allow devDependencies installation
 
 # Dev server settings (for Netlify Dev)
 [dev]
