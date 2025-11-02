@@ -53,12 +53,11 @@ export function ModernHero() {
     const vehicles: Array<{
       x: number;
       y: number;
+      vx: number;
+      vy: number;
       size: number;
       routeProgress: number;
-      speed: number;
-      currentNodeIndex: number;
-      targetNodeIndex: number;
-      route: number[];
+      routeLength: number;
     }> = [];
 
     // Road network nodes (representing cities/waypoints)
@@ -73,33 +72,17 @@ export function ModernHero() {
       });
     }
 
-    // Create predefined routes (different paths through the network)
-    const routes = [
-      [0, 3, 7, 10],           // Route 1: Top to bottom
-      [1, 4, 8, 11],           // Route 2: Diagonal
-      [2, 5, 6, 9],            // Route 3: Zigzag
-      [0, 2, 5, 8, 11],        // Route 4: Long route
-      [1, 3, 6, 10],           // Route 5: Middle path
-      [2, 4, 7, 9],            // Route 6: Alternative
-      [0, 4, 9],               // Route 7: Short route
-      [1, 5, 10],              // Route 8: Quick path
-    ];
-
-    // Create vehicles (trucks) - each follows a specific route
+    // Create vehicles (trucks) - fewer and more centered
     const vehicleCount = 8;
     for (let i = 0; i < vehicleCount; i++) {
-      const route = routes[i % routes.length];
-      const startNode = nodes[route[0]];
-      
       vehicles.push({
-        x: startNode.x,
-        y: startNode.y,
+        x: (Math.random() * 0.6 + 0.2) * canvas.width,
+        y: (Math.random() * 0.6 + 0.2) * canvas.height,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
         size: 10,
-        routeProgress: Math.random(), // 0 to 1
-        speed: 0.003 + Math.random() * 0.002, // Different speeds
-        currentNodeIndex: 0,
-        targetNodeIndex: 1,
-        route: route,
+        routeProgress: Math.random() * 100,
+        routeLength: Math.random() * 200 + 100,
       });
     }
 
@@ -137,37 +120,22 @@ export function ModernHero() {
 
       // Update and draw vehicles (trucks)
       vehicles.forEach((vehicle) => {
-        // Update progress along current segment
-        vehicle.routeProgress += vehicle.speed;
+        vehicle.x += vehicle.vx;
+        vehicle.y += vehicle.vy;
 
-        // Check if reached target node
-        if (vehicle.routeProgress >= 1) {
+        if (vehicle.x < 0 || vehicle.x > canvas.width) vehicle.vx *= -1;
+        if (vehicle.y < 0 || vehicle.y > canvas.height) vehicle.vy *= -1;
+
+        vehicle.routeProgress += 0.5;
+        if (vehicle.routeProgress > vehicle.routeLength) {
           vehicle.routeProgress = 0;
-          vehicle.currentNodeIndex = vehicle.targetNodeIndex;
-          vehicle.targetNodeIndex++;
-
-          // Loop back to start of route if at the end
-          if (vehicle.targetNodeIndex >= vehicle.route.length) {
-            vehicle.currentNodeIndex = 0;
-            vehicle.targetNodeIndex = 1;
-          }
         }
-
-        // Interpolate position between current and target nodes
-        const nextCurrent = nodes[vehicle.route[vehicle.currentNodeIndex]];
-        const nextTarget = nodes[vehicle.route[vehicle.targetNodeIndex]];
-        
-        vehicle.x = nextCurrent.x + (nextTarget.x - nextCurrent.x) * vehicle.routeProgress;
-        vehicle.y = nextCurrent.y + (nextTarget.y - nextCurrent.y) * vehicle.routeProgress;
-
-        // Calculate angle based on direction of travel
-        const dx = nextTarget.x - nextCurrent.x;
-        const dy = nextTarget.y - nextCurrent.y;
-        const angle = Math.atan2(dy, dx);
 
         // Draw vehicle (truck icon)
         ctx.save();
         ctx.translate(vehicle.x, vehicle.y);
+        
+        const angle = Math.atan2(vehicle.vy, vehicle.vx);
         ctx.rotate(angle);
 
         ctx.shadowColor = "rgba(0, 0, 0, 0.2)";
