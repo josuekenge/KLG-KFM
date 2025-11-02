@@ -1,12 +1,5 @@
 # Netlify headers file
-
-/robots.txt
-  Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=3600
-
-/sitemap.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=3600
+# Note: Next.js App Router handles robots.txt and sitemap.xml dynamically
 
 /*
   X-Frame-Options: DENY
