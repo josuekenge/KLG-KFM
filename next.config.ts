@@ -30,6 +30,25 @@ const nextConfig: NextConfig = {
     styledComponents: true,
   },
 
+  // Automatic HTTPS redirects for production (Netlify best practice)
+  async redirects() {
+    return [
+      // Force HTTPS in production
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'header',
+            key: 'x-forwarded-proto',
+            value: 'http',
+          },
+        ],
+        destination: 'https://kyetologistics.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   // Enhanced headers for cross-browser compatibility and security
   async headers() {
     const isProduction = process.env.NODE_ENV === "production";

@@ -2,8 +2,8 @@
 # Domain: kyetologistics.com & www.kyetologistics.com
 
 [build]
-  # Build command
-  command = "npm run build"
+  # Build command - Using next build directly per Netlify best practices
+  command = "next build"
 
 [build.environment]
   # Node version - Updated to 20 for compatibility
@@ -74,6 +74,11 @@
 # Plugin configuration
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Edge Functions configuration for HTTPS enforcement
+[[edge_functions]]
+  function = "force-https"
+  path = "/*"
 
 # Context-specific settings
 # Note: Removed NODE_ENV = "production" to allow devDependencies installation
