@@ -1,0 +1,13 @@
+# Netlify redirects file
+# Ensure static files are served correctly
+
+# Serve robots.txt and sitemap.xml directly
+/robots.txt   /robots.txt   200
+/sitemap.xml  /sitemap.xml  200
+
+# Google verification file
+/googlede738f1e3aeb4ee6.html  /googlede738f1e3aeb4ee6.html  200
+
+# SPA fallback for all other routes
+/*    /index.html   200
+
