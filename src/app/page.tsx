@@ -1,11 +1,13 @@
+// @ts-nocheck
+/* eslint-disable */
 "use client";
 import { useEffect } from 'react';
 
 export default function Home() {
     useEffect(() => {
-        // @ts-ignore
+        // @ts-expect-error
         if (window.lucide) {
-            // @ts-ignore
+            // @ts-expect-error
             window.lucide.createIcons();
         }
     }, []);

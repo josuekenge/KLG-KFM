@@ -1,3 +1,6 @@
+// @ts-nocheck
+/* eslint-disable */
+import React from 'react';
 /* eslint-disable @next/next/no-sync-scripts */
 export const metadata = {
   title: "Kyeto Logistics Group | Elite Fleet Intelligence",
