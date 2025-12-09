@@ -15,13 +15,8 @@
   # Skip husky installation in CI
   CI = "true"
 
-# Redirect rules
-[[redirects]]
-  # Force HTTPS
-  from = "http://kyetologistics.com/*"
-  to = "https://kyetologistics.com/:splat"
-  status = 301
-  force = true
+# Note: HTTP-to-HTTPS redirection is handled by Netlify's "Force HTTPS" setting
+# Do not add redirect rules for this to avoid redirect loops
 
 [[redirects]]
   # Redirect www to non-www (or vice versa, choose your preference)
@@ -75,10 +70,8 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-# Edge Functions configuration for HTTPS enforcement
-[[edge_functions]]
-  function = "force-https"
-  path = "/*"
+# Note: HTTPS enforcement is handled by Netlify's built-in "Force HTTPS" setting
+# Do not add custom edge functions for HTTPS redirection to avoid redirect loops
 
 # Context-specific settings
 # Note: Removed NODE_ENV = "production" to allow devDependencies installation

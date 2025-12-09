@@ -2,19 +2,10 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
-  const { protocol, host } = request.nextUrl;
+  const { protocol } = request.nextUrl;
 
-  // Security: Force HTTPS in production
-  if (
-    process.env.NODE_ENV === "production" &&
-    protocol === "http:" &&
-    !host.includes("localhost") &&
-    !host.includes("127.0.0.1")
-  ) {
-    const httpsUrl = request.nextUrl.clone();
-    httpsUrl.protocol = "https:";
-    return NextResponse.redirect(httpsUrl, 301);
-  }
+  // Note: HTTPS redirection is handled by Netlify's "Force HTTPS" setting
+  // Do not add HTTPS redirect here to avoid redirect loops
 
   // Add security headers
   const response = NextResponse.next();

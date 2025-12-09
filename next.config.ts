@@ -30,36 +30,23 @@ const nextConfig: NextConfig = {
     styledComponents: true,
   },
 
-  // Automatic HTTPS redirects for production (Netlify best practice)
+  // Note: HTTPS redirection is handled by Netlify's "Force HTTPS" setting
+  // Do not add redirect rules here to avoid redirect loops
   async redirects() {
-    return [
-      // Force HTTPS in production
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'header',
-            key: 'x-forwarded-proto',
-            value: 'http',
-          },
-        ],
-        destination: 'https://kyetologistics.com/:path*',
-        permanent: true,
-      },
-    ];
+    return [];
   },
 
   // Enhanced headers for cross-browser compatibility and security
   async headers() {
     const isProduction = process.env.NODE_ENV === "production";
-    
+
     const securityHeaders = [
       // DNS and performance headers
       {
         key: "X-DNS-Prefetch-Control",
         value: "on",
       },
-      
+
       // Basic security headers
       {
         key: "X-Content-Type-Options",
@@ -81,7 +68,7 @@ const nextConfig: NextConfig = {
         key: "Permissions-Policy",
         value: "camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()",
       },
-      
+
       // Content Security Policy for all browsers
       {
         key: "Content-Security-Policy",
@@ -89,7 +76,7 @@ const nextConfig: NextConfig = {
           ? "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; upgrade-insecure-requests;"
           : "default-src 'self' 'unsafe-inline' 'unsafe-eval'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' ws: wss: http: https:;",
       },
-      
+
       // Performance headers for modern browsers
       {
         key: "Accept-CH",
@@ -172,7 +159,7 @@ const nextConfig: NextConfig = {
     // Cross-browser optimizations
     esmExternals: true,
   },
-  
+
   // External packages for server components
   serverExternalPackages: ["three", "@react-three/fiber"],
 
@@ -215,7 +202,7 @@ const nextConfig: NextConfig = {
         },
       };
     }
-    
+
     return config;
   },
 };
