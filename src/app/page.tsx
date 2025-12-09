@@ -1,51 +1,605 @@
-import { ModernHero } from "@/components/sections/ModernHero";
-import dynamic from "next/dynamic";
+"use client";
+import { useEffect } from 'react';
 
-// Lazy load sections below the fold for faster initial load
-const FeaturesSection = dynamic(() => import("@/components/sections/FeaturesSection").then(mod => ({ default: mod.FeaturesSection })), {
-  loading: () => <div className="h-screen" />
-});
+export default function Home() {
+    useEffect(() => {
+        // @ts-ignore
+        if (window.lucide) {
+            // @ts-ignore
+            window.lucide.createIcons();
+        }
+    }, []);
 
-const ProductShowcase = dynamic(() => import("@/components/sections/ProductShowcase").then(mod => ({ default: mod.ProductShowcase })), {
-  loading: () => <div className="h-screen" />
-});
+    const htmlContent = `
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3.5 group cursor-default">
+                <!-- Refined Logo based on uploaded image -->
+                <div class="w-10 h-10 relative flex items-center justify-center transform group-hover:scale-105 transition-transform duration-500">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="20" fill="#2B4C7E"/> <!-- Slightly lighter navy base -->
+                        <g style="mix-blend-mode: normal;">
+                            <path d="M20 0C8.95431 0 0 8.9543 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0ZM20 36C11.1634 36 4 28.8366 4 20C4 11.1634 11.1634 4 20 4C28.8366 4 36 11.1634 36 20C36 28.8366 28.8366 36 20 36Z" fill="#152C52"/>
+                            <!-- Swirl Shape Logic -->
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C31.0457 40 40 31.0457 40 20H36C36 28.8366 28.8366 36 20 36V40ZM11.0557 32.3607L9.26685 35.4593C12.193 37.1488 15.5898 38.1148 19.2 38.0001V34.0001C16.5919 34.0001 14.1384 33.3025 12.025 32.082L11.0557 32.3607ZM8.28427 11.7157L5.45584 8.88729C3.11479 11.2283 1.55403 14.2882 1.08203 17.6569H5.11267C5.45353 15.2234 6.58079 13.0135 8.27157 11.3227L8.28427 11.7157Z" fill="white" fill-opacity="0.9"/>
+                            <path d="M22 8C22 10.2091 20.2091 12 18 12C15.7909 12 14 10.2091 14 8C14 5.79086 15.7909 4 18 4C20.2091 4 22 5.79086 22 8Z" fill="white"/>
+                            <path d="M28 26C28 28.2091 26.2091 30 24 30C21.7909 30 20 28.2091 20 26C20 23.7909 21.7909 22 24 22C26.2091 22 28 23.7909 28 26Z" fill="white" fill-opacity="0.8"/>
+                             <!-- Replicating the swirl turbine look with clean arcs -->
+                            <path d="M20 0C8.95 0 0 8.95 0 20C0 31.05 8.95 40 20 40C31.05 40 40 31.05 40 20C40 8.95 31.05 0 20 0ZM34 20C34 27.732 27.732 34 20 34C16.8 34 13.85 32.93 11.45 31.1C13.5 30.5 15.5 29.5 17 28C19.5 25.5 20.5 22 20 18.5C21.5 19.5 23.5 20 25.5 20C28 20 30.5 19 32.4 17.2C33.4 18.1 34 19 34 20ZM20 6C23.2 6 26.15 7.07 28.55 8.9C26.5 9.5 24.5 10.5 23 12C20.5 14.5 19.5 18 20 21.5C18.5 20.5 16.5 20 14.5 20C12 20 9.5 21 7.6 22.8C6.6 21.9 6 21 6 20C6 12.268 12.268 6 20 6Z" fill="#152C52"/>
+                            <!-- Abstract Swirls Overlay -->
+                            <path d="M20 2C10.0589 2 2 10.0589 2 20C2 29.9411 10.0589 38 20 38C29.9411 38 38 29.9411 38 20C38 10.0589 29.9411 2 20 2ZM10.5 20C10.5 14.7533 14.7533 10.5 20 10.5C25.2467 10.5 29.5 14.7533 29.5 20C29.5 25.2467 25.2467 29.5 20 29.5C14.7533 29.5 10.5 25.2467 10.5 20Z" fill="#2B68E6"/>
+                            <path d="M20 8C18 8 13 11 11.5 15C10.5 18 10 22 13 25C15 27 19 28 23 27C27 26 30 22 29 18C28 14 24 8 20 8Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M16 16C17.5 14.5 20 14 22 15" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                            <path d="M15 21C16.5 22.5 19 23 21 22" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6" transform="rotate(120 18 21.5)"/>
+                             <path d="M20 12L23 17L18 22" fill="white"/> <!-- Abstract shard -->
+                        </g>
+                         <!-- Final Polish Layer for Logo to match provided image style more closely (Blue Circle + White Swirls) -->
+                        <circle cx="20" cy="20" r="19" fill="#102544" stroke="#2B68E6" stroke-width="0.5"/>
+                        <path d="M20.5 9C23.5 9.2 26 10.5 27.5 13C28.5 15 28.5 17.5 27.5 19.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M27.5 20C27 23 25 26 22 27.5C20 28.5 17.5 28.5 15.5 27.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M15 27C12 26.5 10 24 9.5 21C9 19 9.5 16.5 10.5 14.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <span class="text-lg font-display font-semibold tracking-tight text-white group-hover:text-blue-100 transition-colors">Kyeto Logistics Group</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-10 text-sm font-medium text-slate-300">
+                <a href="#" class="hover:text-white transition-colors duration-300">Platform</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Solutions</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Developers</a>
+                <a href="#" class="hover:text-white transition-colors duration-300">Pricing</a>
+            </div>
 
-const AboutSection = dynamic(() => import("@/components/sections/AboutSection").then(mod => ({ default: mod.AboutSection })), {
-  loading: () => <div className="h-screen" />
-});
+            <div class="flex items-center gap-5">
+                <a href="#" class="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300">Log in</a>
+                <a href="#" class="text-sm font-medium bg-white text-navy-900 px-5 py-2.5 rounded-full hover:bg-slate-50 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:shadow-[0_0_25px_rgba(255,255,255,0.3)]">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </nav>
 
-const BenefitsSection = dynamic(() => import("@/components/sections/BenefitsSection").then(mod => ({ default: mod.BenefitsSection })), {
-  loading: () => <div className="h-screen" />
-});
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-36 overflow-hidden bg-hero-gradient">
+        <!-- Abstract Background Elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+             <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-kyeto-blue/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 mix-blend-screen"></div>
+             <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-indigo-900/30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+             <!-- Grid -->
+             <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-soft-light"></div>
+        </div>
 
-const TestimonialsSection = dynamic(() => import("@/components/sections/TestimonialsSection").then(mod => ({ default: mod.TestimonialsSection })), {
-  loading: () => <div className="h-screen" />
-});
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center relative z-10">
+            
+            <!-- Content -->
+            <div class="reveal">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.07] border border-white/[0.08] text-blue-200 text-[11px] font-semibold tracking-wide mb-8 backdrop-blur-sm shadow-sm hover:bg-white/10 transition-colors cursor-default">
+                    <div class="w-1.5 h-1.5 rounded-full bg-kyeto-blue animate-pulse shadow-[0_0_10px_#2B68E6]"></div>
+                    INTELLIGENCE 2.0 IS LIVE
+                </div>
+                <h1 class="text-5xl lg:text-7xl font-display font-semibold tracking-tight text-white leading-[1.05] mb-8 drop-shadow-sm">
+                    Orchestrate your <br>
+                    fleet with <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-white">precision.</span>
+                </h1>
+                <p class="text-lg text-slate-400 mb-10 max-w-lg leading-relaxed font-light antialiased">
+                    The enterprise standard for logistics intelligence. Monitor routes, optimize fuel, and predict delays with our military-grade fleet operating system.
+                </p>
+                <div class="flex items-center gap-4">
+                    <button class="bg-kyeto-blue text-white px-8 py-4 rounded-xl font-medium shadow-[0_10px_30px_-10px_rgba(43,104,230,0.6)] hover:bg-blue-600 hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 group ring-1 ring-blue-500/50 hover:ring-blue-400">
+                        Start Tracking
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right w-4 h-4 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    </button>
+                    <button class="px-8 py-4 rounded-xl font-medium text-white hover:bg-white/5 border border-white/10 transition-all duration-300 backdrop-blur-sm hover:border-white/20">
+                        View Demo
+                    </button>
+                </div>
+                
+                <div class="mt-16 flex items-center gap-10 border-t border-white/5 pt-8">
+                    <div class="flex flex-col group cursor-default">
+                        <span class="text-2xl font-display font-semibold text-white group-hover:text-blue-200 transition-colors">99.9%</span>
+                        <span class="text-xs text-slate-500 uppercase tracking-wider font-medium">Uptime</span>
+                    </div>
+                    <div class="w-px h-10 bg-gradient-to-b from-white/5 via-white/20 to-white/5"></div>
+                    <div class="flex flex-col group cursor-default">
+                        <span class="text-2xl font-display font-semibold text-white group-hover:text-blue-200 transition-colors">50k+</span>
+                        <span class="text-xs text-slate-500 uppercase tracking-wider font-medium">Active Units</span>
+                    </div>
+                    <div class="w-px h-10 bg-gradient-to-b from-white/5 via-white/20 to-white/5"></div>
+                    <div class="flex flex-col group cursor-default">
+                        <span class="text-2xl font-display font-semibold text-white group-hover:text-blue-200 transition-colors">$2B+</span>
+                        <span class="text-xs text-slate-500 uppercase tracking-wider font-medium">Cargo Secured</span>
+                    </div>
+                </div>
+            </div>
 
-const ProcessSection = dynamic(() => import("@/components/sections/ProcessSection").then(mod => ({ default: mod.ProcessSection })), {
-  loading: () => <div className="h-screen" />
-});
+            <!-- Visualization -->
+            <div class="relative w-full h-[600px] reveal delay-200">
+                <div class="absolute inset-0 bg-navy-800 rounded-2xl border border-white/10 shadow-[0_0_60px_-15px_rgba(43,104,230,0.15)] overflow-hidden glass-panel-dark animate-float">
+                    <!-- Map Canvas Simulation -->
+                    <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(#2B68E6 1px, transparent 1px); background-size: 32px 32px"></div>
+                    
+                    <!-- Glowing Lines -->
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none">
+                        <defs>
+                            <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:rgba(43, 104, 230, 0)"/>
+                                <stop offset="50%" style="stop-color:rgba(43, 104, 230, 1)"/>
+                                <stop offset="100%" style="stop-color:rgba(43, 104, 230, 0)"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M-50 400 Q 200 300 400 100 T 700 150" fill="none" stroke="url(#routeGrad)" stroke-width="2.5" class="opacity-70 drop-shadow-[0_0_12px_rgba(43,104,230,0.8)]"></path>
+                        <path d="M600 500 Q 400 400 200 200" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"></path>
+                    </svg>
 
-const FAQSection = dynamic(() => import("@/components/sections/FAQSection").then(mod => ({ default: mod.FAQSection })), {
-  loading: () => <div className="h-screen" />
-});
+                    <!-- Vehicle Node -->
+                    <div class="absolute top-[25%] left-[60%] transform -translate-x-1/2 -translate-y-1/2">
+                        <div class="relative group">
+                            <div class="w-12 h-12 rounded-full bg-kyeto-blue/20 flex items-center justify-center backdrop-blur-md border border-kyeto-blue/60 pulse-marker shadow-[0_0_20px_rgba(43,104,230,0.3)]">
+                                <div class="w-3.5 h-3.5 bg-white rounded-full shadow-[0_0_12px_white] z-10"></div>
+                            </div>
+                            <!-- Popover -->
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-5 w-52 bg-[#0A1626]/95 border border-white/10 rounded-xl p-3.5 backdrop-blur-xl shadow-2xl transition-all opacity-100 transform origin-bottom hover:scale-105 duration-300">
+                                <div class="flex items-center justify-between mb-2.5 pb-2 border-b border-white/5">
+                                    <span class="text-xs font-semibold text-white tracking-wide">Unit #8842</span>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#10b981]"></span>
+                                        <span class="text-[10px] text-emerald-500 font-medium">Active</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-1.5">
+                                    <div class="flex justify-between text-[11px] text-slate-400">
+                                        <span>Speed</span>
+                                        <span class="text-white font-medium">65 mph</span>
+                                    </div>
+                                    <div class="flex justify-between text-[11px] text-slate-400">
+                                        <span>Fuel Efficiency</span>
+                                        <span class="text-emerald-400 font-medium">8.2 mpg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-const ContactSection = dynamic(() => import("@/components/sections/ContactSection").then(mod => ({ default: mod.ContactSection })), {
-  loading: () => <div className="h-screen" />
-});
+                    <!-- HUD Overlay -->
+                    <div class="absolute top-6 left-6 right-6 flex justify-between">
+                        <div class="bg-navy-900/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg shadow-lg">
+                            <span class="text-[10px] uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-2">
+                                <span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse"></span>
+                                Live Feed • Global
+                            </span>
+                        </div>
+                        <div class="bg-navy-900/60 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg flex items-center gap-2 shadow-lg">
+                             <div class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]"></div>
+                             <span class="text-[10px] uppercase tracking-wider text-emerald-400 font-semibold">System Optimal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Soft bottom fade for seamless transition -->
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-50 via-slate-50/80 to-transparent pointer-events-none"></div>
+    </section>
 
-export default function HomePage() {
-  return (
-    <>
-      <ModernHero />
-      <FeaturesSection />
-      <ProductShowcase />
-      <AboutSection />
-      <BenefitsSection />
-      <TestimonialsSection />
-      <ProcessSection />
-      <FAQSection />
-      <ContactSection />
-    </>
-  );
+    <!-- Core Features -->
+    <section class="py-32 bg-subtle-light relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h2 class="text-sm font-bold text-kyeto-blue uppercase tracking-[0.2em] mb-4">Core Capabilities</h2>
+                <h3 class="text-3xl lg:text-4xl font-display font-bold text-navy-900 tracking-tight mb-6">Everything you need to run a modern fleet.</h3>
+                <p class="text-slate-500 text-lg font-normal leading-relaxed">Kyeto unifies tracking, analytics, and optimization into one cohesive operating system designed for scale.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-card-hover hover:-translate-y-1 transition-all duration-500 reveal delay-100 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-14 h-14 bg-blue-50/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100/80 transition-all duration-500 relative z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="radar" class="lucide lucide-radar w-7 h-7 text-kyeto-blue"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"></path><path d="M4 6h.01"></path><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"></path><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"></path><path d="M12 18h.01"></path><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"></path><circle cx="12" cy="12" r="2"></circle><path d="m13.41 10.59 5.66-5.66"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-display font-semibold text-navy-900 mb-3 relative z-10">Real-Time Visibility</h4>
+                    <p class="text-slate-500 leading-relaxed font-normal relative z-10">Track every asset with millisecond precision. Get live updates on location, speed, and engine diagnostics directly from the ECU.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-card-hover hover:-translate-y-1 transition-all duration-500 reveal delay-200 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-14 h-14 bg-indigo-50/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-indigo-100/80 transition-all duration-500 relative z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="route" class="lucide lucide-route w-7 h-7 text-indigo-600"><circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle></svg>
+                    </div>
+                    <h4 class="text-xl font-display font-semibold text-navy-900 mb-3 relative z-10">Predictive Routing</h4>
+                    <p class="text-slate-500 leading-relaxed font-normal relative z-10">AI-driven routing that accounts for traffic, weather patterns, and fuel consumption to reduce operational costs by up to 20%.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group p-8 rounded-2xl bg-white border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-card-hover hover:-translate-y-1 transition-all duration-500 reveal delay-300 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-14 h-14 bg-cyan-50/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-cyan-100/80 transition-all duration-500 relative z-10">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="bar-chart-3" class="lucide lucide-bar-chart-3 w-7 h-7 text-cyan-600"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-display font-semibold text-navy-900 mb-3 relative z-10">Freight Analytics</h4>
+                    <p class="text-slate-500 leading-relaxed font-normal relative z-10">Deep dive into fleet performance. Visualize efficiency gaps, automate maintenance schedules, and generate compliance reports.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Command Center (Dark) -->
+    <section class="py-32 bg-navy-gradient relative overflow-hidden border-t border-navy-800/50">
+        <!-- Ambient Glow -->
+        <div class="absolute top-0 left-1/2 w-[1200px] h-[600px] bg-kyeto-blue/5 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-screen"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6 reveal">
+                <div>
+                    <h2 class="text-3xl lg:text-4xl font-display font-bold text-white tracking-tight mb-2.5">Command Center</h2>
+                    <p class="text-slate-400 font-light text-lg">Total control over your logistics network.</p>
+                </div>
+                <div class="flex bg-navy-800/50 p-1 rounded-lg border border-white/5 backdrop-blur-sm">
+                    <button class="px-5 py-2 text-xs font-medium text-white bg-white/10 rounded border border-white/10 shadow-lg backdrop-blur">Fleet View</button>
+                    <button class="px-5 py-2 text-xs font-medium text-slate-400 hover:text-white transition-colors duration-200">Driver Stats</button>
+                    <button class="px-5 py-2 text-xs font-medium text-slate-400 hover:text-white transition-colors duration-200">Maintenance</button>
+                </div>
+            </div>
+
+            <!-- Dashboard UI -->
+            <div class="w-full h-[700px] lg:h-[650px] bg-navy-800/80 rounded-2xl border border-white/10 shadow-[0_0_80px_-20px_rgba(0,0,0,0.5)] overflow-hidden flex reveal delay-100 backdrop-blur-sm ring-1 ring-white/5">
+                
+                <!-- Sidebar -->
+                <div class="hidden lg:flex w-64 bg-navy-900/95 border-r border-white/5 flex-col p-4">
+                    <div class="space-y-1">
+                        <div class="px-3 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Monitor</div>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 bg-kyeto-blue/15 text-blue-400 rounded-lg border border-kyeto-blue/20 hover:bg-kyeto-blue/20 transition-all duration-200">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="layout-dashboard" class="lucide lucide-layout-dashboard w-4 h-4"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg>
+                            <span class="text-sm font-medium">Overview</span>
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="map" class="lucide lucide-map w-4 h-4 group-hover:text-blue-300 transition-colors"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path></svg>
+                            <span class="text-sm font-medium">Live Map</span>
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users w-4 h-4 group-hover:text-blue-300 transition-colors"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                            <span class="text-sm font-medium">Drivers</span>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-auto">
+                        <div class="p-4 rounded-xl bg-gradient-to-b from-white/5 to-transparent border border-white/5 hover:border-white/10 transition-colors cursor-pointer">
+                            <div class="flex items-center gap-2.5 mb-2">
+                                <div class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shadow-[0_0_6px_#f59e0b]"></div>
+                                <span class="text-xs font-semibold text-white tracking-wide">ATTENTION</span>
+                            </div>
+                            <p class="text-[11px] text-slate-400 leading-normal">Vehicle #4092 reporting tire pressure anomaly in Sector 7.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Area -->
+                <div class="flex-1 flex flex-col bg-[#0b1221] relative">
+                    <!-- Top Bar -->
+                    <div class="h-16 border-b border-white/5 flex items-center justify-between px-6 bg-navy-800/40 backdrop-blur sticky top-0 z-20">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981] animate-pulse"></div>
+                            <span class="text-sm font-medium text-slate-200">System Operational</span>
+                        </div>
+                        <div class="flex items-center gap-5">
+                            <button class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="search" class="lucide lucide-search w-4 h-4"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button>
+                            <button class="text-slate-400 hover:text-white transition-colors relative p-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="bell" class="lucide lucide-bell w-4 h-4"><path d="M10.268 21a2 2 0 0 0 3.464 0"></path><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"></path></svg>
+                                <span class="absolute top-0.5 right-0.5 w-1.5 h-1.5 bg-red-500 rounded-full border border-navy-900"></span>
+                            </button>
+                            <div class="w-8 h-8 rounded-full bg-slate-700/50 flex items-center justify-center text-xs text-white font-bold border border-white/10 hover:bg-slate-600 transition-colors cursor-pointer ring-2 ring-transparent hover:ring-white/10">JD</div>
+                        </div>
+                    </div>
+
+                    <!-- Inner Content -->
+                    <div class="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6 h-full overflow-hidden">
+                        <!-- List -->
+                        <div class="space-y-3 overflow-y-auto no-scrollbar pr-2">
+                             <!-- Item 1 -->
+                             <div class="p-4 rounded-xl bg-gradient-to-r from-white/[0.07] to-white/[0.02] border border-white/5 hover:border-kyeto-blue/40 hover:bg-white/[0.09] transition-all duration-300 cursor-pointer group shadow-sm">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="text-sm font-semibold text-white group-hover:text-blue-100 transition-colors">Volvo VNL 860</span>
+                                    <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-medium">On Route</span>
+                                </div>
+                                <div class="w-full bg-slate-800/80 h-1.5 rounded-full mb-3 overflow-hidden">
+                                    <div class="bg-kyeto-blue h-full rounded-full w-3/4 shadow-[0_0_10px_rgba(43,104,230,0.5)]"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] text-slate-400">
+                                    <span>Route 66A</span>
+                                    <span class="group-hover:text-white transition-colors font-medium">ETA: 2h 40m</span>
+                                </div>
+                             </div>
+                             <!-- Item 2 -->
+                             <div class="p-4 rounded-xl bg-[#0F1C30] border border-white/5 hover:border-white/10 hover:bg-[#14233a] transition-all duration-300 cursor-pointer">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="text-sm font-semibold text-slate-300">Kenworth T680</span>
+                                    <span class="text-[10px] bg-slate-700/30 text-slate-400 px-2 py-0.5 rounded border border-slate-600/30 font-medium">Idle</span>
+                                </div>
+                                <div class="w-full bg-slate-800/80 h-1.5 rounded-full mb-3 overflow-hidden">
+                                    <div class="bg-slate-600 h-full rounded-full w-1/3"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] text-slate-400">
+                                    <span>Dock 4</span>
+                                    <span>Loading</span>
+                                </div>
+                             </div>
+                             <!-- Item 3 -->
+                             <div class="p-4 rounded-xl bg-[#0F1C30] border border-white/5 hover:border-white/10 hover:bg-[#14233a] transition-all duration-300 cursor-pointer">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="text-sm font-semibold text-slate-300">Freightliner eCas</span>
+                                    <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded border border-emerald-500/20 font-medium">On Route</span>
+                                </div>
+                                <div class="w-full bg-slate-800/80 h-1.5 rounded-full mb-3 overflow-hidden">
+                                    <div class="bg-emerald-500 h-full rounded-full w-[90%] shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+                                </div>
+                                <div class="flex justify-between text-[10px] text-slate-400">
+                                    <span>Route 102</span>
+                                    <span>ETA: 45m</span>
+                                </div>
+                             </div>
+                        </div>
+
+                        <!-- Map/Stats Visualization -->
+                        <div class="lg:col-span-2 bg-[#0F1C30] rounded-xl border border-white/5 relative overflow-hidden flex flex-col shadow-inner">
+                             <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#64748b 1px, transparent 1px); background-size: 24px 24px"></div>
+                             
+                             <div class="p-4 flex gap-4 z-10">
+                                 <div class="bg-navy-800/60 backdrop-blur border border-white/10 p-4 rounded-xl flex-1 hover:bg-navy-800/80 transition-colors duration-300">
+                                     <div class="text-[10px] text-slate-400 uppercase font-semibold tracking-wide">Avg Velocity</div>
+                                     <div class="text-xl font-bold text-white mt-1.5">62.4 <span class="text-sm font-normal text-slate-500 ml-0.5">mph</span></div>
+                                 </div>
+                                 <div class="bg-navy-800/60 backdrop-blur border border-white/10 p-4 rounded-xl flex-1 hover:bg-navy-800/80 transition-colors duration-300">
+                                     <div class="text-[10px] text-slate-400 uppercase font-semibold tracking-wide">Fuel Efficiency</div>
+                                     <div class="text-xl font-bold text-emerald-400 mt-1.5">7.8 <span class="text-sm font-normal text-slate-500 ml-0.5">mpg</span></div>
+                                 </div>
+                             </div>
+
+                             <!-- Chart Area -->
+                             <div class="mt-auto h-52 w-full flex items-end gap-1.5 px-6 pb-0 z-10 opacity-90">
+                                 <div class="flex-1 bg-kyeto-blue/20 rounded-t-sm h-[30%] hover:bg-kyeto-blue/40 transition-all duration-300"></div>
+                                 <div class="flex-1 bg-kyeto-blue/20 rounded-t-sm h-[45%] hover:bg-kyeto-blue/40 transition-all duration-300"></div>
+                                 <div class="flex-1 bg-kyeto-blue/20 rounded-t-sm h-[40%] hover:bg-kyeto-blue/40 transition-all duration-300"></div>
+                                 <div class="flex-1 bg-kyeto-blue/20 rounded-t-sm h-[60%] hover:bg-kyeto-blue/40 transition-all duration-300"></div>
+                                 <div class="flex-1 bg-kyeto-blue/20 rounded-t-sm h-[55%] hover:bg-kyeto-blue/40 transition-all duration-300"></div>
+                                 <div class="flex-1 bg-kyeto-blue rounded-t-sm h-[75%] shadow-[0_0_25px_rgba(43,104,230,0.5)] relative group cursor-pointer hover:bg-blue-500 transition-colors">
+                                    <div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white text-navy-900 text-[10px] font-bold px-2 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Peak Performance</div>
+                                 </div>
+                                 <div class="flex-1 bg-kyeto-blue/20 rounded-t-sm h-[65%] hover:bg-kyeto-blue/40 transition-all duration-300"></div>
+                                 <div class="flex-1 bg-kyeto-blue/20 rounded-t-sm h-[50%] hover:bg-kyeto-blue/40 transition-all duration-300"></div>
+                                 <div class="flex-1 bg-kyeto-blue/20 rounded-t-sm h-[40%] hover:bg-kyeto-blue/40 transition-all duration-300"></div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Fleet Types -->
+    <section class="py-24 bg-gradient-to-b from-slate-50 to-white relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-16 reveal">
+                <div>
+                    <h2 class="text-3xl font-display font-semibold text-navy-900 tracking-tight">Supported Fleet Types</h2>
+                    <p class="text-slate-500 mt-2 font-normal">Unified intelligence for any vehicle class.</p>
+                </div>
+                <div class="flex gap-3 mt-4 md:mt-0">
+                    <button class="w-11 h-11 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-lg hover:border-slate-300 transition-all duration-300 bg-slate-50 group"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-left" class="lucide lucide-chevron-left w-5 h-5 text-slate-600 group-hover:text-kyeto-blue"><path d="m15 18-6-6 6-6"></path></svg></button>
+                    <button class="w-11 h-11 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-lg hover:border-slate-300 transition-all duration-300 bg-slate-50 group"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="chevron-right" class="lucide lucide-chevron-right w-5 h-5 text-slate-600 group-hover:text-kyeto-blue"><path d="m9 18 6-6-6-6"></path></svg></button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Fleet Card 1 -->
+                <div class="group relative bg-white rounded-xl p-7 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-card-hover hover:-translate-y-1 transition-all duration-500 reveal delay-100 overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="w-12 h-12 bg-blue-50/80 rounded-lg flex items-center justify-center mb-5 text-kyeto-blue relative z-10 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="truck" class="lucide lucide-truck w-6 h-6"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg>
+                    </div>
+                    <h3 class="font-semibold text-navy-900 mb-1.5 text-lg relative z-10">Heavy Freight</h3>
+                    <p class="text-sm text-slate-500 font-medium relative z-10">Long-haul logistics</p>
+                </div>
+
+                <!-- Fleet Card 2 -->
+                <div class="group relative bg-white rounded-xl p-7 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-card-hover hover:-translate-y-1 transition-all duration-500 reveal delay-200 overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-indigo-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="w-12 h-12 bg-indigo-50/80 rounded-lg flex items-center justify-center mb-5 text-indigo-600 relative z-10 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="package" class="lucide lucide-package w-6 h-6"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><path d="m7.5 4.27 9 5.15"></path></svg>
+                    </div>
+                    <h3 class="font-semibold text-navy-900 mb-1.5 text-lg relative z-10">Last Mile</h3>
+                    <p class="text-sm text-slate-500 font-medium relative z-10">Urban delivery &amp; vans</p>
+                </div>
+
+                <!-- Fleet Card 3 -->
+                <div class="group relative bg-white rounded-xl p-7 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-card-hover hover:-translate-y-1 transition-all duration-500 reveal delay-300 overflow-hidden">
+                     <div class="absolute inset-0 bg-gradient-to-b from-cyan-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="w-12 h-12 bg-cyan-50/80 rounded-lg flex items-center justify-center mb-5 text-cyan-600 relative z-10 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="thermometer" class="lucide lucide-thermometer w-6 h-6"><path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"></path></svg>
+                    </div>
+                    <h3 class="font-semibold text-navy-900 mb-1.5 text-lg relative z-10">Cold Chain</h3>
+                    <p class="text-sm text-slate-500 font-medium relative z-10">Temp-controlled units</p>
+                </div>
+
+                <!-- Fleet Card 4 -->
+                <div class="group relative bg-white rounded-xl p-7 border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-card-hover hover:-translate-y-1 transition-all duration-500 reveal delay-300 overflow-hidden">
+                     <div class="absolute inset-0 bg-gradient-to-b from-teal-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="w-12 h-12 bg-teal-50/80 rounded-lg flex items-center justify-center mb-5 text-teal-600 relative z-10 group-hover:scale-110 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="ship" class="lucide lucide-ship w-6 h-6"><path d="M12 10.189V14"></path><path d="M12 2v3"></path><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"></path><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76"></path><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path></svg>
+                    </div>
+                    <h3 class="font-semibold text-navy-900 mb-1.5 text-lg relative z-10">Maritime</h3>
+                    <p class="text-sm text-slate-500 font-medium relative z-10">Port &amp; container tracking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Contact Section -->
+    <section class="py-24 bg-navy-gradient relative">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 relative z-10">
+            <div class="reveal">
+                <h2 class="text-3xl font-display font-semibold text-white mb-6">Ready to upgrade your fleet?</h2>
+                <p class="text-slate-400 mb-10 text-lg font-light max-w-md">Get in touch with our enterprise team to schedule a personalized demo and ROI assessment.</p>
+                
+                <div class="space-y-7">
+                    <div class="flex items-start gap-4 group">
+                        <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-kyeto-blue/20 group-hover:border-kyeto-blue/30 transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" class="lucide lucide-map-pin w-5 h-5 text-kyeto-blue"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium group-hover:text-blue-100 transition-colors">Headquarters</h4>
+                            <p class="text-slate-400 text-sm mt-1">10A, Avenue Mpolo Maurice,<br>Gombe, Kinshasa, DRC</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 group">
+                        <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-kyeto-blue/20 group-hover:border-kyeto-blue/30 transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone w-5 h-5 text-kyeto-blue"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium group-hover:text-blue-100 transition-colors">Phone</h4>
+                            <p class="text-slate-400 text-sm mt-1">+243 899 905 483<br>+243 904 570 799</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-4 group">
+                        <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-kyeto-blue/20 group-hover:border-kyeto-blue/30 transition-all duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" class="lucide lucide-mail w-5 h-5 text-kyeto-blue"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium group-hover:text-blue-100 transition-colors">Email</h4>
+                            <p class="text-slate-400 text-sm mt-1">sales@kyetologistics.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="reveal delay-100">
+
+                <form action="https://api.web3forms.com/submit" method="POST" class="bg-navy-800 p-8 rounded-2xl border border-white/10 shadow-2xl relative overflow-hidden group">
+                    <input type="hidden" name="access_key" value="9e6c1a0f-b7ea-4007-a1f1-4ea05180b3d1">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-kyeto-blue/5 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2 pointer-events-none transition-opacity duration-500 group-hover:opacity-100 opacity-50"></div>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-6 relative z-10">
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-400 mb-2 uppercase tracking-wider">First Name</label>
+                            <input type="text" name="first_name" required class="w-full bg-navy-900/50 border border-white/10 rounded-lg px-4 py-3.5 text-white focus:outline-none focus:border-kyeto-blue focus:ring-1 focus:ring-kyeto-blue/50 transition-all duration-200 placeholder:text-slate-600" placeholder="Jane">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-slate-400 mb-2 uppercase tracking-wider">Last Name</label>
+                            <input type="text" name="last_name" required class="w-full bg-navy-900/50 border border-white/10 rounded-lg px-4 py-3.5 text-white focus:outline-none focus:border-kyeto-blue focus:ring-1 focus:ring-kyeto-blue/50 transition-all duration-200 placeholder:text-slate-600" placeholder="Doe">
+                        </div>
+                    </div>
+                    <div class="mb-6 relative z-10">
+                        <label class="block text-[11px] font-bold text-slate-400 mb-2 uppercase tracking-wider">Work Email</label>
+                        <input type="email" name="email" required class="w-full bg-navy-900/50 border border-white/10 rounded-lg px-4 py-3.5 text-white focus:outline-none focus:border-kyeto-blue focus:ring-1 focus:ring-kyeto-blue/50 transition-all duration-200 placeholder:text-slate-600" placeholder="jane@company.com">
+                    </div>
+                    <div class="mb-8 relative z-10">
+                        <label class="block text-[11px] font-bold text-slate-400 mb-2 uppercase tracking-wider">Message</label>
+                        <textarea name="message" required class="w-full bg-navy-900/50 border border-white/10 rounded-lg px-4 py-3.5 text-white focus:outline-none focus:border-kyeto-blue focus:ring-1 focus:ring-kyeto-blue/50 transition-all duration-200 h-32 resize-none placeholder:text-slate-600" placeholder="Tell us about your fleet size and needs..."></textarea>
+                    </div>
+                    <button type="submit" class="relative z-10 w-full bg-kyeto-blue text-white font-medium py-4 rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-[0_10px_30px_-10px_rgba(43,104,230,0.5)] hover:-translate-y-0.5">
+                        Send Message
+                    </button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-950 pt-20 pb-12 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-10 mb-16">
+                <div class="col-span-2 lg:col-span-2">
+                    <div class="flex items-center gap-3.5 mb-6 group cursor-default">
+                        <!-- Footer Logo Instance -->
+                        <div class="w-9 h-9 relative flex items-center justify-center transform group-hover:rotate-180 transition-transform duration-700 ease-in-out">
+                            <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="20" cy="20" r="20" fill="#2B4C7E"/> <!-- Slightly lighter navy base -->
+                                <g style="mix-blend-mode: normal;">
+                                    <path d="M20 0C8.95431 0 0 8.9543 0 20C0 31.0457 8.95431 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0ZM20 36C11.1634 36 4 28.8366 4 20C4 11.1634 11.1634 4 20 4C28.8366 4 36 11.1634 36 20C36 28.8366 28.8366 36 20 36Z" fill="#152C52"/>
+                                    <!-- Swirl Shape Logic -->
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M20 40C31.0457 40 40 31.0457 40 20H36C36 28.8366 28.8366 36 20 36V40ZM11.0557 32.3607L9.26685 35.4593C12.193 37.1488 15.5898 38.1148 19.2 38.0001V34.0001C16.5919 34.0001 14.1384 33.3025 12.025 32.082L11.0557 32.3607ZM8.28427 11.7157L5.45584 8.88729C3.11479 11.2283 1.55403 14.2882 1.08203 17.6569H5.11267C5.45353 15.2234 6.58079 13.0135 8.27157 11.3227L8.28427 11.7157Z" fill="white" fill-opacity="0.9"/>
+                                    <path d="M22 8C22 10.2091 20.2091 12 18 12C15.7909 12 14 10.2091 14 8C14 5.79086 15.7909 4 18 4C20.2091 4 22 5.79086 22 8Z" fill="white"/>
+                                    <path d="M28 26C28 28.2091 26.2091 30 24 30C21.7909 30 20 28.2091 20 26C20 23.7909 21.7909 22 24 22C26.2091 22 28 23.7909 28 26Z" fill="white" fill-opacity="0.8"/>
+                                     <!-- Replicating the swirl turbine look with clean arcs -->
+                                    <path d="M20 0C8.95 0 0 8.95 0 20C0 31.05 8.95 40 20 40C31.05 40 40 31.05 40 20C40 8.95 31.05 0 20 0ZM34 20C34 27.732 27.732 34 20 34C16.8 34 13.85 32.93 11.45 31.1C13.5 30.5 15.5 29.5 17 28C19.5 25.5 20.5 22 20 18.5C21.5 19.5 23.5 20 25.5 20C28 20 30.5 19 32.4 17.2C33.4 18.1 34 19 34 20ZM20 6C23.2 6 26.15 7.07 28.55 8.9C26.5 9.5 24.5 10.5 23 12C20.5 14.5 19.5 18 20 21.5C18.5 20.5 16.5 20 14.5 20C12 20 9.5 21 7.6 22.8C6.6 21.9 6 21 6 20C6 12.268 12.268 6 20 6Z" fill="#152C52"/>
+                                    <!-- Abstract Swirls Overlay -->
+                                    <path d="M20 2C10.0589 2 2 10.0589 2 20C2 29.9411 10.0589 38 20 38C29.9411 38 38 29.9411 38 20C38 10.0589 29.9411 2 20 2ZM10.5 20C10.5 14.7533 14.7533 10.5 20 10.5C25.2467 10.5 29.5 14.7533 29.5 20C29.5 25.2467 25.2467 29.5 20 29.5C14.7533 29.5 10.5 25.2467 10.5 20Z" fill="#2B68E6"/>
+                                    <path d="M20 8C18 8 13 11 11.5 15C10.5 18 10 22 13 25C15 27 19 28 23 27C27 26 30 22 29 18C28 14 24 8 20 8Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M16 16C17.5 14.5 20 14 22 15" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                                    <path d="M15 21C16.5 22.5 19 23 21 22" stroke="white" stroke-width="1.5" stroke-linecap="round" opacity="0.6" transform="rotate(120 18 21.5)"/>
+                                     <path d="M20 12L23 17L18 22" fill="white"/> <!-- Abstract shard -->
+                                </g>
+                                 <!-- Final Polish Layer for Logo to match provided image style more closely (Blue Circle + White Swirls) -->
+                                <circle cx="20" cy="20" r="19" fill="#102544" stroke="#2B68E6" stroke-width="0.5"/>
+                                <path d="M20.5 9C23.5 9.2 26 10.5 27.5 13C28.5 15 28.5 17.5 27.5 19.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M27.5 20C27 23 25 26 22 27.5C20 28.5 17.5 28.5 15.5 27.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M15 27C12 26.5 10 24 9.5 21C9 19 9.5 16.5 10.5 14.5" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <span class="text-lg font-display font-semibold tracking-tight text-white group-hover:text-blue-100 transition-colors">Kyeto Logistics Group</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-xs mb-8">
+                        Kyeto Logistics provides enterprise-grade fleet intelligence for the modern world. Precision, speed, and reliability at scale.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-slate-500 hover:text-white transition-all duration-300 hover:-translate-y-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="twitter" class="lucide lucide-twitter"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+                        <a href="#" class="text-slate-500 hover:text-white transition-all duration-300 hover:-translate-y-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                        <a href="#" class="text-slate-500 hover:text-white transition-all duration-300 hover:-translate-y-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="github" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-medium mb-6">Product</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">Intelligence</a></li>
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">Fleet Map</a></li>
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">Driver App</a></li>
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">API</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-medium mb-6">Company</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">About</a></li>
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">Careers</a></li>
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">Blog</a></li>
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-medium mb-6">Resources</h4>
+                    <ul class="space-y-3 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">Documentation</a></li>
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">Help Center</a></li>
+                        <li><a href="#" class="hover:text-kyeto-blue transition-colors duration-200">Partners</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-xs">© 2023 Kyeto Logistics Inc. All rights reserved.</p>
+                <div class="flex gap-8 text-xs text-slate-500">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+  `;
+
+    return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
 }
