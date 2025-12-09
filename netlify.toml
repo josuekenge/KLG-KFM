@@ -15,15 +15,8 @@
   # Skip husky installation in CI
   CI = "true"
 
-# Note: HTTP-to-HTTPS redirection is handled by Netlify's "Force HTTPS" setting
-# Do not add redirect rules for this to avoid redirect loops
-
-[[redirects]]
-  # Redirect www to non-www (or vice versa, choose your preference)
-  from = "https://www.kyetologistics.com/*"
-  to = "https://kyetologistics.com/:splat"
-  status = 301
-  force = true
+# Note: HTTP-to-HTTPS and www-to-non-www redirects are handled by Netlify dashboard settings
+# Do not add redirect rules here to avoid redirect loops
 
 # Headers for security and performance
 # Note: robots.txt and sitemap.xml are handled by Next.js App Router
